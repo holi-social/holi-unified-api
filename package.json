@@ -1,6 +1,7 @@
 {
   "name": "holi-unified-api",
   "version": "1.0.0",
+  "type": "module",
   "main": "app.js",
   "scripts": {
     "dev": "node app.js",

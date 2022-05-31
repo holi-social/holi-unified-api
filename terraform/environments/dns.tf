@@ -3,7 +3,7 @@
 
 resource "google_dns_record_set" "unified_api_domain_record_set" {
   project      = data.terraform_remote_state.holi_infra_state.outputs.shared_project_id
-  managed_zone = data.terraform_remote_state.holi_unified_api_shared_state.outputs.dns_web_domain_name
+  managed_zone = data.terraform_remote_state.holi_unified_api_common_state.outputs.dns_unified_api_domain_name
   name         = "${google_cloud_run_domain_mapping.unified_api.name}."
   type         = google_cloud_run_domain_mapping.unified_api.status[0].resource_records[0].type
   ttl          = 300
