@@ -25,8 +25,8 @@ resource "google_project_service" "service" {
 
 # in CI, this is set via scripts/create-or-update-env.sh 
 variable "image_tag" {
-  type    = string
-  nullable= false
+  type     = string
+  nullable = false
 }
 
 resource "google_cloud_run_service" "unified_api" {
