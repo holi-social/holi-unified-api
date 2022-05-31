@@ -1,12 +1,11 @@
 {
   "name": "holi-unified-api",
   "version": "1.0.0",
-  "type": "module",
   "main": "app.js",
   "scripts": {
     "dev": "node app.js",
     "start": "node app.js",
-    "lint": "TIMING=1 eslint .",
+    "lint": "TIMING=1 eslint -c .eslintrc.js .",
     "test": "echo 'unit testing goes here'",
     "clean": "echo 'nothing to be done'",
     "clean:all": "rimraf node_modules"
@@ -22,5 +21,13 @@
     "express": "^4.17.3",
     "graphql": "^16.3.0",
     "json-graphql-server": "^2.3.1"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^3.2.0",
+    "eslint": "^8.16.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.6.2"
   }
 }

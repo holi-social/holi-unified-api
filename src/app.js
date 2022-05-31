@@ -5,7 +5,6 @@ import { program } from 'commander'
 import express from 'express'
 import { readFileSync } from 'fs'
 import http from 'http'
-import { env } from 'process'
 
 const DEFAULT_PORT = 4001
 
