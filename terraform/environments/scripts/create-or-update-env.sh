@@ -6,7 +6,7 @@ set -ex
 # enable full debug output in terraform, which is only written to logfiles
 export TF_LOG=TRACE
 
-cd apps/web/terraform
+cd terraform/environments
 
 WORKSPACE=$1
 TAG=$2

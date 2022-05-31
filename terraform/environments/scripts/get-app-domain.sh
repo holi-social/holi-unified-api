@@ -3,6 +3,6 @@
 # exit when any command fails
 set -ex
 
-cd apps/web/terraform > /dev/null
+cd terraform/environments > /dev/null
 
 terraform output -raw app_domain

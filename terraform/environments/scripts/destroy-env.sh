@@ -6,7 +6,7 @@ set -ex
 # enable debug output in terraform
 export TF_LOG=DEBUG
 
-cd apps/web/terraform
+cd terraform/environments
 
 TF_LOG_PATH=terraform-init.log       terraform init
 TF_LOG_PATH=terraform-version.log    terraform version
