@@ -1,5 +1,5 @@
 variables:
-  $API_DOMAIN_PATH: "$CI_PROJECT_DIR/api_domain"
+  API_DOMAIN_PATH: "$CI_PROJECT_DIR/api_domain"
 
 default:
   before_script:
