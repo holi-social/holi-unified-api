@@ -10,7 +10,7 @@ resource "google_dns_record_set" "unified_api_domain_record_set" {
   rrdatas      = [google_cloud_run_domain_mapping.unified_api.status[0].resource_records[0].rrdata]
 }
 
-output "app_domain" {
+output "api_domain" {
   value       = trimsuffix(google_dns_record_set.unified_api_domain_record_set.name, ".")
   description = "Domain where the app resides"
 }
