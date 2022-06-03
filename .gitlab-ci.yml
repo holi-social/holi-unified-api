@@ -14,7 +14,7 @@ default:
     # default entrypoint is terraform command, but we want to run shell scripts
     entrypoint: ["/bin/sh", "-c"]
   variables:
-    ENVIRONMENT_ID: $CI_COMMIT_REF_SLUG
+    ENVIRONMENT_ID: $CI_ENVIRONMENT_SLUG
   artifacts:
     paths:
       - "terraform/environments/scripts/crash.log" # optional, only available in case of a crash/panic
@@ -77,9 +77,9 @@ build_docker:
     - cat $GOOGLE_CLOUD_SERVICE_ACCOUNT | docker login -u _json_key --password-stdin https://eu.gcr.io
   script:
     - docker pull $GCR_IMAGE || true # Allows us to use --cache-from
-    - docker build --cache-from $GCR_IMAGE -t $GCR_IMAGE:$CI_COMMIT_SHA -t $GCR_IMAGE:$CI_COMMIT_REF_SLUG .
+    - docker build --cache-from $GCR_IMAGE -t $GCR_IMAGE:$CI_COMMIT_SHA -t $GCR_IMAGE:$CI_ENVIRONMENT_SLUG .
     - docker push $GCR_IMAGE:$CI_COMMIT_SHA # this is the tag that is used for deployment
-    - docker push $GCR_IMAGE:$CI_COMMIT_REF_SLUG # just for easyly knowing which is the last image for a branch
+    - docker push $GCR_IMAGE:$CI_ENVIRONMENT_SLUG # just for easyly knowing which is the last image for a branch
   interruptible: true
 
 ## review environments 
@@ -88,8 +88,8 @@ review_deploy:
   extends: .deploy
   needs: ['build_docker']
   environment:
-    name: review/$CI_COMMIT_REF_SLUG
-    url: https://$CI_COMMIT_REF_SLUG.unified.apis.project-holi.org
+    name: review/$CI_ENVIRONMENT_SLUG
+    url: https://$CI_ENVIRONMENT_SLUG.unified.apis.project-holi.org
     on_stop: review_destroy
     auto_stop_in: 1 week
   except:
@@ -113,7 +113,7 @@ review_destroy:
     # has to be set to none for auto stop
     GIT_STRATEGY: none
   environment:
-    name: review/$CI_COMMIT_REF_SLUG
+    name: review/$CI_ENVIRONMENT_SLUG
     action: stop
   dependencies: [] # explicitly disable artifact usage
   before_script:
@@ -122,13 +122,13 @@ review_destroy:
     # branch may have been deleted, so we clone and checkout main
     - git clone $CI_REPOSITORY_URL main-clone
     - cd main-clone
-    - terraform/environments/scripts/destroy-env.sh $CI_COMMIT_REF_SLUG
+    - terraform/environments/scripts/destroy-env.sh $CI_ENVIRONMENT_SLUG
   # can't use rules here: https://gitlab.com/gitlab-org/gitlab/-/issues/34077
   when: manual
   except:
     - main
     - /^noenv\/.*/
-  resource_group: $CI_COMMIT_REF_SLUG # never execute terraform in parallel on the same environment
+  resource_group: $CI_ENVIRONMENT_SLUG # never execute terraform in parallel on the same environment
   interruptible: false
 
 ## staging environment

@@ -5,7 +5,7 @@
  */
 resource "random_id" "main" {
   byte_length = 2
-  prefix      = "unified-api-${local.environment_name}-"
+  prefix      = "unified-api-${local.environment}-"
 }
 
 
