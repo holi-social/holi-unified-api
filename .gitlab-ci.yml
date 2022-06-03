@@ -88,7 +88,7 @@ review_deploy:
   extends: .deploy
   needs: ['build_docker']
   environment:
-    name: review/$CI_ENVIRONMENT_SLUG
+    name: review/$CI_COMMIT_REF_SLUG
     url: https://$CI_ENVIRONMENT_SLUG.unified.apis.project-holi.org
     on_stop: review_destroy
     auto_stop_in: 1 week
@@ -112,8 +112,9 @@ review_destroy:
   variables:
     # has to be set to none for auto stop
     GIT_STRATEGY: none
+    ENVIRONMENT_ID: $CI_ENVIRONMENT_SLUG
   environment:
-    name: review/$CI_ENVIRONMENT_SLUG
+    name: review/$CI_COMMIT_REF_SLUG
     action: stop
   dependencies: [] # explicitly disable artifact usage
   before_script:
@@ -128,7 +129,7 @@ review_destroy:
   except:
     - main
     - /^noenv\/.*/
-  resource_group: $CI_ENVIRONMENT_SLUG # never execute terraform in parallel on the same environment
+  resource_group: $ENVIRONMENT_ID # never execute terraform in parallel on the same environment
   interruptible: false
 
 ## staging environment
