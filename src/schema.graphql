@@ -14,16 +14,30 @@ type Mutation {
 }
 
 input UserInput {
-  name: String!
+  image: String
+  firstName: String
+  middleName: String
+  lastName: String
   aboutMe: String
   pronouns: String
   location: String
+  engagementLevel: String
+  interests: [String]
+  sdgs: [String]
+  skills: [String]
 }
 
 type User {
   id: ID!
-  name: String!
+  image: String
+  firstName: String
+  middleName: String
+  lastName: String
   aboutMe: String
   pronouns: String
   location: String
+  engagementLevel: String
+  interests: [String]
+  sdgs: [String]
+  skills: [String]
 }

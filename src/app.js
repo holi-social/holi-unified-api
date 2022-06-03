@@ -21,12 +21,34 @@ const randomInt = (min, max) => {
 
 const fakeUser = () => {
   const pronouns = ['they/them', 'she/her', 'he/him', '']
+  const engagementLevel = ['low', 'middle', 'high']
+  const interests = ['Nature', 'Sustainability', 'Migration', 'Climate', 'BLM', 'Feminism', 'Workers rights', 'Forests']
+  const sdgs = ['No Poverty', 'Zero Hunger', 'Good Health and Well-being', 'Quality Education', 'Gender equality']
+  const skills = [
+    'Driving',
+    'Cooking',
+    'Craft',
+    'Cleaning',
+    'Organising',
+    'Leading',
+    'Hosting',
+    'First aid',
+    'Coaching',
+  ]
+
   return {
     id: faker.unique(faker.datatype.uuid),
-    name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+    image: faker.image.image(50, 50),
+    firstName: faker.name.firstName(),
+    middleName: faker.name.middleName(),
+    lastName: faker.name.lastName(),
     aboutMe: faker.lorem.lines(),
     pronouns: pronouns[randomInt(0, pronouns.length - 1)],
     location: `${faker.address.city()}, ${faker.address.country()}`,
+    engagementLevel: engagementLevel[randomInt(0, engagementLevel.length - 1)],
+    interests: interests.slice(0, randomInt(1, interests.length - 1)),
+    sdgs: sdgs.slice(0, randomInt(1, sdgs.length - 1)),
+    skills: skills.slice(0, randomInt(1, skills.length - 1)),
   }
 }
 
