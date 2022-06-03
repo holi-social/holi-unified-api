@@ -1,0 +1,43 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  user(id: ID!): User
+  allUsers(offset: Int, limit: Int): [User]
+}
+
+type Mutation {
+  createUser(user: UserInput): User
+  updateUser(id: ID!, user: UserInput): User
+}
+
+input UserInput {
+  image: String
+  firstName: String
+  middleName: String
+  lastName: String
+  aboutMe: String
+  pronouns: String
+  location: String
+  engagementLevel: String
+  interests: [String]
+  sdgs: [String]
+  skills: [String]
+}
+
+type User {
+  id: ID!
+  image: String
+  firstName: String
+  middleName: String
+  lastName: String
+  aboutMe: String
+  pronouns: String
+  location: String
+  engagementLevel: String
+  interests: [String]
+  sdgs: [String]
+  skills: [String]
+}
