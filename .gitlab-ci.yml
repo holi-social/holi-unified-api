@@ -5,6 +5,9 @@ default:
   before_script:
     - set -ex
     - env
+  interruptible: true
+  tags:
+    - holi-small # build on smaller machine
 
 # job templates
 
@@ -35,7 +38,6 @@ default:
     - API_DOMAIN=`cat $API_DOMAIN_PATH`
     - echo "e2e tests against $CI_ENVIRONMENT_SLUG environment go here and against $API_DOMAIN"
     - terraform/environments/scripts/wait-for-ssl.sh "https://${API_DOMAIN}"
-  interruptible: true
 
 # end job templates
 
@@ -50,7 +52,8 @@ install_lint_test:
     - yarn install
     - yarn lint
     - yarn test
-  interruptible: true
+  tags:
+    - holi-big
 
 # You can override the included template(s) by including variable overrides
 # SAST customization: https://docs.gitlab.com/ee/user/application_security/sast/#customizing-the-sast-settings
@@ -80,7 +83,6 @@ build_docker:
     - docker build --cache-from $GCR_IMAGE -t $GCR_IMAGE:$CI_COMMIT_SHA -t $GCR_IMAGE:$CI_COMMIT_REF_SLUG .
     - docker push $GCR_IMAGE:$CI_COMMIT_SHA # this is the tag that is used for deployment
     - docker push $GCR_IMAGE:$CI_COMMIT_REF_SLUG # just for easyly knowing which is the last image for a branch
-  interruptible: true
 
 ## review environments 
 
