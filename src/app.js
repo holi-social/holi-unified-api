@@ -52,7 +52,7 @@ const fakeUser = () => {
   }
 }
 
-const fakeUsers = Array.from({ length: randomInt(0, 100) }, fakeUser)
+const fakeUsers = Array.from({ length: randomInt(1, 100) }, fakeUser)
 
 console.info(`${fakeUsers.length} fake user(s)`)
 
