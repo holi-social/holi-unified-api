@@ -1,5 +1,9 @@
 import { faker } from '@faker-js/faker'
-import { ApolloServerPluginDrainHttpServer, gql } from 'apollo-server-core'
+import {
+  ApolloServerPluginDrainHttpServer,
+  ApolloServerPluginLandingPageGraphQLPlayground,
+  gql,
+} from 'apollo-server-core'
 import { ApolloServer } from 'apollo-server-express'
 import { program } from 'commander'
 import express from 'express'
@@ -101,7 +105,7 @@ const httpServer = http.createServer(app)
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  plugins: [ApolloServerPluginDrainHttpServer({ httpServer }), ApolloServerPluginLandingPageGraphQLPlayground()],
 })
 server
   .start()
