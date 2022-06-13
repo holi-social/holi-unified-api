@@ -1,0 +1,3 @@
+#!/command/execlineb -P
+fdmove -c 2 1 # redirect stderr into stdout
+/opt/oathkeeper/oathkeeper --config /opt/oathkeeper/config.yaml serve
