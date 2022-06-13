@@ -38,7 +38,7 @@ default:
     - terraform/environments/scripts/create-or-update-env.sh $ENVIRONMENT_ID $CI_COMMIT_SHA
     - echo $API_DOMAIN_PATH
     - ls $CI_PROJECT_DIR
-     - ls $API_DOMAIN_PATH
+    - touch $API_DOMAIN_PATH
     - echo "$(terraform/environments/scripts/get-api-domain.sh)" > $API_DOMAIN_PATH
   resource_group: $ENVIRONMENT_ID # never execute terraform in parallel on the same environment
   interruptible: false
