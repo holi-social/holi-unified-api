@@ -9,13 +9,13 @@ default:
   tags:
     - holi-small # build on smaller machine
 
-variables:
-  FF_USE_FASTZIP: "true" # enable fastzip - a faster zip implementation that also supports level configuration.
-  ARTIFACT_COMPRESSION_LEVEL: fastest # can be set to fastest, fast, default, slow and slowest. If just enabling fastzip is not enough try setting this to fastest or fast.
-  CACHE_COMPRESSION_LEVEL: fastest # same as above, but for caches
-  TRANSFER_METER_FREQUENCY: 5s # will display transfer progress every 5 seconds for artifacts and remote caches.
-  # for other possible cache performance settings, see https://docs.gitlab.com/ee/ci/runners/configure_runners.html#artifact-and-cache-settings
-  FF_SCRIPT_SECTIONS: "true" # When enabled, each script line from the .gitlab-ci.yml file will be in a collapsible section in the job output and show the duration of each line. 
+#variables:
+#  FF_USE_FASTZIP: "true" # enable fastzip - a faster zip implementation that also supports level configuration.
+#  ARTIFACT_COMPRESSION_LEVEL: fastest # can be set to fastest, fast, default, slow and slowest. If just enabling fastzip is not enough try setting this to fastest or fast.
+#  CACHE_COMPRESSION_LEVEL: fastest # same as above, but for caches
+#  TRANSFER_METER_FREQUENCY: 5s # will display transfer progress every 5 seconds for artifacts and remote caches.
+#  # for other possible cache performance settings, see https://docs.gitlab.com/ee/ci/runners/configure_runners.html#artifact-and-cache-settings
+#  FF_SCRIPT_SECTIONS: "true" # When enabled, each script line from the .gitlab-ci.yml file will be in a collapsible section in the job output and show the duration of each line. 
 
 # job templates
 
@@ -36,6 +36,9 @@ variables:
   script:
     - export GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_CLOUD_SERVICE_ACCOUNT}
     - terraform/environments/scripts/create-or-update-env.sh $ENVIRONMENT_ID $CI_COMMIT_SHA
+    - echo $API_DOMAIN_PATH
+    - ls $API_DOMAIN_PATH
+    - ls $CI_PROJECT_DIR
     - echo "$(terraform/environments/scripts/get-api-domain.sh)" > $API_DOMAIN_PATH
   resource_group: $ENVIRONMENT_ID # never execute terraform in parallel on the same environment
   interruptible: false
