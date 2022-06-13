@@ -15,7 +15,7 @@ RUN apk --no-cache --update-cache --upgrade --latest add ca-certificates=2021122
 RUN sh <(wget -c -q https://raw.githubusercontent.com/ory/meta/master/install.sh -O -) -d -b /opt/oathkeeper oathkeeper v0.38.25-beta.1
 
 # set up oathkeeper as background daemon
-COPY oathkeeper/s6/* /etc/services.d/oathkeeper
+COPY oathkeeper/s6/run /etc/services.d/oathkeeper/
 
 # copy oathkeeper config
 COPY oathkeeper/config.yaml oathkeeper/rules.yaml oathkeeper/jwks.json /opt/oathkeeper/
