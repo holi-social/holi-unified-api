@@ -16,7 +16,7 @@ RUN sh <(wget -c https://raw.githubusercontent.com/ory/meta/master/install.sh -O
 
 # set up oathkeeper as background daemon
 ADD oathkeeper/s6 /etc/services.d/oathkeeper
-RUN chown -R node:node /etc/services.d/oathkeeper/*
+#RUN chown -R node:node /etc/services.d/oathkeeper/*
 
 # copy oathkeeper config
 COPY oathkeeper/config.yaml oathkeeper/rules.yaml oathkeeper/jwks.json /opt/oathkeeper/
@@ -29,9 +29,9 @@ WORKDIR /app
 ENV NODE_ENV production
 
 COPY src package.json yarn.lock /app/
-RUN chown -R node:node /app
+#RUN chown -R node:node /app
 
-USER node
+#USER node
 
 RUN yarn install && yarn cache clean
 CMD ["node", "app.js", "--port", "4000"]
