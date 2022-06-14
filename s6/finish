@@ -1,4 +1,5 @@
 #!/bin/sh
 
+# shellcheck disable=SC1083
 foreground { redirfd -w 1 /run/s6-linux-init-container-results/exitcode echo "$1" }
 /run/s6/basedir/bin/halt

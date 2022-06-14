@@ -16,7 +16,7 @@ ENV S6_CMD_WAIT_FOR_SERVICES=1
 # install oathkeeper
 RUN apk --no-cache --update-cache --upgrade --latest add ca-certificates=20211220-r0
 RUN addgroup -S ory; adduser -S ory -G ory -D -H -s /bin/nologin
-# shellcheck disable=SC3001
+# hadolint ignore=SC3001
 RUN sh <(wget -c -q https://raw.githubusercontent.com/ory/meta/master/install.sh -O -) -d -b /opt/oathkeeper oathkeeper v0.38.25-beta.1
 
 # set up oathkeeper as background daemon
@@ -43,4 +43,5 @@ USER node
 RUN yarn install && yarn cache clean
 
 # switch back to root for s6 init
+# hadolint ignore=DL3002
 USER root

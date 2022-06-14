@@ -1,5 +1,7 @@
 #!/command/execlineb -P
+# shellcheck shell=sh disable=SC1008
 
+# shellcheck disable=SC2164
 cd /app
 s6-setuidgid node
 node app.js --port 4000
