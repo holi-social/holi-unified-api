@@ -1,4 +1,0 @@
-#!/command/execlineb -P
-#/opt/oathkeeper/oathkeeper --config /opt/oathkeeper/config.yaml serve
-cd /app
-node app.js --port 4000

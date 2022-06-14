@@ -1,0 +1,5 @@
+#!/command/execlineb -P
+
+cd /app || exit
+s6-setuidgid node
+node app.js --port 4000

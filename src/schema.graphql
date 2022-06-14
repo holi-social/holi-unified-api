@@ -6,6 +6,7 @@ schema {
 type Query {
   user(id: ID!): User
   allUsers(offset: Int, limit: Int): [User]
+  ping: String
 }
 
 type Mutation {
