@@ -76,7 +76,7 @@ const resolvers = {
       return userFound
     },
     // used for checking the availability of the service in the docker container, see oathkeeper/start.sh
-    ping: (_, args) => {
+    ping: () => {
       return 'pong'
     },
   },
