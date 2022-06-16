@@ -75,6 +75,10 @@ const resolvers = {
       console.info('user', args)
       return userFound
     },
+    // used for checking the availability of the service in the docker container, see oathkeeper/start.sh
+    ping: () => {
+      return 'pong'
+    },
   },
   Mutation: {
     createUser: (_, args) => {
