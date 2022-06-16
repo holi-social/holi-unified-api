@@ -109,6 +109,7 @@ const httpServer = http.createServer(app)
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  introspection: true, // TODO: disable for production
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer }), ApolloServerPluginLandingPageGraphQLPlayground()],
 })
 server
