@@ -39,7 +39,7 @@ resource "google_cloud_run_service" "unified_api" {
       containers {
         image = "${data.terraform_remote_state.holi_infra_state.outputs.gcr_location}/holi-unified-api:${var.image_tag}"
         ports {
-          container_port = 4000
+          container_port = 4455
         }
 
         resources {
