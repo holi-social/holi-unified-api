@@ -101,7 +101,11 @@ const resolvers = {
         })
         .then((result) => {
           console.log(result)
-          return result?.data?.allUsers || []
+          if (result && result.data && result.data.allUsers) {
+            return result.data.allUsers
+          } else {
+            return []
+          }
         })
     },
   },
