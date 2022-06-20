@@ -64,7 +64,7 @@ const fakeUsers = Array.from({ length: randomInt(1, 100) }, fakeUser)
 console.info(`${fakeUsers.length} fake user(s)`)
 
 const okunaUrl = process.env.OKUNA_URL || 'http://localhost:4000/graphql'
-console.info(`connecting to okuna via '${okunaUrl}', ${process.env}`)
+console.info(`connecting to okuna via '${okunaUrl}', ${process.env.keys()}`)
 const okunaClient = new ApolloClient({
   link: new HttpLink({ uri: process.env.OKUNA_URL || 'http://localhost:4000/graphql', fetch }),
   cache: new InMemoryCache(),
