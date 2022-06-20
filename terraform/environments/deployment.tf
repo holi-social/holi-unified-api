@@ -41,6 +41,10 @@ resource "google_cloud_run_service" "unified_api" {
         ports {
           container_port = 4455
         }
+        env {
+          name  = "OKUNA_URL"
+          value = local.environment == "production" ? "1000m" : "1000m"
+        }
 
         resources {
           limits = {
