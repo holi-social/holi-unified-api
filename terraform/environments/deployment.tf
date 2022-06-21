@@ -36,6 +36,7 @@ resource "google_cloud_run_service" "unified_api" {
 
   template {
     spec {
+      service_account_name = data.terraform_remote_state.holi_unified_api_common_state.outputs.cloud_run_service_account_email
       containers {
         image = "${data.terraform_remote_state.holi_infra_state.outputs.gcr_location}/holi-unified-api:${var.image_tag}"
         ports {
