@@ -32,14 +32,19 @@ variable "image_tag" {
 resource "google_cloud_run_service" "unified_api" {
   project  = data.terraform_remote_state.holi_infra_state.outputs.shared_project_id
   name     = random_id.main.hex
-  location = "europe-north1" # TODO: Frankfurt doesn't work, settle on a region here (north1 is finland and very co2 friendly)
+  location = "europe-north1" # finland, low CO2 emissions
 
   template {
     spec {
+      service_account_name = data.terraform_remote_state.holi_unified_api_common_state.outputs.cloud_run_service_account_email
       containers {
         image = "${data.terraform_remote_state.holi_infra_state.outputs.gcr_location}/holi-unified-api:${var.image_tag}"
         ports {
           container_port = 4455
+        }
+        env {
+          name  = "OKUNA_URL"
+          value = local.okuna_url
         }
 
         resources {
@@ -58,8 +63,12 @@ resource "google_cloud_run_service" "unified_api" {
     }
     metadata {
       annotations = {
-        "autoscaling.knative.dev/minScale" = local.environment == "production" ? "0" : "0"
-        "autoscaling.knative.dev/maxScale" = local.environment == "production" ? "10" : "1"
+        "autoscaling.knative.dev/minScale"        = local.environment == "production" ? "0" : "0"
+        "autoscaling.knative.dev/maxScale"        = local.environment == "production" ? "10" : "1"
+        "run.googleapis.com/vpc-access-connector" = data.terraform_remote_state.holi_infra_state.outputs.vpc_access_connector_name
+        # possible values: all-traffic/private-ranges-only(default) https://cloud.google.com/sdk/gcloud/reference/run/services/update#--vpc-egress
+        # this needs to be set to all-traffic in order to route a cloud run url correctly, since it does resolve to a non-private ip address.
+        "run.googleapis.com/vpc-access-egress"    = "all-traffic"
       }
     }
   }
