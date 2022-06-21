@@ -1,3 +1,4 @@
+import apolloClientGlobal from '@apollo/client/core/core.cjs'
 import { faker } from '@faker-js/faker'
 import {
   ApolloServerPluginDrainHttpServer,
@@ -9,6 +10,9 @@ import { program } from 'commander'
 import express from 'express'
 import { readFileSync } from 'fs'
 import http from 'http'
+import fetch from 'node-fetch'
+
+const { ApolloClient, HttpLink, InMemoryCache } = apolloClientGlobal
 
 const DEFAULT_PORT = 4001
 
@@ -57,8 +61,14 @@ const fakeUser = () => {
 }
 
 const fakeUsers = Array.from({ length: randomInt(1, 100) }, fakeUser)
-
 console.info(`${fakeUsers.length} fake user(s)`)
+
+const okunaUrl = process.env.OKUNA_URL || 'http://localhost:4000/graphql'
+console.info(`connecting to okuna via '${okunaUrl}',`)
+const okunaClient = new ApolloClient({
+  link: new HttpLink({ uri: process.env.OKUNA_URL || 'http://localhost:4000/graphql', fetch }),
+  cache: new InMemoryCache(),
+})
 
 const typeDefs = gql(readFileSync('./schema.graphql').toString('utf-8'))
 const resolvers = {
@@ -78,6 +88,27 @@ const resolvers = {
     // used for checking the availability of the service in the docker container, see oathkeeper/start.sh
     ping: () => {
       return 'pong'
+    },
+    okunaUsers: () => {
+      console.info('okunaUsers')
+      return okunaClient
+        .query({
+          query: gql`
+            {
+              allUsers {
+                id
+              }
+            }
+          `,
+        })
+        .then((result) => {
+          console.log(result)
+          if (result && result.data && result.data.allUsers) {
+            return result.data.allUsers
+          } else {
+            return []
+          }
+        })
     },
   },
   Mutation: {
