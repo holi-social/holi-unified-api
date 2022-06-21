@@ -32,7 +32,7 @@ variable "image_tag" {
 resource "google_cloud_run_service" "unified_api" {
   project  = data.terraform_remote_state.holi_infra_state.outputs.shared_project_id
   name     = random_id.main.hex
-  location = "europe-north1" # TODO: Frankfurt doesn't work, settle on a region here (north1 is finland and very co2 friendly)
+  location = "europe-north1" # finland, low CO2 emissions
 
   template {
     spec {
