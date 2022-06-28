@@ -4,6 +4,6 @@ sources:
       graphql:
         endpoint: http://localhost:8000/graphql
         operationHeaders:
-          X-Holi-User-ID: {context.headers['X-Holi-User-ID']}
-          X-Holi-User-Email: {context.headers['X-Holi-User-Email']}
+          X-Holi-User-ID: "{context.headers['x-holi-user-id']}"
+          X-Holi-User-Email: "{context.headers['x-holi-user-email']}"
 
