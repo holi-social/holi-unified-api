@@ -14,13 +14,16 @@
   "dependencies": {
     "@apollo/client": "^3.6.8",
     "@faker-js/faker": "^6.0.0-alpha.7",
+    "@graphql-mesh/cli": "^0.73.3",
+    "@graphql-mesh/graphql": "^0.28.0",
+    "@graphql-mesh/runtime": "^0.39.0",
     "@graphql-tools/graphql-file-loader": "^7.3.4",
     "@graphql-tools/load": "^7.5.2",
     "apollo-server-express": "^3.8.2",
     "commander": "^9.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.3",
-    "graphql": "^16.3.0",
+    "graphql": "^16.5.0",
     "json-graphql-server": "^2.3.1",
     "node-fetch": "^3.2.6"
   },
