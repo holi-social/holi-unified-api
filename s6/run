@@ -5,4 +5,4 @@
 cd /app
 with-contenv
 s6-setuidgid node
-node app.js --port 4000
+./node_modules/.bin/mesh dev
