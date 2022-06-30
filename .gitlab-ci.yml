@@ -33,7 +33,7 @@ variables:
   interruptible: false
 
 .e2e:
-  image: 'codeceptjs/codeceptjs'
+  image: 'archlinux:latest'
   script:
     - API_DOMAIN=`cat $API_DOMAIN_PATH`
     - echo "e2e tests against $CI_ENVIRONMENT_SLUG environment go here and against $API_DOMAIN"
