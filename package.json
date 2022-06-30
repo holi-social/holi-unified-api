@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "mesh dev",
-    "start": "mesh dev",
+    "dev": "mesh dev --port=4000",
+    "start": "mesh dev --port=4000",
     "lint": "echo 'nothing to be linted ATM'",
     "test": "echo 'unit testing goes here'",
     "clean": "echo 'nothing to be done'",
