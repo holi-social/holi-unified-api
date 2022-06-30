@@ -19,6 +19,9 @@ RUN addgroup -S ory; adduser -S ory -G ory -D -H -s /bin/nologin
 # hadolint ignore=SC3001
 RUN sh <(wget -c -q https://raw.githubusercontent.com/ory/meta/master/install.sh -O -) -d -b /opt/oathkeeper oathkeeper v0.38.25-beta.1
 
+# install curl (used in start.sh)   
+RUN apk --no-cache --update-cache --upgrade --latest add curl
+
 # set up oathkeeper as background daemon
 COPY s6/run s6/finish /etc/services.d/node/
 
