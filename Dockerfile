@@ -40,7 +40,7 @@ CMD ["/opt/oathkeeper/start.sh"]
 # install app
 WORKDIR /app
 ENV NODE_ENV production
-COPY src package.json yarn.lock /app/
+COPY package.json yarn.lock .meshrc.yml /app/
 RUN chown -R node:node /app
 USER node
 RUN yarn install && yarn cache clean
