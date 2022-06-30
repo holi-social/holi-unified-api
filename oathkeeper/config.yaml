@@ -52,8 +52,6 @@ authenticators:
       preserve_path: true
       extra_from: '@this'
       subject_from: 'identity.id'
-      only: 
-        - ory_kratos_session
       additional_headers:
         accept-encoding: identity
   bearer_token:
