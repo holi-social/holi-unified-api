@@ -5,4 +5,5 @@
 cd /app
 with-contenv
 s6-setuidgid node
-DEBUG=1 ./node_modules/.bin/mesh dev --port=4000
+export DEBUG=1
+./node_modules/.bin/mesh dev --port=4000
