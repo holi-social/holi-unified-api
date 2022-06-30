@@ -1,0 +1,8 @@
+sources:
+  - name: okuna
+    handler:
+      graphql:
+        endpoint: http://localhost:8000/graphql
+        operationHeaders:
+          X-Holi-User-ID: "{context.headers['x-holi-user-id']}"
+          X-Holi-User-Email: "{context.headers['x-holi-user-email']}"
