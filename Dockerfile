@@ -19,7 +19,7 @@ RUN addgroup -S ory; adduser -S ory -G ory -D -H -s /bin/nologin
 # hadolint ignore=SC3001
 RUN sh <(wget -c -q https://raw.githubusercontent.com/ory/meta/master/install.sh -O -) -d -b /opt/oathkeeper oathkeeper v0.38.25-beta.1
 
-# install curl (used in start.sh)   
+# install curl (used in start.sh)
 RUN apk --no-cache --update-cache --upgrade --latest add curl
 
 # set up oathkeeper as background daemon
@@ -28,7 +28,7 @@ COPY s6/run s6/finish /etc/services.d/node/
 # TODO https://github.com/just-containers/s6-overlay#dropping-privileges
 
 # copy oathkeeper config
-COPY oathkeeper/config.yaml oathkeeper/rules.yaml oathkeeper/jwks.json oathkeeper/start.sh /opt/oathkeeper/
+COPY oathkeeper/config.yaml oathkeeper/rules.yaml oathkeeper/start.sh /opt/oathkeeper/
 
 # expose oathkeeper proxy, not API
 EXPOSE 4455
