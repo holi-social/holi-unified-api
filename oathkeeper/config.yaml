@@ -61,7 +61,5 @@ authenticators:
       preserve_path: true
       extra_from: '@this'
       subject_from: 'identity.id'
-      token_from:
-        header: X-Session-Token
       additional_headers:
         accept-encoding: identity
