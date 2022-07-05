@@ -8,7 +8,7 @@ serve:
     port: 4456 # run the api at port 4456
 
 access_rules:
-  repositories:
+  repositories: # can be overridden by e.g. setting ACCESS_RULES_REPOSITORIES env variable with JSON content, see https://www.ory.sh/docs/ecosystem/configuring
     - file:///opt/oathkeeper/rules.yaml
 
 errors:

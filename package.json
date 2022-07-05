@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "DEBUG=1 mesh dev --port=4000",
+    "dev": "DEBUG=1 mesh dev --port=4000 --dir local",
     "start": "DEBUG=1 mesh dev --port=4000",
     "lint": "echo 'nothing to be linted ATM'",
     "test": "echo 'unit testing goes here'",
