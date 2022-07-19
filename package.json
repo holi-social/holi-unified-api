@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "OKUNA_URL=http://localhost:8000/graphql DEBUG=1 mesh dev --port=4000",
-    "start": "OKUNA_URL=https://staging.unified.apis.project-holi.org/graphql DEBUG=1 mesh dev --port=4000",
+    "dev": "OKUNA_URL=${OKUNA_URL:-http://localhost:8000/graphql} DEBUG=1 mesh dev --port=4000",
+    "start": "OKUNA_URL=${OKUNA_URL:-https://staging.unified.apis.project-holi.org/graphql} DEBUG=1 mesh dev --port=4000",
     "lint": "echo 'nothing to be linted ATM'",
     "test": "echo 'unit testing goes here'",
     "clean": "echo 'nothing to be done'",
