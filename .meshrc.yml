@@ -2,7 +2,7 @@ sources:
   - name: okuna
     handler:
       graphql:
-        endpoint: https://staging.social.apis.project-holi.org/graphql
+        endpoint: "{env.OKUNA_URL}"
         operationHeaders:
           X-Holi-User-ID: "{context.headers['x-holi-user-id']}"
           X-Holi-User-Email: "{context.headers['x-holi-user-email']}"
