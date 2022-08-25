@@ -1,0 +1,8 @@
+# template file, copy it to '.envrc.local' and adjust for your personal configuration
+# the '.envrc.local' file is to be included by .envrc and can contain personal secrets or configuration so it is NOT TO BE CHECKED IN
+
+# installing correct node version using nodeenv
+nodenv install -s $(cat .node-version)
+# alternative using nvm
+# . ~/.nvm/nvm.sh # load nvm command
+# nvm use
