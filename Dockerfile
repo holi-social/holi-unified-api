@@ -14,7 +14,7 @@ ENTRYPOINT ["/init"]
 ENV S6_CMD_WAIT_FOR_SERVICES=1
 
 # install oathkeeper
-RUN apk --no-cache --update-cache --upgrade --latest add ca-certificates=20211220-r0
+RUN apk --no-cache --update-cache --upgrade --latest add ca-certificates
 RUN addgroup -S ory; adduser -S ory -G ory -D -H -s /bin/nologin
 # hadolint ignore=SC3001
 RUN sh <(wget -c -q https://raw.githubusercontent.com/ory/meta/master/install.sh -O -) -d -b /opt/oathkeeper oathkeeper v0.38.25-beta.1
