@@ -1,3 +1,4 @@
 /node_modules/
 .terraform*
 .mesh
+.envrc.local
