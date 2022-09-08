@@ -46,6 +46,10 @@ resource "google_cloud_run_service" "unified_api" {
           name  = "OKUNA_URL"
           value = local.okuna_url
         }
+        env {
+          name = "DONATIONS_API_URL"
+          value = local.donations_api_url
+        }
 
         resources {
           limits = {
