@@ -26,9 +26,9 @@ for i in {1..2500}; do
   # shellcheck disable=SC2181
   if [ $retval == 0 ]; then
     number_of_consecutive_successful_tries_achieved=$((number_of_consecutive_successful_tries_achieved + 1))
-    echo "success (${number_of_consecutive_successful_tries_achieved})"
+    echo "Success (${number_of_consecutive_successful_tries_achieved})"
     if [ "$number_of_consecutive_successful_tries_achieved" -eq "$number_of_consecutive_successful_tries_needed" ]; then
-      echo "test successful after $i total tries"
+      echo "Test successful after $i total tries"
       exit 0
     fi
   else
@@ -38,5 +38,5 @@ for i in {1..2500}; do
   fi
 done
 
-echo -e "no success after $i tries. Last output was:\n$out"
+echo -e "No success after $i tries. Last output was:\n$out"
 exit 1
