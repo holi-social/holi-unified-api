@@ -48,7 +48,7 @@ authenticators:
   cookie_session:
     enabled: true
     config:
-      check_session_url: https://mystifying-carver-akajr6v4t8.projects.oryapis.com/sessions/whoami
+      check_session_url: https://auth.project-holi.org/sessions/whoami
       preserve_path: true
       extra_from: '@this'
       subject_from: 'identity.id'
@@ -57,7 +57,7 @@ authenticators:
   bearer_token:
     enabled: true
     config:
-      check_session_url: https://mystifying-carver-akajr6v4t8.projects.oryapis.com/sessions/whoami
+      check_session_url: https://auth.project-holi.org/sessions/whoami
       preserve_path: true
       extra_from: '@this'
       subject_from: 'identity.id'
