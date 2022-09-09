@@ -1,5 +1,5 @@
 - id: holi-production
-  version: v0.39.0
+  version: v0.39.4
   upstream:
     url: http://host.docker.internal:4000 # always true, as this GraphQL mesh is run within this Docker container
   match:
