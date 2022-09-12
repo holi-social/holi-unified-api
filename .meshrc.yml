@@ -11,9 +11,13 @@ sources:
       graphql:
         endpoint: "{env.DONATIONS_API_URL}"
     transforms:
+      # Prefix for types
       - prefix:
           mode: wrap
           value: AppDonations_
+          includeRootOperations: false
+          includeTypes: true
+      # Prefix for operations
       - prefix:
           mode: wrap
           value: appDonations_

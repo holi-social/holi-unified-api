@@ -23,3 +23,8 @@ It is kept in sync with `.nvmrc` (used by `nvm`) by a symbolic link, so please m
 
 The CI/CD pipeline follows our normal flow, deploying branch environments and deploying main to staging automatically
 and to production manually. The e2e tests that should go in between staging and prod deployments are missing up until now.
+
+## Prefixes
+
+We are using [a prefix transformation](https://www.the-guild.dev/graphql/mesh/docs/transforms/prefix) in GraphQL Mesh to prefix all APIs for Holi Apps to prevent name clashes and clearly distinguish between apps and the "core" functionality in the combined GraphQL API.
+Prefixes should be equal to `App<AppName>_` resp. `app<AppName>_` for types and operations and have to be defined in `.meshrc.yml`. (Take a look at the `app-donations` API for an example).
