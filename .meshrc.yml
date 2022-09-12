@@ -16,6 +16,6 @@ sources:
           value: AppDonations_
       - prefix:
           mode: wrap
-          value: app_donations_
+          value: appDonations_
           includeRootOperations: true
           includeTypes: false
