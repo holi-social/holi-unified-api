@@ -3,7 +3,5 @@ locals {
   environment = terraform.workspace
   # the dns name can be at most 64 chars in total. The environment passed in via gitlab is max 24 chars (CI_ENVIRONMENT_SLUG).
   dns_name = "${local.environment}.${data.terraform_remote_state.holi_unified_api_common_state.outputs.dns_unified_api_domain}"
-  # in staging and production envs, we are deploying the docker image built from the main branch
-  docker_image_tag = contains(["staging", "production"], local.environment) ? "main" : local.environment
   okuna_url        = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_okuna_common_state.outputs.dns_okuna_domain}/graphql"
 }
