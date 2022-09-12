@@ -6,3 +6,20 @@ sources:
         operationHeaders:
           X-Holi-User-ID: "{context.headers['x-holi-user-id']}"
           X-Holi-User-Email: "{context.headers['x-holi-user-email']}"
+  - name: app-donations
+    handler:
+      graphql:
+        endpoint: "{env.DONATIONS_API_URL}"
+    transforms:
+      # Prefix for types
+      - prefix:
+          mode: wrap
+          value: AppDonations_
+          includeRootOperations: false
+          includeTypes: true
+      # Prefix for operations
+      - prefix:
+          mode: wrap
+          value: appDonations_
+          includeRootOperations: true
+          includeTypes: false
