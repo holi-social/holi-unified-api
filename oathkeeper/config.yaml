@@ -54,6 +54,8 @@ authenticators:
       subject_from: 'identity.id'
       additional_headers:
         accept-encoding: identity
+      only:
+        - ory_session_mystifyingcarverakajr6v4t8
   bearer_token:
     enabled: true
     config:
