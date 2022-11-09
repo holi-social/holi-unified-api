@@ -4,6 +4,7 @@ sources:
       graphql:
         endpoint: "{env.OKUNA_URL}"
         operationHeaders:
+          Accept-Language: "{context.headers['accept-language']}"
           X-Holi-User-ID: "{context.headers['x-holi-user-id']}"
           X-Holi-User-Email: "{context.headers['x-holi-user-email']}"
   - name: app-donations
