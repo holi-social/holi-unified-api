@@ -28,4 +28,3 @@ and to production manually. The e2e tests that should go in between staging and 
 
 We are using [a prefix transformation](https://www.the-guild.dev/graphql/mesh/docs/transforms/prefix) in GraphQL Mesh to prefix all APIs for Holi Apps to prevent name clashes and clearly distinguish between apps and the "core" functionality in the combined GraphQL API.
 Prefixes should be equal to `App<AppName>_` resp. `app<AppName>_` for types and operations and have to be defined in `.meshrc.yml`. (Take a look at the `app-donations` API for an example).
-
