@@ -24,3 +24,20 @@ sources:
           value: appDonations_
           includeRootOperations: true
           includeTypes: false
+  - name: app-goodnews
+    handler:
+      graphql:
+        endpoint: "{env.GOODNEWS_API_URL}"
+    transforms:
+      # Prefix for types
+      - prefix:
+          mode: wrap
+          value: AppGoodNews_
+          includeRootOperations: false
+          includeTypes: true
+      # Prefix for operations
+      - prefix:
+          mode: wrap
+          value: appGoodNews_
+          includeRootOperations: true
+          includeTypes: false

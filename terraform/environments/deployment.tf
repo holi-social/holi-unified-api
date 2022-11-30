@@ -50,6 +50,10 @@ resource "google_cloud_run_service" "unified_api" {
           name = "DONATIONS_API_URL"
           value = local.donations_api_url
         }
+        env {
+          name = "GOODNEWS_API_URL"
+          value = local.goodnews_api_url
+        }
 
         resources {
           limits = {

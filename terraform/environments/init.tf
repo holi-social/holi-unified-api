@@ -37,6 +37,14 @@ data "terraform_remote_state" "holi_donations_api_common_state" {
   }
 }
 
+data "terraform_remote_state" "holi_goodnews_api_common_state" {
+  backend = "gcs"
+  config = {
+    bucket = "holi-shared-terraform-state"
+    prefix = "goodnews-api-common"
+  }
+}
+
 # provider google including beta features
 provider "google" {
   region = "europe-north1"
