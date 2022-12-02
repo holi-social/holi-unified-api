@@ -41,3 +41,20 @@ sources:
           value: appGoodNews_
           includeRootOperations: true
           includeTypes: false
+  - name: geo
+    handler:
+      graphql:
+        endpoint: "{env.GEO_API_URL}"
+    transforms:
+      # Prefix for types
+      - prefix:
+          mode: wrap
+          value: Geo_
+          includeRootOperations: false
+          includeTypes: true
+      # Prefix for operations
+      - prefix:
+          mode: wrap
+          value: geo_
+          includeRootOperations: true
+          includeTypes: false
