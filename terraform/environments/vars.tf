@@ -7,4 +7,5 @@ locals {
   okuna_url          = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_okuna_common_state.outputs.dns_okuna_domain}/graphql"
   donations_api_url  = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_donations_api_common_state.outputs.dns_donations_api_domain}/graphql"
   goodnews_api_url   = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_goodnews_api_common_state.outputs.dns_goodnews_api_domain}/graphql"
+  geo_api_url        = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_geo_api_common_state.outputs.dns_geo_api_domain}/graphql"
 }

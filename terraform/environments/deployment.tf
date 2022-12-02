@@ -54,6 +54,10 @@ resource "google_cloud_run_service" "unified_api" {
           name = "GOODNEWS_API_URL"
           value = local.goodnews_api_url
         }
+        env {
+          name = "GEO_API_URL"
+          value = local.geo_api_url
+        }
 
         resources {
           limits = {
