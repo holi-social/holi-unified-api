@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "OKUNA_URL=${OKUNA_URL:-http://127.0.0.1:8000/graphql} DONATIONS_API_URL=${DONATIONS_API_URL:-http://127.0.0.1:8001/graphql} GOODNEWS_API_URL=${GOODNEWS_API_URL:-http://127.0.0.1:8002/graphql} DEBUG=1 mesh dev --port=4000",
-    "start": "OKUNA_URL=${OKUNA_URL:-https://staging.unified.apis.project-holi.org/graphql} DONATIONS_API_URL=${DONATIONS_API_URL:-https://staging.unified.apis.project-holi.org/graphql} GOODNEWS_API_URL=${GOODNEWS_API_URL:-https://staging.unified.apis.project-holi.org/graphql} DEBUG=1 mesh dev --port=4000",
+    "dev": "OKUNA_URL=${OKUNA_URL:-http://127.0.0.1:8000/graphql} DONATIONS_API_URL=${DONATIONS_API_URL:-http://127.0.0.1:8001/graphql} GOODNEWS_API_URL=${GOODNEWS_API_URL:-http://127.0.0.1:8002/graphql} GEO_API_URL=${GEO_API_URL:-http://127.0.0.1:8003/graphql} DEBUG=1 mesh dev --port=4000",
+    "start": "OKUNA_URL=${OKUNA_URL:-https://staging.unified.apis.project-holi.org/graphql} DONATIONS_API_URL=${DONATIONS_API_URL:-https://staging.unified.apis.project-holi.org/graphql} GOODNEWS_API_URL=${GOODNEWS_API_URL:-https://staging.unified.apis.project-holi.org/graphql} GEO_API_URL=${GEO_API_URL:-https://staging.unified.apis.project-holi.org/graphql} DEBUG=1 mesh dev --port=4000",
     "lint": "echo 'nothing to be linted ATM'",
     "test": "echo 'unit testing goes here'",
     "clean": "echo 'nothing to be done'",
