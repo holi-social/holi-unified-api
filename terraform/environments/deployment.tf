@@ -47,15 +47,15 @@ resource "google_cloud_run_service" "unified_api" {
           value = local.okuna_url
         }
         env {
-          name = "DONATIONS_API_URL"
+          name  = "DONATIONS_API_URL"
           value = local.donations_api_url
         }
         env {
-          name = "GOODNEWS_API_URL"
+          name  = "GOODNEWS_API_URL"
           value = local.goodnews_api_url
         }
         env {
-          name = "GEO_API_URL"
+          name  = "GEO_API_URL"
           value = local.geo_api_url
         }
 
@@ -63,7 +63,7 @@ resource "google_cloud_run_service" "unified_api" {
           limits = {
             # cpu can only be scaled down to 1000m as long as container_concurrency is set to != 1
             cpu    = local.environment == "production" ? "1000m" : "1000m"
-            memory = local.environment == "production" ? "512Mi" : "256Mi"
+            memory = local.environment == "production" ? "512Mi" : "384Mi"
           }
           requests = {
             cpu    = local.environment == "production" ? "1000m" : "10m"
@@ -80,7 +80,7 @@ resource "google_cloud_run_service" "unified_api" {
         "run.googleapis.com/vpc-access-connector" = data.terraform_remote_state.holi_infra_state.outputs.vpc_access_connector_name
         # possible values: all-traffic/private-ranges-only(default) https://cloud.google.com/sdk/gcloud/reference/run/services/update#--vpc-egress
         # this needs to be set to all-traffic in order to route a cloud run url correctly, since it does resolve to a non-private ip address.
-        "run.googleapis.com/vpc-access-egress"    = "all-traffic"
+        "run.googleapis.com/vpc-access-egress" = "all-traffic"
       }
     }
   }
