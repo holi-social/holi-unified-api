@@ -1,0 +1,203 @@
+openapi: 3.0.3
+info:
+  title: voltastics
+  description: |-
+    voltastics api for third-party developers.
+
+    Important: all calls will have to set the x-voltastics-token header.
+  contact:
+    email: info@voltastics.org
+  version: 0.0.1
+servers:
+  - url: http://localhost:8004/api
+paths:
+  /cities:
+    get:
+      summary: Get list of all cities with engagement-offers available
+      description: Returns a list of all cities with engagement options available.
+      security:
+        - voltasticsToken: []
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CityList'
+  /uses:
+    get:
+      summary: Get list of all uses with engagement-offers available
+      description: Returns a list of all uses with engagement options available. A use is something like e.g. Natur- und Umweltschutz, Flüchtlingshilfe...#
+      security:
+        - voltasticsToken: []
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UseList'
+  /engagements:
+    get:
+      summary: List engagements
+      description: list engagements (assumed API design)
+      security:
+        - voltasticsToken: []
+      parameters:
+        - name: location
+          in: query
+          description: The location of the engagement
+          required: false
+          schema:
+            type: string
+        - name: use
+          in: query
+          description: The use of the engagement
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EngagementList'
+  /searchengagement:
+    get:
+      summary: Search for engagements
+      description: Search for engagements in given bbox or in a radius around a centre coordinate.
+      security:
+        - voltasticsToken: []
+      parameters:
+        - name: lat
+          in: query
+          description: The latitude of the centre of the circle for a radius search
+          required: true
+          explode: true
+          schema:
+            type: number
+        - name: lon
+          in: query
+          description: The longitude of the centre of the circle for a radius search
+          required: true
+          explode: true
+          schema:
+            type: number
+        - name: radius
+          in: query
+          description: The radius to search for in km
+          required: true
+          explode: true
+          schema:
+            type: number
+            enum: [1, 5, 10, 20]
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EngagementList'
+  /trackview:
+    get:
+      summary: Track the view of an engagement
+      description: Send a little tracking event for given engagement
+      security:
+        - voltasticsToken: []
+      parameters:
+        - name: id
+          in: query
+          description: The id of the engagement to track an event for
+          required: true
+          explode: true
+          schema:
+            type: integer
+            format: int64
+          example: 86009
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackViewResult'
+components:
+  schemas:
+    CityList:
+      type: array
+      items:
+        type: string
+      example: [Bonn, Frankfurt, Hamburg]
+    UseList:
+      type: array
+      items:
+        type: string
+      example: [Naturschutz, Katastrophenhilfe]
+    Engagement:
+      type: object
+      required:
+        - id
+        - title
+        - description
+        - link
+        - source
+        - uses
+        - hashTags
+        - orga
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 86009
+        title:
+          type: string
+          example: Einsätze in der Natur- und Biotoppflege
+        location:
+          type: string
+          example: Trier
+        link:
+          type: string
+          example: https://www.aktion-mensch.de/was-du-tun-kannst/ehrenamt/engagement-plattform#/lokale-angebote/047980a0-4b54-4225-8601-982593922401?utm_source=voltastics
+        source:
+          type: string
+          example: Aktion Mensch
+        image:
+          type: string
+          example: https://backend.voltastics.de/search/image?id=86009-einsatze-in-der-natur-und-biotoppflege
+        uses:
+          type: array
+          items:
+            type: string
+        hashTags:
+          type: array
+          items:
+            type: string
+        orga:
+          type: string
+          example: asd
+        imageOrga:
+          type: string
+          example: asd
+        description:
+          type: string
+          example: <p>Wir suchen Freiwillige für folgenden Aufgabenbereich:</p>\n<p><br /><br /></p>\n<p>
+        latitude:
+          type: number
+          example: 49.74482
+        longitude:
+          type: number
+          example: 6.63449
+    EngagementList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Engagement'
+    TrackViewResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+  securitySchemes:
+    voltasticsToken:
+      type: apiKey
+      in: header
+      name: x-voltastics-token

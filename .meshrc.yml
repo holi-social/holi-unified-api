@@ -41,6 +41,25 @@ sources:
           value: appGoodNews_
           includeRootOperations: true
           includeTypes: false
+  - name: app-volunteering
+    handler:
+      openapi:
+        source: ./holi-voltastics-mock-openapi.yml
+        operationHeaders:
+          x-voltastics-token: "{env.VOLTASTICS_API_TOKEN}"
+    transforms:
+      # Prefix for types
+      - prefix:
+          mode: wrap
+          value: AppVolunteering_
+          includeRootOperations: false
+          includeTypes: true
+      # Prefix for operations
+      - prefix:
+          mode: wrap
+          value: appVolunteering_
+          includeRootOperations: true
+          includeTypes: false
   - name: geo
     handler:
       graphql:
