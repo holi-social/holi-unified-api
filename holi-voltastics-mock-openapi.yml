@@ -8,8 +8,6 @@ info:
   contact:
     email: info@voltastics.org
   version: 0.0.1
-servers:
-  - url: http://localhost:8004/api
 paths:
   /cities:
     get:
