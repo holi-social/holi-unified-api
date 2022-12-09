@@ -58,6 +58,10 @@ resource "google_cloud_run_service" "unified_api" {
           name = "GEO_API_URL"
           value = local.geo_api_url
         }
+        env {
+          name = "VOLUNTEERING_API_URL"
+          value = local.volunteering_api_url
+        }
 
         resources {
           limits = {
