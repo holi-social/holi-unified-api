@@ -53,6 +53,14 @@ data "terraform_remote_state" "holi_geo_api_common_state" {
   }
 }
 
+data "terraform_remote_state" "holi_volunteering_api_common_state" {
+  backend = "gcs"
+  config = {
+    bucket = "holi-shared-terraform-state"
+    prefix = "volunteering-api-common"
+  }
+}
+
 # provider google including beta features
 provider "google" {
   region = "europe-north1"

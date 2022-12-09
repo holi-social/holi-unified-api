@@ -58,6 +58,14 @@ resource "google_cloud_run_service" "unified_api" {
           name  = "GEO_API_URL"
           value = local.geo_api_url
         }
+        env {
+          name = "VOLUNTEERING_API_URL"
+          value = local.volunteering_api_url
+        }
+        env {
+          name = "VOLTASTICS_API_TOKEN"
+          value = "abc" # TODO replace with real API token once real API is available
+        }
 
         resources {
           limits = {
