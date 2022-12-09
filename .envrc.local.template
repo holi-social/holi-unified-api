@@ -6,3 +6,9 @@ nodenv install -s $(cat .node-version)
 # alternative using nvm
 # . ~/.nvm/nvm.sh # load nvm command
 # nvm use
+
+export OKUNA_URL=http://127.0.0.1:8000/graphql
+export DONATIONS_API_URL=http://127.0.0.1:8001/graphql
+export GOODNEWS_API_URL=http://127.0.0.1:8002/graphql
+export GEO_API_URL=http://127.0.0.1:8003/graphql
+export VOLUNTEERING_API_URL=http://127.0.0.1:8004/graphql
