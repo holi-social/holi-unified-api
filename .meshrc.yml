@@ -45,6 +45,7 @@ sources:
     handler:
       openapi:
         source: ./holi-voltastics-mock-openapi.yml
+        baseUrl: "{env.VOLUNTEERING_API_URL}"
         operationHeaders:
           x-voltastics-token: "{env.VOLTASTICS_API_TOKEN}"
     transforms:
