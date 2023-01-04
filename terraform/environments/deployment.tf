@@ -33,6 +33,8 @@ resource "google_cloud_run_service" "unified_api" {
   project  = data.terraform_remote_state.holi_infra_state.outputs.shared_project_id
   name     = random_id.main.hex
   location = "europe-north1" # finland, low CO2 emissions
+  # https://github.com/hashicorp/terraform-provider-google/issues/5898
+  autogenerate_revision_name = true
 
   template {
     spec {
@@ -59,11 +61,11 @@ resource "google_cloud_run_service" "unified_api" {
           value = local.geo_api_url
         }
         env {
-          name = "VOLUNTEERING_API_URL"
+          name  = "VOLUNTEERING_API_URL"
           value = local.volunteering_api_url
         }
         env {
-          name = "VOLTASTICS_API_TOKEN"
+          name  = "VOLTASTICS_API_TOKEN"
           value = "abc" # TODO replace with real API token once real API is available
         }
 
