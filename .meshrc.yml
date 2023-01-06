@@ -11,6 +11,8 @@ sources:
     handler:
       graphql:
         endpoint: "{env.DONATIONS_API_URL}"
+        operationHeaders:
+          Accept-Language: "{context.headers['accept-language']}"
     transforms:
       # Prefix for types
       - prefix:
@@ -28,6 +30,8 @@ sources:
     handler:
       graphql:
         endpoint: "{env.GOODNEWS_API_URL}"
+        operationHeaders:
+          Accept-Language: "{context.headers['accept-language']}"
     transforms:
       # Prefix for types
       - prefix:
@@ -39,26 +43,6 @@ sources:
       - prefix:
           mode: wrap
           value: appGoodNews_
-          includeRootOperations: true
-          includeTypes: false
-  - name: app-volunteering
-    handler:
-      openapi:
-        source: ./holi-voltastics-mock-openapi.yml
-        baseUrl: "{env.VOLUNTEERING_API_URL}"
-        operationHeaders:
-          x-voltastics-token: "{env.VOLTASTICS_API_TOKEN}"
-    transforms:
-      # Prefix for types
-      - prefix:
-          mode: wrap
-          value: AppVolunteering_
-          includeRootOperations: false
-          includeTypes: true
-      # Prefix for operations
-      - prefix:
-          mode: wrap
-          value: appVolunteering_
           includeRootOperations: true
           includeTypes: false
   - name: geo
