@@ -11,6 +11,8 @@ sources:
     handler:
       graphql:
         endpoint: "{env.DONATIONS_API_URL}"
+        operationHeaders:
+          Accept-Language: "{context.headers['accept-language']}"
     transforms:
       # Prefix for types
       - prefix:
@@ -28,6 +30,8 @@ sources:
     handler:
       graphql:
         endpoint: "{env.GOODNEWS_API_URL}"
+        operationHeaders:
+          Accept-Language: "{context.headers['accept-language']}"
     transforms:
       # Prefix for types
       - prefix:
