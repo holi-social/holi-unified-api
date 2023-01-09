@@ -68,6 +68,19 @@ resource "google_cloud_run_service" "unified_api" {
           name  = "VOLTASTICS_API_TOKEN"
           value = "abc" # TODO replace with real API token once real API is available
         }
+        # switching the ory project to production/development
+        env {
+          name  = "AUTHENTICATORS_COOKIE_SESSION_CONFIG_CHECK_SESSION_URL"
+          value = local.environment == "production" ? "https://auth.project-holi.org/sessions/whoami" : "https://dev-auth.project-holi.org/sessions/whoami"
+        }
+        env {
+          name  = "AUTHENTICATORS_COOKIE_SESSION_CONFIG_ONLY"
+          value = local.environment == "production" ? "ory_session_flamboyanthopperh35qftghn9" : "ory_session_mystifyingcarverakajr6v4t8"
+        }
+        env {
+          name  = "AUTHENTICATORS_BEARER_TOKEN_CONFIG_CHECK_SESSION_URL"
+          value = local.environment == "production" ? "https://auth.project-holi.org/sessions/whoami" : "https://dev-auth.project-holi.org/sessions/whoami"
+        }
 
         resources {
           limits = {
