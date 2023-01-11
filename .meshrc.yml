@@ -2,7 +2,7 @@ sources:
   - name: okuna
     handler:
       graphql:
-        endpoint: '{env.OKUNA_URL}'
+        endpoint: "{env.OKUNA_URL}"
         operationHeaders:
           Accept-Language: "{context.headers['accept-language']}"
           X-Holi-User-ID: "{context.headers['x-holi-user-id']}"
@@ -10,7 +10,7 @@ sources:
   - name: app-donations
     handler:
       graphql:
-        endpoint: '{env.DONATIONS_API_URL}'
+        endpoint: "{env.DONATIONS_API_URL}"
         operationHeaders:
           Accept-Language: "{context.headers['accept-language']}"
     transforms:
@@ -29,7 +29,7 @@ sources:
   - name: app-goodnews
     handler:
       graphql:
-        endpoint: '{env.GOODNEWS_API_URL}'
+        endpoint: "{env.GOODNEWS_API_URL}"
         operationHeaders:
           Accept-Language: "{context.headers['accept-language']}"
     transforms:
@@ -47,10 +47,11 @@ sources:
           includeTypes: false
   - name: app-volunteering
     handler:
-      graphql:
-        endpoint: '{env.VOLUNTEERING_API_URL}'
+      openapi:
+        source: ./holi-voltastics-mock-openapi.yml
+        baseUrl: "{env.VOLUNTEERING_API_URL}"
         operationHeaders:
-          Accept-Language: "{context.headers['accept-language']}"
+          x-voltastics-token: "{env.VOLTASTICS_API_TOKEN}"
     transforms:
       # Prefix for types
       - prefix:
@@ -67,7 +68,7 @@ sources:
   - name: geo
     handler:
       graphql:
-        endpoint: '{env.GEO_API_URL}'
+        endpoint: "{env.GEO_API_URL}"
     transforms:
       # Prefix for types
       - prefix:
