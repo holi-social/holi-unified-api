@@ -48,18 +48,18 @@ authenticators:
   cookie_session:
     enabled: true
     config:
-      check_session_url: https://auth.project-holi.org/sessions/whoami
+      check_session_url: https://dev-auth.project-holi.org/sessions/whoami # overridden via env var with environment specific value
       preserve_path: true
       extra_from: '@this'
       subject_from: 'identity.id'
       additional_headers:
         accept-encoding: identity
       only:
-        - ory_session_mystifyingcarverakajr6v4t8
+        - ory_session_mystifyingcarverakajr6v4t8 # overridden via env var with environment specific value
   bearer_token:
     enabled: true
     config:
-      check_session_url: https://auth.project-holi.org/sessions/whoami
+      check_session_url: https://dev-auth.project-holi.org/sessions/whoami # overridden via env var with environment specific value
       preserve_path: true
       extra_from: '@this'
       subject_from: 'identity.id'
