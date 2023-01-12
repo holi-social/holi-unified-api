@@ -80,6 +80,9 @@ resource "google_cloud_run_service" "unified_api" {
       container_concurrency = 0 # 0 means thread safe, no restriction on max concurrency
     }
     metadata {
+      labels = {
+        "environment" = local.environment
+      }
       annotations = {
         "autoscaling.knative.dev/minScale"        = local.environment == "production" ? "1" : "0"
         "autoscaling.knative.dev/maxScale"        = local.environment == "production" ? "10" : "1"
