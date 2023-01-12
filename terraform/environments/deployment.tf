@@ -5,7 +5,7 @@
  */
 resource "random_id" "main" {
   byte_length = 2
-  prefix      = "unified-api-${local.environment}-"
+  prefix      = "${local.service_name}-${local.environment}-"
 }
 
 
@@ -82,6 +82,7 @@ resource "google_cloud_run_service" "unified_api" {
     metadata {
       labels = {
         "environment" = local.environment
+        "service" = local.service_name
       }
       annotations = {
         "autoscaling.knative.dev/minScale"        = local.environment == "production" ? "1" : "0"
