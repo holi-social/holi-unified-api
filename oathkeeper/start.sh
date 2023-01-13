@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/command/with-contenv sh
 
 function check() {
   curl --silent --output /dev/null http://localhost:4000/graphql -w "%{http_code}"
