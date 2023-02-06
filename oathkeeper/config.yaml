@@ -69,4 +69,4 @@ authenticators:
 log:
   leak_sensitive_values: false
   format: json
-  level: warning
+  level: error
