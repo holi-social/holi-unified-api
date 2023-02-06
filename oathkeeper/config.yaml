@@ -65,3 +65,8 @@ authenticators:
       subject_from: 'identity.id'
       additional_headers:
         accept-encoding: identity
+
+log:
+  leak_sensitive_values: false
+  format: json
+  level: warning
