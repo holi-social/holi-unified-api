@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:18.14.0-alpine
 
 # shell sanity with pipes (https://github.com/hadolint/hadolint/wiki/DL4006)
 # needed for installation of s6
