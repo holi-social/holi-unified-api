@@ -1,10 +1,11 @@
 {
   "name": "holi-unified-api",
   "version": "1.0.0",
-  "type": "module",
   "scripts": {
     "dev": "OKUNA_URL=${OKUNA_URL:-http://127.0.0.1:8000/graphql} DONATIONS_API_URL=${DONATIONS_API_URL:-http://127.0.0.1:8001/graphql} GOODNEWS_API_URL=${GOODNEWS_API_URL:-http://127.0.0.1:8002/graphql} GEO_API_URL=${GEO_API_URL:-http://127.0.0.1:8003/graphql} VOLUNTEERING_API_URL=${VOLUNTEERING_API_URL:-http://127.0.0.1:8004/graphql} DEBUG=1 mesh dev --port=4000",
     "start": "OKUNA_URL=${OKUNA_URL:-https://staging.unified.apis.project-holi.org/graphql} DONATIONS_API_URL=${DONATIONS_API_URL:-https://staging.unified.apis.project-holi.org/graphql} GOODNEWS_API_URL=${GOODNEWS_API_URL:-https://staging.unified.apis.project-holi.org/graphql} GEO_API_URL=${GEO_API_URL:-https://staging.unified.apis.project-holi.org/graphql} VOLUNTEERING_API_URL=${VOLUNTEERING_API_URL:-https://staging.unified.apis.project-holi.org/graphql} DEBUG=1 mesh dev --port=4000",
+    "build": "OKUNA_URL=${OKUNA_URL:-http://127.0.0.1:8000/graphql} DONATIONS_API_URL=${DONATIONS_API_URL:-http://127.0.0.1:8001/graphql} GOODNEWS_API_URL=${GOODNEWS_API_URL:-http://127.0.0.1:8002/graphql} GEO_API_URL=${GEO_API_URL:-http://127.0.0.1:8003/graphql} VOLUNTEERING_API_URL=${VOLUNTEERING_API_URL:-http://127.0.0.1:8004/graphql} DEBUG=1 mesh build",
+    "serve": "OKUNA_URL=${OKUNA_URL:-http://127.0.0.1:8000/graphql} DONATIONS_API_URL=${DONATIONS_API_URL:-http://127.0.0.1:8001/graphql} GOODNEWS_API_URL=${GOODNEWS_API_URL:-http://127.0.0.1:8002/graphql} GEO_API_URL=${GEO_API_URL:-http://127.0.0.1:8003/graphql} VOLUNTEERING_API_URL=${VOLUNTEERING_API_URL:-http://127.0.0.1:8004/graphql} DEBUG=1 ts-node server",
     "lint": "echo 'nothing to be linted ATM'",
     "test": "echo 'unit testing goes here'",
     "clean": "echo 'nothing to be done'",
@@ -16,7 +17,9 @@
     "@graphql-mesh/openapi": "^0.35.6",
     "@graphql-mesh/runtime": "^0.46.4",
     "@graphql-mesh/transform-prefix": "^0.12.5",
-    "graphql": "^16.6.0"
+    "graphql": "^16.6.0",
+    "pino": "^8.8.0",
+    "ts-node": "^10.9.1"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^3.2.0",
@@ -24,6 +27,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-prettier": "^4.0.0",
-    "prettier": "^2.6.2"
+    "prettier": "^2.6.2",
+    "typescript": "4.5.5"
   }
 }
