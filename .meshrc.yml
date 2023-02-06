@@ -81,3 +81,4 @@ sources:
           value: geo_
           includeRootOperations: true
           includeTypes: false
+logger: 'logger'
