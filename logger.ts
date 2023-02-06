@@ -29,7 +29,7 @@ const logger = pino({
   mixin() {
     return {
       'logging.googleapis.com/labels': {
-        environment: process.env.ENVIRONMENT_ID || process.env.NEXT_PUBLIC_ENVIRONMENT_ID || 'development',
+        environment: process.env.ENVIRONMENT_ID || 'development',
         service: 'holi-unified-api',
       },
     }

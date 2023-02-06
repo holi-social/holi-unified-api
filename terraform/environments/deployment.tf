@@ -44,6 +44,11 @@ resource "google_cloud_run_service" "unified_api" {
         ports {
           container_port = 4455
         }
+
+        env {
+          name = "ENVIRONMENT_ID"
+          value = local.environment
+        }
         env {
           name  = "OKUNA_URL"
           value = local.okuna_url
@@ -85,7 +90,7 @@ resource "google_cloud_run_service" "unified_api" {
             memory = local.environment == "production" ? "512Mi" : "384Mi"
           }
           requests = {
-            cpu    = local.environment == "production" ? "1000m" : "10m"
+            cpu    = local.environment == "production" ? "1000m" : "100m"
             memory = local.environment == "production" ? "512Mi" : "256Mi"
           }
         }
