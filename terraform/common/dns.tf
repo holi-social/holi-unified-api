@@ -9,7 +9,7 @@ locals {
 # unified api environments zone
 resource "google_dns_managed_zone" "unified_api_environments_zone" {
   project  = data.terraform_remote_state.holi_infra_state.outputs.shared_project_id
-  name     = "unified-api-environments-zone"
+  name     = "unified-api-holi-social-environments-zone"
   dns_name = local.unified_api_environments_zone_dns_name
 }
 
