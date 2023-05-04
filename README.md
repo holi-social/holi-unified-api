@@ -32,4 +32,3 @@ Prefixes should be equal to `App<AppName>_` resp. `app<AppName>_` for types and 
 ## Headers
 
 GraphQL Mesh does not forward headers automatically. Instead you have to explicitly mention headers to be passed on in `.meshrc.yml`, this is already e.g. for `Accept-Language`.
-
