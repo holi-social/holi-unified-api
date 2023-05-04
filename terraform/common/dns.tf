@@ -1,8 +1,5 @@
-## these dns changes are done in the infra shared project (https://gitlab.com/holisticfoundation/holi-infra)
-## because the zone apis.project-holi.org is managed in that project.
-
 locals {
-  # effectively, this is unified.apis.project-holi.org
+  # effectively, this is unified.apis.holi.social
   unified_api_environments_zone_dns_name = "unified.${data.terraform_remote_state.holi_infra_state.outputs.dns_apis_zone_domain}."
 }
 
