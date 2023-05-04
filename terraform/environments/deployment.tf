@@ -72,7 +72,7 @@ resource "google_cloud_run_service" "unified_api" {
         # switching the ory project to production/development
         env {
           name  = "AUTHENTICATORS_COOKIE_SESSION_CONFIG_CHECK_SESSION_URL"
-          value = local.environment == "production" ? "https://auth.project-holi.org/sessions/whoami" : "https://dev-auth.project-holi.org/sessions/whoami"
+          value = local.environment == "production" ? "https://auth.holi.social/sessions/whoami" : "https://dev-auth.holi.social/sessions/whoami"
         }
         env {
           name  = "AUTHENTICATORS_COOKIE_SESSION_CONFIG_ONLY"
@@ -80,7 +80,7 @@ resource "google_cloud_run_service" "unified_api" {
         }
         env {
           name  = "AUTHENTICATORS_BEARER_TOKEN_CONFIG_CHECK_SESSION_URL"
-          value = local.environment == "production" ? "https://auth.project-holi.org/sessions/whoami" : "https://dev-auth.project-holi.org/sessions/whoami"
+          value = local.environment == "production" ? "https://auth.holi.social/sessions/whoami" : "https://dev-auth.holi.social/sessions/whoami"
         }
 
         resources {
@@ -118,6 +118,21 @@ resource "google_cloud_run_service" "unified_api" {
 }
 
 resource "google_cloud_run_domain_mapping" "unified_api" {
+  project = google_cloud_run_service.unified_api.project
+  # location needs to be the same as the service's
+  location = google_cloud_run_service.unified_api.location
+  name     = local.project_holi_dns_name
+
+  metadata {
+    namespace = google_cloud_run_service.unified_api.project
+  }
+
+  spec {
+    route_name = google_cloud_run_service.unified_api.name
+  }
+}
+
+resource "google_cloud_run_domain_mapping" "holi_social_unified_api" {
   project = google_cloud_run_service.unified_api.project
   # location needs to be the same as the service's
   location = google_cloud_run_service.unified_api.location
