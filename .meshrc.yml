@@ -68,6 +68,8 @@ sources:
     handler:
       graphql:
         endpoint: '{env.GEO_API_URL}'
+        operationHeaders:
+          Accept-Language: "{context.headers['accept-language']}"
     transforms:
       # Prefix for types
       - prefix:
