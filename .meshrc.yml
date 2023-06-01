@@ -84,3 +84,5 @@ sources:
           includeRootOperations: true
           includeTypes: false
 logger: 'logger'
+serve:
+  browser: false
