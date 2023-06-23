@@ -1,5 +1,6 @@
 {
   "name": "holi-unified-api",
+  "main": "ts-node server",
   "version": "1.0.0",
   "scripts": {
     "dev": "OKUNA_URL=${OKUNA_URL:-http://127.0.0.1:8000/graphql} DONATIONS_API_URL=${DONATIONS_API_URL:-http://127.0.0.1:8001/graphql} GOODNEWS_API_URL=${GOODNEWS_API_URL:-http://127.0.0.1:8002/graphql} GEO_API_URL=${GEO_API_URL:-http://127.0.0.1:8003/graphql} VOLUNTEERING_API_URL=${VOLUNTEERING_API_URL:-http://127.0.0.1:8004/graphql} DEBUG=1 mesh dev --port=4000",
@@ -12,12 +13,12 @@
     "clean:all": "rimraf node_modules"
   },
   "dependencies": {
-    "@graphql-mesh/cli": "^0.82.9",
-    "@graphql-mesh/graphql": "^0.33.7",
-    "@graphql-mesh/openapi": "^0.35.6",
-    "@graphql-mesh/runtime": "^0.46.4",
-    "@graphql-mesh/transform-prefix": "^0.12.5",
-    "graphql": "^16.6.0",
+    "@graphql-mesh/cli": "^0.83.5",
+    "@graphql-mesh/graphql": "^0.94.1",
+    "@graphql-mesh/openapi": "^0.94.4",
+    "@graphql-mesh/runtime": "^0.94.0",
+    "@graphql-mesh/transform-prefix": "^0.94.1",
+    "graphql": "^16.7.1",
     "pino": "^8.8.0",
     "ts-node": "^10.9.1"
   },
