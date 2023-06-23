@@ -83,6 +83,6 @@ sources:
           value: geo_
           includeRootOperations: true
           includeTypes: false
-logger: 'logger'
+logger: './logger'
 serve:
   browser: false
