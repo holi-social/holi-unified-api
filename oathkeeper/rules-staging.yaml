@@ -1,0 +1,75 @@
+# We have three rules
+# graphql - redirect all traffic to our GraphQL Mesh server, after checking authorization.
+# chatlogin - checks authorization and adds a JWT to the request that is then passed to our unified API server, which adds the JWT to the login body.
+# matrix - transfer all requests to the matrix server without any authorization checks, since Matrix uses it's own tokens.
+- id: matrix
+  version: v0.40.3
+  upstream:
+    url: http://staging.chat.holi.social:8008
+  match:
+    url: https://<.*>.unified.apis.<project-holi.org|holi.social>/_matrix/<.*>
+    methods:
+      - GET
+      - HEAD
+      - POST
+      - PUT
+      - DELETE
+      - OPTIONS
+      - CONNECT
+      - TRACE
+      - PATCH
+  authenticators:
+    - handler: noop
+  authorizer:
+    handler: allow
+  mutators:
+    - handler: noop
+- id: chatlogin
+  version: v0.40.3
+  upstream:
+    url: http://localhost:4000
+    strip_path: /api/chatlogin
+  match:
+    url: https://<.*>.unified.apis.<project-holi.org|holi.social>/api/chatlogin/<.*>
+    methods:
+      - GET
+      - HEAD
+      - POST
+      - PUT
+      - DELETE
+      - OPTIONS
+      - CONNECT
+      - TRACE
+      - PATCH
+  authenticators:
+    - handler: cookie_session
+    - handler: bearer_token
+    - handler: anonymous
+  authorizer:
+    handler: allow
+  mutators:
+    - handler: id_token
+- id: graphql
+  version: v0.40.3
+  upstream:
+    url: http://localhost:4000 # always true, as this GraphQL mesh is run within this Docker container
+  match:
+    url: https://<.*>.unified.apis.<project-holi.org|holi.social>/graphql
+    methods:
+      - GET
+      - HEAD
+      - POST
+      - PUT
+      - DELETE
+      - OPTIONS
+      - CONNECT
+      - TRACE
+      - PATCH
+  authenticators:
+    - handler: cookie_session
+    - handler: bearer_token
+    - handler: anonymous
+  authorizer:
+    handler: allow
+  mutators:
+    - handler: header

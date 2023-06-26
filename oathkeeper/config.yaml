@@ -9,7 +9,7 @@ serve:
 
 access_rules:
   repositories: # can be overridden by e.g. setting ACCESS_RULES_REPOSITORIES env variable with JSON content, see https://www.ory.sh/docs/ecosystem/configuring
-    - file:///opt/oathkeeper/rules.yaml
+    - file:///opt/oathkeeper/rules-production.yaml
 
 errors:
   fallback:
@@ -19,10 +19,6 @@ errors:
       enabled: true
       config:
         verbose: true
-    redirect:
-      enabled: true
-      config:
-        to: https://www.ory.sh/docs
 
 mutators:
   header:
@@ -33,7 +29,13 @@ mutators:
         X-Holi-User-Email: '{{ if and .Extra (index .Extra "identity")}}{{ .Extra.identity.traits.email }}{{ else }}anonymous{{ end }}'
   noop:
     enabled: true
-
+  id_token:
+    enabled: true
+    config:
+      issuer_url: https://dev-auth.holi.social
+      jwks_url: file:///opt/oathkeeper/jwks.json
+      ttl: 60s
+      claims: '{"ident": "{{ if and .Extra (index .Extra "identity") }}{{ print (replace " " "_" (lower .Extra.identity.traits.name)) }}{{ else }}anonyous{{ end }}"}'
 authorizers:
   allow:
     enabled: true
@@ -41,6 +43,8 @@ authorizers:
     enabled: true
 
 authenticators:
+  noop:
+    enabled: true
   anonymous:
     enabled: true
     config:
