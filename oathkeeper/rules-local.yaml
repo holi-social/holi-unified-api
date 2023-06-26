@@ -1,9 +1,56 @@
-- id: holi-production
-  version: v0.39.4
+- id: matrix
+  version: v0.40.3
+  upstream:
+    url: http://host.docker.internal:8008
+  match:
+    url: http://localhost:4455/_matrix/<.*>
+    methods:
+      - GET
+      - HEAD
+      - POST
+      - PUT
+      - DELETE
+      - OPTIONS
+      - CONNECT
+      - TRACE
+      - PATCH
+  authenticators:
+    - handler: noop
+  authorizer:
+    handler: allow
+  mutators:
+    - handler: noop
+- id: chatlogin
+  version: v0.40.3
+  upstream:
+    url: http://host.docker.internal:4000
+    strip_path: /api/chatlogin
+  match:
+    url: http://localhost:4455/api/chatlogin/<.*>
+    methods:
+      - GET
+      - HEAD
+      - POST
+      - PUT
+      - DELETE
+      - OPTIONS
+      - CONNECT
+      - TRACE
+      - PATCH
+  authenticators:
+    - handler: cookie_session
+    - handler: bearer_token
+    - handler: anonymous
+  authorizer:
+    handler: allow
+  mutators:
+    - handler: id_token
+- id: graphql
+  version: v0.40.3
   upstream:
     url: http://host.docker.internal:4000 # always true, as this GraphQL mesh is run within this Docker container
   match:
-    url: http://localhost:4455/<.*>
+    url: http://localhost:4455/graphql
     methods:
       - GET
       - HEAD
