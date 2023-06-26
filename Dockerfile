@@ -28,7 +28,7 @@ COPY s6/run s6/finish /etc/services.d/node/
 # TODO https://github.com/just-containers/s6-overlay#dropping-privileges
 
 # copy oathkeeper config
-COPY oathkeeper/config.yaml oathkeeper/rules.yaml oathkeeper/start.sh oathkeeper/jwks.json /opt/oathkeeper/
+COPY oathkeeper/config.yaml oathkeeper/rules-production.yaml oathkeeper/rules-staging.yaml oathkeeper/start.sh oathkeeper/jwks.json /opt/oathkeeper/
 
 # expose oathkeeper proxy, not API
 EXPOSE 4455

@@ -32,3 +32,10 @@ Prefixes should be equal to `App<AppName>_` resp. `app<AppName>_` for types and 
 ## Headers
 
 GraphQL Mesh does not forward headers automatically. Instead you have to explicitly mention headers to be passed on in `.meshrc.yml`, this is already e.g. for `Accept-Language`.
+
+## Configuration
+
+| Environment Variable   | Default Value          | Description                                                                  |
+| ---------------------- | ---------------------- | ---------------------------------------------------------------------------- |
+| PORT                   | 4000                   | the port to listen on                                                        |
+| MATRIX_SERVER_BASE_URL | http://127.0.0.1:8008/ | the base URL of the Matrix server for which unified-api is the reverse proxy |

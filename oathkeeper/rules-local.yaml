@@ -1,3 +1,7 @@
+# We have three rules
+# graphql - redirect all traffic to our GraphQL Mesh server, after checking authorization.
+# chatlogin - checks authorization and adds a JWT to the request that is then passed to our unified API server, which adds the JWT to the login body.
+# matrix - transfer all requests to the matrix server without any authorization checks, since Matrix uses it's own tokens.
 - id: matrix
   version: v0.40.3
   upstream:
@@ -23,7 +27,7 @@
 - id: chatlogin
   version: v0.40.3
   upstream:
-    url: http://host.docker.internal:4000
+    url: http://host.docker.internal:4000 # always true, as this process runs a reverse proxy aside the GraphQL mesh
     strip_path: /api/chatlogin
   match:
     url: http://localhost:4455/api/chatlogin/<.*>
