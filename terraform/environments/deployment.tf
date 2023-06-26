@@ -69,6 +69,14 @@ resource "google_cloud_run_service" "unified_api" {
           name  = "VOLUNTEERING_API_URL"
           value = local.volunteering_api_url
         }
+        env {
+          name  = "ACCESS_RULES_REPOSITORIES"
+          value = local.environment == "production" ? "rules-production.yaml" : "rules-staging.yaml"
+        }
+        env {
+          name  = "MATRIX_SERVER_BASE_URL"
+          value = local.environment == "production" ? "production.chat.holi.social" : "staging.chat.holi.social"
+        }
         # switching the ory project to production/development
         env {
           name  = "AUTHENTICATORS_COOKIE_SESSION_CONFIG_CHECK_SESSION_URL"

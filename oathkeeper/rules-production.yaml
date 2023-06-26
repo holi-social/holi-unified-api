@@ -5,9 +5,9 @@
 - id: matrix
   version: v0.40.3
   upstream:
-    url: http://production.chat.holi.social:8008
+    url: https://production.chat.holi.social:8008
   match:
-    url: https://<.*>.unified.apis.<project-holi.org|holi.social>/_matrix/<.*>
+    url: https://production.unified.apis.<project-holi.org|holi.social>/_matrix/<.*>
     methods:
       - GET
       - HEAD
@@ -27,10 +27,10 @@
 - id: chatlogin
   version: v0.40.3
   upstream:
-    url: http://localhost:4000
+    url: http://localhost:4000 # always true, as this process runs a reverse proxy aside the GraphQL mesh
     strip_path: /api/chatlogin
   match:
-    url: https://<.*>.unified.apis.<project-holi.org|holi.social>/api/chatlogin/<.*>
+    url: https://production.unified.apis.<project-holi.org|holi.social>/api/chatlogin/<.*>
     methods:
       - GET
       - HEAD
@@ -54,7 +54,7 @@
   upstream:
     url: http://localhost:4000 # always true, as this GraphQL mesh is run within this Docker container
   match:
-    url: https://<.*>.unified.apis.<project-holi.org|holi.social>/graphql
+    url: https://production.unified.apis.<project-holi.org|holi.social>/graphql
     methods:
       - GET
       - HEAD
