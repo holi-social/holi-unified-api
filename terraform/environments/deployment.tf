@@ -69,6 +69,10 @@ resource "google_cloud_run_service" "unified_api" {
           name  = "VOLUNTEERING_API_URL"
           value = local.volunteering_api_url
         }
+        env {
+          name  = "ACCESS_RULES_REPOSITORIES"
+          value = local.environment == "production" ? "file:///opt/oathkeeper/rules-production.yaml" : "file:///opt/oathkeeper/rules-staging.yaml"
+        }
         # switching the ory project to production/development
         env {
           name  = "AUTHENTICATORS_COOKIE_SESSION_CONFIG_CHECK_SESSION_URL"

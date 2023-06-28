@@ -1,9 +1,9 @@
-- id: holi-production
-  version: v0.39.4
+- id: graphql
+  version: v0.40.3
   upstream:
     url: http://localhost:4000 # always true, as this GraphQL mesh is run within this Docker container
   match:
-    url: https://<.*>.unified.apis.<project-holi.org|holi.social>/<.*>
+    url: https://staging.unified.apis.<project-holi.org|holi.social>/graphql
     methods:
       - GET
       - HEAD
