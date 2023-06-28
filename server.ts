@@ -1,7 +1,10 @@
+import bodyParser from 'body-parser'
 import express from 'express'
+import { Request } from 'express'
+import http from 'http'
+import { createProxyMiddleware } from 'http-proxy-middleware'
 
 import { createBuiltMeshHTTPHandler } from './.mesh'
-import { createProxyMiddleware } from 'http-proxy-middleware'
 
 const asNumber = (str?: string) => (str ? Number(str) : undefined)
 
@@ -10,39 +13,33 @@ const matrixServerUrl = process.env.MATRIX_SERVER_BASE_URL || 'http://127.0.0.1:
 
 console.debug(`Server starting on port ${port}`)
 
-const chatLoginProxy = (matrixServerUrl: string) => {
-  const parseJwt = (token: string) => {
-    return JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString())
-  }
-  return createProxyMiddleware({
-    target: matrixServerUrl,
-    changeOrigin: true,
-    onProxyReq: (proxyReq, req) => {
-      const oldBody = req.body.json()
-      if (!oldBody) return
-      console.log('Old Body:', oldBody)
+const matrixLoginProxyConfig = {
+  target: matrixServerUrl,
+  changeOrigin: true,
+  onProxyReq: (proxyReq: http.ClientRequest, req: Request) => {
+    const oldBody = req.body
+    if (!oldBody) return
 
-      // TODO - This is a hack to get the token from the authorization header
-      const jwt = req.get('authorization')
-      if (!oldBody.token && jwt && jwt.startsWith('Bearer ')) {
-        oldBody.token = jwt.slice(7)
-        console.log('Token:', parseJwt(oldBody.token))
-      }
-      const newBody = JSON.stringify(oldBody)
-      console.log('New Body:', newBody)
-      proxyReq.setHeader('Content-Length', Buffer.byteLength(newBody))
-      proxyReq.end(newBody)
-    },
-  })
+    // TODO - This is a hack to get the token from the authorization header
+    const jwt = req.get('authorization')
+    if (!oldBody.token && jwt && jwt.startsWith('Bearer ')) {
+      oldBody.token = jwt.slice(7)
+    }
+    const newBody = JSON.stringify(oldBody)
+    proxyReq.setHeader('Content-Length', Buffer.byteLength(newBody))
+    proxyReq.end(newBody)
+  },
 }
 
 const app = express()
 
 app.use('/graphql', createBuiltMeshHTTPHandler())
-app.use('/_matrix/client/r0/login', chatLoginProxy(matrixServerUrl))
 
-console.debug(`Server starting on port ${port}`)
+// add authorization token to login requets
+const loginUrl = '/_matrix/client/r0/login'
+app.post(loginUrl, bodyParser.json()) // this is needed to make the JSON body accessible
+app.post(loginUrl, createProxyMiddleware(matrixLoginProxyConfig))
 
-app.listen(4000, () => {
+app.listen(port, () => {
   console.info(`Server listening on port ${port}`)
 })
