@@ -12,3 +12,23 @@ locals {
   geo_api_url          = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_geo_api_common_state.outputs.dns_geo_api_domain}/graphql"
   volunteering_api_url = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_volunteering_api_common_state.outputs.dns_volunteering_api_domain}/graphql"
 }
+
+output okuna_url{
+  value = local.okuna_url
+}
+
+output donations_api_url{
+  value = local.donations_api_url
+}
+
+output goodnews_api_url{
+  value = local.goodnews_api_url
+}
+
+output geo_api_url{
+  value = local.geo_api_url
+}
+
+output volunteering_api_url{
+  value = local.volunteering_api_url
+}

@@ -41,6 +41,8 @@ const app = express()
 app.use('/graphql', createBuiltMeshHTTPHandler())
 app.use('/_matrix/client/r0/login', chatLoginProxy(matrixServerUrl))
 
+console.debug(`Server starting on port ${port}`)
+
 app.listen(4000, () => {
   console.info(`Server listening on port ${port}`)
 })
