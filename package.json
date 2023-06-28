@@ -3,9 +3,9 @@
   "main": "ts-node server",
   "version": "1.0.0",
   "scripts": {
-    "dev": "OKUNA_URL=${OKUNA_URL:-http://127.0.0.1:8000/graphql} DONATIONS_API_URL=${DONATIONS_API_URL:-http://127.0.0.1:8001/graphql} GOODNEWS_API_URL=${GOODNEWS_API_URL:-http://127.0.0.1:8002/graphql} GEO_API_URL=${GEO_API_URL:-http://127.0.0.1:8003/graphql} VOLUNTEERING_API_URL=${VOLUNTEERING_API_URL:-http://127.0.0.1:8004/graphql} DEBUG=1 mesh dev --port=4000",
+    "dev": "OKUNA_URL=${OKUNA_URL:-http://127.0.0.1:8000/graphql} DONATIONS_API_URL=${DONATIONS_API_URL:-http://127.0.0.1:8001/graphql} GOODNEWS_API_URL=${GOODNEWS_API_URL:-http://127.0.0.1:8002/graphql} GEO_API_URL=${GEO_API_URL:-http://127.0.0.1:8003/graphql} VOLUNTEERING_API_URL=${VOLUNTEERING_API_URL:-http://127.0.0.1:8004/graphql} MATRIX_SERVER_BASE_URL=${MATRIX_SERVER_BASE_URL:-http://127.0.0.1:8008} DEBUG=1 ts-node server",
     "build": "OKUNA_URL=${OKUNA_URL:-http://127.0.0.1:8000/graphql} DONATIONS_API_URL=${DONATIONS_API_URL:-http://127.0.0.1:8001/graphql} GOODNEWS_API_URL=${GOODNEWS_API_URL:-http://127.0.0.1:8002/graphql} GEO_API_URL=${GEO_API_URL:-http://127.0.0.1:8003/graphql} VOLUNTEERING_API_URL=${VOLUNTEERING_API_URL:-http://127.0.0.1:8004/graphql} DEBUG=1 mesh build",
-    "serve": "OKUNA_URL=${OKUNA_URL:-http://127.0.0.1:8000/graphql} DONATIONS_API_URL=${DONATIONS_API_URL:-http://127.0.0.1:8001/graphql} GOODNEWS_API_URL=${GOODNEWS_API_URL:-http://127.0.0.1:8002/graphql} GEO_API_URL=${GEO_API_URL:-http://127.0.0.1:8003/graphql} VOLUNTEERING_API_URL=${VOLUNTEERING_API_URL:-http://127.0.0.1:8004/graphql} DEBUG=1 ts-node server",
+    "serve": "OKUNA_URL=${OKUNA_URL:-http://127.0.0.1:8000/graphql} DONATIONS_API_URL=${DONATIONS_API_URL:-http://127.0.0.1:8001/graphql} GOODNEWS_API_URL=${GOODNEWS_API_URL:-http://127.0.0.1:8002/graphql} GEO_API_URL=${GEO_API_URL:-http://127.0.0.1:8003/graphql} VOLUNTEERING_API_URL=${VOLUNTEERING_API_URL:-http://127.0.0.1:8004/graphql} MATRIX_SERVER_BASE_URL=${MATRIX_SERVER_BASE_URL:-http://127.0.0.1:8008} DEBUG=1 ts-node server",
     "lint": "echo 'nothing to be linted ATM'",
     "test": "echo 'unit testing goes here'",
     "clean": "echo 'nothing to be done'",
@@ -28,6 +28,8 @@
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^3.2.0",
     "@types/express": "^4.17.17",
+    "@types/http-proxy-middleware": "^1.0.0",
+    "@types/body-parser": "^1.19.2",
     "eslint": "^8.16.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prefer-arrow": "^1.2.3",
