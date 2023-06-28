@@ -17,7 +17,7 @@ ENV S6_CMD_WAIT_FOR_SERVICES=1
 RUN apk --no-cache --update-cache --upgrade --latest add ca-certificates
 RUN addgroup -S ory; adduser -S ory -G ory -D -H -s /bin/nologin
 # hadolint ignore=SC3001
-RUN sh <(wget -c -q https://raw.githubusercontent.com/ory/meta/master/install.sh -O -) -d -b /opt/oathkeeper oathkeeper v0.39.4
+RUN sh <(wget -c -q https://raw.githubusercontent.com/ory/meta/master/install.sh -O -) -d -b /opt/oathkeeper oathkeeper v0.40.3
 
 # install curl (used in start.sh)
 RUN apk --no-cache --update-cache --upgrade --latest add curl
@@ -28,7 +28,7 @@ COPY s6/run s6/finish /etc/services.d/node/
 # TODO https://github.com/just-containers/s6-overlay#dropping-privileges
 
 # copy oathkeeper config
-COPY oathkeeper/config.yaml oathkeeper/rules.yaml oathkeeper/start.sh /opt/oathkeeper/
+COPY oathkeeper/config.yaml oathkeeper/rules-production.yaml oathkeeper/rules-staging.yaml oathkeeper/start.sh /opt/oathkeeper/
 
 # expose oathkeeper proxy, not API
 EXPOSE 4455
@@ -41,6 +41,7 @@ CMD ["/opt/oathkeeper/start.sh"]
 WORKDIR /app
 ENV NODE_ENV production
 COPY package.json yarn.lock .meshrc.yml logger.ts server.ts /app/
+COPY .mesh logger.ts /app/.mesh/
 RUN chown -R node:node /app
 USER node
 RUN yarn install && yarn cache clean
