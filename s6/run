@@ -5,4 +5,4 @@
 cd /app
 with-contenv
 s6-setuidgid node
-./node_modules/.bin/ts-node server
+./node_modules/.bin/ts-node --transpileOnly server

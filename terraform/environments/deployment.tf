@@ -71,7 +71,7 @@ resource "google_cloud_run_service" "unified_api" {
         }
         env {
           name  = "ACCESS_RULES_REPOSITORIES"
-          value = local.environment == "production" ? "rules-production.yaml" : "rules-staging.yaml"
+          value = local.environment == "production" ? "file:///opt/oathkeeper/rules-production.yaml" : "file:///opt/oathkeeper/rules-staging.yaml"
         }
         env {
           name  = "MATRIX_SERVER_BASE_URL"
