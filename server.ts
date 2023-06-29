@@ -8,7 +8,7 @@ import { createBuiltMeshHTTPHandler } from './.mesh'
 
 const asNumber = (str?: string) => (str ? Number(str) : undefined)
 
-const port = asNumber(process.env.PORT) || 4000
+const port = asNumber(process.env.GRAPHQL_PORT) || 4000
 const matrixServerUrl = process.env.MATRIX_SERVER_BASE_URL
 if (!matrixServerUrl) {
   console.error('Environment variable MATRIX_SERVER_BASE_URL is not specified. Exiting.')
