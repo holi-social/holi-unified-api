@@ -29,6 +29,14 @@ mutators:
         X-Holi-User-Email: '{{ if and .Extra (index .Extra "identity")}}{{ .Extra.identity.traits.email }}{{ else }}anonymous{{ end }}'
   noop:
     enabled: true
+  id_token:
+    enabled: true
+    config:
+      issuer_url: https://dev-auth.holi.social # overridden via env var with environment specific value
+      jwks_url: file:///opt/oathkeeper/jwks.json
+      ttl: 60s
+      claims: '{"ident": "{{ if and .Extra (index .Extra "identity") }}{{ print (replace " " "_" (lower .Extra.identity.traits.name)) }}{{ else }}anonyous{{ end }}"}'
+
 authorizers:
   allow:
     enabled: true
@@ -36,6 +44,8 @@ authorizers:
     enabled: true
 
 authenticators:
+  noop:
+    enabled: true
   anonymous:
     enabled: true
     config:
