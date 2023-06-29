@@ -32,7 +32,7 @@ mutators:
   id_token:
     enabled: true
     config:
-      issuer_url: https://dev-auth.holi.social
+      issuer_url: https://dev-auth.holi.social # overridden via env var with environment specific value
       jwks_url: file:///opt/oathkeeper/jwks.json
       ttl: 60s
       claims: '{"ident": "{{ if and .Extra (index .Extra "identity") }}{{ print (replace " " "_" (lower .Extra.identity.traits.name)) }}{{ else }}anonyous{{ end }}"}'
