@@ -1,4 +1,3 @@
-import bodyParser from 'body-parser'
 import express from 'express'
 import { Request } from 'express'
 import http from 'http'
@@ -42,7 +41,7 @@ app.use('/graphql', createBuiltMeshHTTPHandler())
 
 // add authorization token to login requets
 const loginUrl = '/_matrix/client/r0/login'
-app.post(loginUrl, bodyParser.json()) // this is needed to make the JSON body accessible
+app.post(loginUrl, express.json()) // this is needed to make the JSON body accessible
 app.post(loginUrl, createProxyMiddleware(matrixLoginProxyConfig))
 
 app.listen(port, () => {
