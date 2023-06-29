@@ -3,13 +3,18 @@ import express from 'express'
 import { Request } from 'express'
 import http from 'http'
 import { createProxyMiddleware } from 'http-proxy-middleware'
+import { exit } from 'process'
 
 import { createBuiltMeshHTTPHandler } from './.mesh'
 
 const asNumber = (str?: string) => (str ? Number(str) : undefined)
 
 const port = asNumber(process.env.PORT) || 4000
-const matrixServerUrl = process.env.MATRIX_SERVER_BASE_URL || 'http://127.0.0.1:8008/'
+const matrixServerUrl = process.env.MATRIX_SERVER_BASE_URL
+if (!matrixServerUrl) {
+  console.error('Environment variable MATRIX_SERVER_BASE_URL is not specified. Exiting.')
+  exit(1)
+}
 
 console.debug(`Server starting on port ${port}`)
 

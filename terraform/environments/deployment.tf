@@ -46,7 +46,7 @@ resource "google_cloud_run_service" "unified_api" {
         }
 
         env {
-          name = "ENVIRONMENT_ID"
+          name  = "ENVIRONMENT_ID"
           value = local.environment
         }
         env {
@@ -70,14 +70,18 @@ resource "google_cloud_run_service" "unified_api" {
           value = local.volunteering_api_url
         }
         env {
-          name  = "ACCESS_RULES_REPOSITORIES"
-          value = local.environment == "production" ? "file:///opt/oathkeeper/rules-production.yaml" : "file:///opt/oathkeeper/rules-staging.yaml"
-        }
-        env {
           name  = "MATRIX_SERVER_BASE_URL"
           value = local.environment == "production" ? "production.chat.holi.social" : "staging.chat.holi.social"
         }
         # switching the ory project to production/development
+        env {
+          name  = "ACCESS_RULES_REPOSITORIES"
+          value = local.environment == "production" ? "file:///opt/oathkeeper/rules-production.yaml" : "file:///opt/oathkeeper/rules-staging.yaml"
+        }
+        env {
+          name  = "MUTATORS_ID_TOKEN_CONFIG_ISSUER_URL"
+          value = local.environment == "production" ? "https://auth.holi.social" : "https://dev-auth.holi.social"
+        }
         env {
           name  = "AUTHENTICATORS_COOKIE_SESSION_CONFIG_CHECK_SESSION_URL"
           value = local.environment == "production" ? "https://auth.holi.social/sessions/whoami" : "https://dev-auth.holi.social/sessions/whoami"
@@ -90,6 +94,10 @@ resource "google_cloud_run_service" "unified_api" {
           name  = "AUTHENTICATORS_BEARER_TOKEN_CONFIG_CHECK_SESSION_URL"
           value = local.environment == "production" ? "https://auth.holi.social/sessions/whoami" : "https://dev-auth.holi.social/sessions/whoami"
         }
+        volume_mounts {
+          mount_path = "/opt/oathkeeper/jwks.json"
+          name       = "JWKS"
+        }
 
         resources {
           limits = {
@@ -101,6 +109,12 @@ resource "google_cloud_run_service" "unified_api" {
             cpu    = local.environment == "production" ? "1000m" : "100m"
             memory = local.environment == "production" ? "512Mi" : "256Mi"
           }
+        }
+      }
+      volumes {
+        name = "JWKS"
+        secret {
+          secret_name = local.environment == "production" ? "ORY_PRIVATE_KEY_PRODUCTION" : "ORY_PRIVATE_KEY_DEVELOPMENT"
         }
       }
       container_concurrency = 0 # 0 means thread safe, no restriction on max concurrency
