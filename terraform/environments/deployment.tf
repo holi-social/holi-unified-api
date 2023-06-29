@@ -71,7 +71,7 @@ resource "google_cloud_run_service" "unified_api" {
         }
         env {
           name  = "MATRIX_SERVER_BASE_URL"
-          value = local.environment == "production" ? "production.chat.holi.social" : "staging.chat.holi.social"
+          value = local.environment == "production" ? "https://production.chat.holi.social" : "https://staging.chat.holi.social"
         }
         # switching the ory project to production/development
         env {
