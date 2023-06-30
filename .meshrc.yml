@@ -5,6 +5,7 @@ sources:
         endpoint: '{env.OKUNA_URL}'
         operationHeaders:
           Accept-Language: "{context.headers['accept-language']}"
+          sentry-trace: "{context.headers['sentry-trace']}"
           X-Holi-User-ID: "{context.headers['x-holi-user-id']}"
           X-Holi-User-Email: "{context.headers['x-holi-user-email']}"
   - name: app-donations
@@ -13,6 +14,7 @@ sources:
         endpoint: '{env.DONATIONS_API_URL}'
         operationHeaders:
           Accept-Language: "{context.headers['accept-language']}"
+          sentry-trace: "{context.headers['sentry-trace']}"
     transforms:
       # Prefix for types
       - prefix:
@@ -32,6 +34,7 @@ sources:
         endpoint: '{env.GOODNEWS_API_URL}'
         operationHeaders:
           Accept-Language: "{context.headers['accept-language']}"
+          sentry-trace: "{context.headers['sentry-trace']}"
     transforms:
       # Prefix for types
       - prefix:
@@ -51,6 +54,7 @@ sources:
         endpoint: '{env.VOLUNTEERING_API_URL}'
         operationHeaders:
           Accept-Language: "{context.headers['accept-language']}"
+          sentry-trace: "{context.headers['sentry-trace']}"
     transforms:
       # Prefix for types
       - prefix:
@@ -70,6 +74,7 @@ sources:
         endpoint: '{env.GEO_API_URL}'
         operationHeaders:
           Accept-Language: "{context.headers['accept-language']}"
+          sentry-trace: "{context.headers['sentry-trace']}"
     transforms:
       # Prefix for types
       - prefix:
