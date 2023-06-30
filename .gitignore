@@ -2,4 +2,4 @@ node_modules/
 .terraform*
 .mesh
 .envrc.local
-/oathkeeper/jwks.json
+/oathkeeper/secrets/

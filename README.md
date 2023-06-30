@@ -42,6 +42,6 @@ GraphQL Mesh does not forward headers automatically. Instead you have to explici
 | PORT                   | 4000                   | the port to listen on                                                        |
 | MATRIX_SERVER_BASE_URL | http://127.0.0.1:8008/ | the base URL of the Matrix server for which unified-api is the reverse proxy |
 
-You need a file oathkeeper/jwks.json with Orys JWT private key. You can either copy it from Passbolt ORY_JWKS_DEVELOPMENT or fetch it directly from ory via the following command:
+You need a file oathkeeper/secrets/jwks.json with Orys JWT private key. You can either copy it from Passbolt ORY_JWKS_DEVELOPMENT or fetch it directly from ory via the following command:
 
-`echo "{\"keys\":[$(ory --project mystifying --format json get jwk hydra.jwt.access-token)]}" > oathkeeper/jwks.json`
+`echo "{\"keys\":[$(ory --project mystifying --format json get jwk hydra.jwt.access-token)]}" > oathkeeper/secrets/jwks.json`
