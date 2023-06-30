@@ -95,7 +95,7 @@ resource "google_cloud_run_service" "unified_api" {
           value = local.environment == "production" ? "https://auth.holi.social/sessions/whoami" : "https://dev-auth.holi.social/sessions/whoami"
         }
         volume_mounts {
-          mount_path = "/opt/oathkeeper/jwks.json"
+          mount_path = "/opt/oathkeeper/"
           name       = "JWKS"
         }
 
@@ -115,6 +115,10 @@ resource "google_cloud_run_service" "unified_api" {
         name = "JWKS"
         secret {
           secret_name = local.environment == "production" ? "ORY_PRIVATE_KEY_PRODUCTION" : "ORY_PRIVATE_KEY_DEVELOPMENT"
+          items {
+            key  = "latest"
+            path = "jwks.json"
+          }
         }
       }
       container_concurrency = 0 # 0 means thread safe, no restriction on max concurrency
