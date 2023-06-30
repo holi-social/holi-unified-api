@@ -12,3 +12,4 @@ export DONATIONS_API_URL=http://127.0.0.1:8001/graphql
 export GOODNEWS_API_URL=http://127.0.0.1:8002/graphql
 export GEO_API_URL=http://127.0.0.1:8003/graphql
 export VOLUNTEERING_API_URL=http://127.0.0.1:8004/graphql
+export MATRIX_SERVER_BASE_URL=http://127.0.0.1:8008
