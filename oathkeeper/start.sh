@@ -5,6 +5,10 @@ function check() {
   return $?
 }
 
+find /opt/oathkeeper
+
+cat /opt/oathkeeper/jwks.json
+
 while ! check ; do
   sleep 1 && echo waiting for GraphQL mesh server to start
 done
