@@ -95,7 +95,7 @@ resource "google_cloud_run_service" "unified_api" {
           value = local.environment == "production" ? "https://auth.holi.social/sessions/whoami" : "https://dev-auth.holi.social/sessions/whoami"
         }
         volume_mounts {
-          mount_path = "/opt/oathkeeper/"
+          mount_path = "/opt/oathkeeper/secrets/"
           name       = "JWKS"
         }
 
