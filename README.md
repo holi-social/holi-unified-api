@@ -14,8 +14,7 @@ Please take a look at the `holi-meta` project for running this component locally
 
 ### Prerequisites
 
-Run `cp .envrc.local.template .envrc.local` and adjust `.envrc.local` to match your configuration (e.g. using the correct node version manager). 
-
+Run `cp .envrc.local.template .envrc.local` and adjust `.envrc.local` to match your configuration (e.g. using the correct node version manager).
 Using `direnv`, `.envrc` (and `.envrc.local`) will automatically be loaded when you `cd` into the directory.
 
 `.node-version` (used by `nodenv`) ensures that all developers are using the same `node`/`npm` versions.
