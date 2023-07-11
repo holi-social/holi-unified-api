@@ -1,5 +1,6 @@
 import express from 'express'
 import { Request } from 'express'
+import helmet from 'helmet'
 import http from 'http'
 import { createProxyMiddleware } from 'http-proxy-middleware'
 import { exit } from 'process'
@@ -37,6 +38,7 @@ const matrixLoginProxyConfig = {
 
 const app = express()
 
+app.use(helmet())
 app.use('/graphql', createBuiltMeshHTTPHandler())
 
 // add authorization token to login requets
