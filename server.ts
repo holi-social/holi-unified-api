@@ -39,7 +39,7 @@ const matrixLoginProxyConfig = {
 const app = express()
 
 // It is necessary to disable the Content-Security-Policy in the development environments to enable Yoga GraphiQL.
-app.use(helmet({ contentSecurityPolicy: process.env.NODE_ENV === 'production' }))
+app.use(helmet({ contentSecurityPolicy: process.env.ENVIRONMENT_ID === 'production' }))
 
 app.use('/graphql', createBuiltMeshHTTPHandler())
 
