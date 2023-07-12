@@ -35,7 +35,7 @@ mutators:
       issuer_url: https://dev-auth.holi.social # overridden via env var with environment specific value
       jwks_url: file:///opt/oathkeeper/secrets/jwks.json
       ttl: 60s
-      claims: '{{ if and .Extra (index .Extra "identity") (index .Extra.identity.traits "identity") }}{"ident": "{{ print (lower .Extra.identity.traits.identity) }}"}{{ else }}{}{{ end }}'
+      claims: '{ {{ if and .Extra (index .Extra "identity") (index .Extra.identity.traits "identity") }}"ident": "{{ print (lower .Extra.identity.traits.identity) }}"{{ end }} }'
 
 authorizers:
   allow:
