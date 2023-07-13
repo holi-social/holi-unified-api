@@ -33,3 +33,17 @@ Prefixes should be equal to `App<AppName>_` resp. `app<AppName>_` for types and 
 ## Headers
 
 GraphQL Mesh does not forward headers automatically. Instead you have to explicitly mention headers to be passed on in `.meshrc.yml`, this is already e.g. for `Accept-Language`.
+
+## Configuration
+
+| Environment Variable   | Default Value          | Description                                                                  |
+| ---------------------- | ---------------------- | ---------------------------------------------------------------------------- |
+| PORT                   | 4000                   | the port to listen on                                                        |
+| MATRIX_SERVER_BASE_URL | http://127.0.0.1:8008/ | the base URL of the Matrix server for which unified-api is the reverse proxy |
+
+You need a file `oathkeeper/secrets/jwks.json` with Orys JWT private key. You can either copy it from Passbolt ORY_JWKS_DEVELOPMENT or fetch it directly from ory via the following commands:
+
+```
+mkdir -p oathkeeper/secrets
+echo "{\"keys\": [$(ory --project mystifying --format json get jwk hydra.jwt.access-token | jq -r '.keys[0]')]}" > oathkeeper/secrets/jwks.json
+```
