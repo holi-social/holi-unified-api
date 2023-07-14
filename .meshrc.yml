@@ -89,5 +89,21 @@ sources:
           includeRootOperations: true
           includeTypes: false
 logger: './logger'
+
+cache:
+  redis:
+    host: '{env.REDIS_HOST}'
+    port: '{env.REDIS_PORT}'
+    password: '{env.REDIS_PASSWORD}'
+    
+plugins:
+  - responseCache:
+      sessionId: "{context.options.headers.x-holi-user-id}"
+      ttl: 0
+      ttlPerCoordinate:
+        # cache operation containing Query.discoverSpaces selection for 10 minutes
+        - coordinate: Query.discoverSpaces
+          ttl: 600000
+
 serve:
   browser: false
