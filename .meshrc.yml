@@ -99,6 +99,7 @@ cache:
 plugins:
   - responseCache:
       sessionId: "{context.options.headers.x-holi-user-id}"
+      cacheKey: "{operationName}-{sessionId}-{variableValues|hash}"
       ttl: 0
       ttlPerCoordinate:
         # cache operation containing Query.discoverSpaces selection for 10 minutes
