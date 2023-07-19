@@ -95,6 +95,7 @@ cache:
     host: '{env.REDIS_HOST}'
     port: '{env.REDIS_PORT}'
     password: '{env.REDIS_PASSWORD}'
+    url: 'redis://:{env.REDIS_PASSWORD}@{env.REDIS_HOST}:{env.REDIS_PORT}/{env.REDIS_DB}'
     
 plugins:
   - responseCache:
