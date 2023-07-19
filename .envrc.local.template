@@ -16,3 +16,4 @@ export MATRIX_SERVER_BASE_URL=http://127.0.0.1:8008
 export REDIS_HOST=localhost
 export REDIS_PORT=6380
 export REDIS_PASSWORD=
+export REDIS_DB=5
