@@ -99,7 +99,7 @@ cache:
     
 plugins:
   - responseCache:
-      cacheKey: "{operationName}-{variableValues|hash}"
+      cacheKey: "{operationName}-{variableValues.offset}-{variableValues.limit}-{variableValues.geolocation.properties.name}-{variableValues.topicIds|hash}-{variableValues.skillIds|hash}"
       ttl: 0
       ttlPerCoordinate:
         # cache operation containing Query.discoverSpaces selection for 10 minutes
