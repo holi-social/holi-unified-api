@@ -84,6 +84,10 @@ resource "google_cloud_run_service" "unified_api" {
           value = data.terraform_remote_state.holi_infra_state.outputs.redis_password_development
         }
         env {
+          name  = "REDIS_DB"
+          value = local.environment == "production" ? "13" : "5"
+        }
+        env {
           name  = "MATRIX_SERVER_BASE_URL"
           value = local.environment == "production" ? "https://production.chat.holi.social" : "https://staging.chat.holi.social"
         }

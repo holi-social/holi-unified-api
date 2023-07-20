@@ -95,11 +95,11 @@ cache:
     host: '{env.REDIS_HOST}'
     port: '{env.REDIS_PORT}'
     password: '{env.REDIS_PASSWORD}'
+    url: 'redis://:{env.REDIS_PASSWORD}@{env.REDIS_HOST}:{env.REDIS_PORT}/{env.REDIS_DB}'
     
 plugins:
   - responseCache:
-      sessionId: "{context.options.headers.x-holi-user-id}"
-      cacheKey: "{operationName}-{sessionId}-{variableValues|hash}"
+      cacheKey: "{operationName}-{variableValues.offset}-{variableValues.limit}-{variableValues.geolocation.properties.name}-{variableValues.topicIds|hash}-{variableValues.skillIds|hash}"
       ttl: 0
       ttlPerCoordinate:
         # cache operation containing Query.discoverSpaces selection for 10 minutes
