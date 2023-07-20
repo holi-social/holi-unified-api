@@ -76,7 +76,7 @@
 - id: videocall_login
   version: v0.40.3
   upstream:
-    url: http://host.docker.internal:4000 # always true, as this process runs a alongside the GraphQL mesh
+    url: http://host.docker.internal:4000 # always true, as this process runs alongside the GraphQL mesh
     strip_path: /api
   match:
     url: http://localhost:4455/api/video-call/<.*>
