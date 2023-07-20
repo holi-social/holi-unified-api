@@ -117,7 +117,7 @@ resource "google_cloud_run_service" "unified_api" {
           value_from {
             secret_key_ref {
               key  = "latest"
-              name = local.environment_name == "production" ? "JITSI_JWT_SECRET_PRODUCTION" : "JITSI_JWT_SECRET_DEVELOPMENT"
+              name = local.environment == "production" ? "JITSI_JWT_SECRET_PRODUCTION" : "JITSI_JWT_SECRET_DEVELOPMENT"
             }
           }
         }
