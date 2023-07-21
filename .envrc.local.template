@@ -17,3 +17,5 @@ export REDIS_HOST=localhost
 export REDIS_PORT=6380
 export REDIS_PASSWORD=
 export REDIS_DB=5
+export JITSI_JWT_SECRET=
+export VIDEOCALL_URL=https://development.meet.holi.social

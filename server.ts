@@ -4,6 +4,7 @@ import helmet from 'helmet'
 import http from 'http'
 import { createProxyMiddleware } from 'http-proxy-middleware'
 import { exit } from 'process'
+import jwt from 'jsonwebtoken'
 
 import { createBuiltMeshHTTPHandler } from './.mesh'
 
@@ -43,10 +44,37 @@ app.use(helmet({ contentSecurityPolicy: process.env.ENVIRONMENT_ID === 'producti
 
 app.use('/graphql', createBuiltMeshHTTPHandler())
 
-// add authorization token to login requets
+// add authorization token to login requests
 const loginUrl = '/_matrix/client/r0/login'
 app.post(loginUrl, express.json()) // this is needed to make the JSON body accessible
 app.post(loginUrl, createProxyMiddleware(matrixLoginProxyConfig))
+
+const createJitsiJWT = (userId, userName) => {
+  const context = {
+    id: `holi_${userId}`,
+    email: `${userId}@holi.team`,
+    name: userName,
+  }
+  const claims = {
+    context,
+    aud: 'jitsi',
+    iss: 'jitsi',
+    sub: 'holi',
+    room: '*',
+  }
+  return jwt.sign(claims, process.env.JITSI_JWT_SECRET, { expiresIn: '24h' })
+}
+
+// add JWT before redirecting to video call for logged in users
+app.get('/video-call/:roomName', (req, res) => {
+  const roomName = req.params.roomName
+  const userId = req.headers['x-holi-user-id']
+  const userName = req.headers['x-holi-user-name']
+
+  const jwt = userId && userId !== 'anonymous' && createJitsiJWT(userId, userName)
+  const queryParameter = jwt ? `?jwt=${jwt}` : ''
+  res.redirect(process.env.VIDEOCALL_URL + '/' + roomName + queryParameter)
+})
 
 app.listen(port, () => {
   console.info(`Server listening on port ${port}`)
