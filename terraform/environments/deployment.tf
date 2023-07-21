@@ -113,6 +113,10 @@ resource "google_cloud_run_service" "unified_api" {
           value = local.environment == "production" ? "https://auth.holi.social/sessions/whoami" : "https://dev-auth.holi.social/sessions/whoami"
         }
         env {
+          name  = "VIDEOCALL_URL"
+          value = local.environment == "production" ? "https://meet.holi.social" : "https://development.meet.holi.social"
+        }
+        env {
           name = "JITSI_JWT_SECRET"
           value_from {
             secret_key_ref {
