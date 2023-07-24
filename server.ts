@@ -1,10 +1,10 @@
 import express from 'express'
-import { Request } from 'express'
+import { Request, Response } from 'express'
 import helmet from 'helmet'
 import http from 'http'
 import { createProxyMiddleware } from 'http-proxy-middleware'
-import { exit } from 'process'
 import jwt from 'jsonwebtoken'
+import { exit } from 'process'
 
 import { createBuiltMeshHTTPHandler } from './.mesh'
 
@@ -32,8 +32,12 @@ const matrixLoginProxyConfig = {
       oldBody.token = jwt.slice(7)
     }
     const newBody = JSON.stringify(oldBody)
+    console.log('matrix login request:', newBody)
     proxyReq.setHeader('Content-Length', Buffer.byteLength(newBody))
     proxyReq.end(newBody)
+  },
+  onProxyRes: (proxyRes: http.IncomingMessage, req: Request, res: Response) => {
+    console.log('matrix login response:', res)
   },
 }
 
