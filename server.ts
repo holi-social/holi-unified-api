@@ -37,7 +37,7 @@ const matrixLoginProxyConfig = {
     proxyReq.end(newBody)
   },
   onProxyRes: (proxyRes: http.IncomingMessage, req: Request, res: Response) => {
-    console.log('matrix login response:', res)
+    console.log('matrix login response:', JSON.stringify(res))
   },
 }
 
