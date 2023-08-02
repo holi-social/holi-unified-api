@@ -2,4 +2,5 @@ node_modules/
 .terraform*
 .mesh
 .envrc.local
+.DS_Store
 /oathkeeper/secrets/
