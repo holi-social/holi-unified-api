@@ -20,6 +20,8 @@ Using `direnv`, `.envrc` (and `.envrc.local`) will automatically be loaded when 
 `.node-version` (used by `nodenv`) ensures that all developers are using the same `node`/`npm` versions.
 It is kept in sync with `.nvmrc` (used by `nvm`) by a symbolic link, so please make sure to use a format that is understood by both tools (e.g. a fixed version).
 
+Use the same value of `REDIS_PASSWORD` from Okuna's `.env` in `./.envrc.local`.
+
 ## CI/CD
 
 The CI/CD pipeline follows our normal flow, deploying branch environments and deploying main to staging automatically
