@@ -40,7 +40,7 @@ CMD ["/opt/oathkeeper/start.sh"]
 # install app
 WORKDIR /app
 ENV NODE_ENV production
-COPY package.json yarn.lock .meshrc.yml logger.ts server.ts /app/
+COPY tsconfig.json package.json yarn.lock .meshrc.yml logger.ts server.ts /app/
 COPY .mesh logger.ts /app/.mesh/
 RUN chown -R node:node /app
 USER node

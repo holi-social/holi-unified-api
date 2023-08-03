@@ -89,5 +89,22 @@ sources:
           includeRootOperations: true
           includeTypes: false
 logger: './logger'
+
+cache:
+  redis:
+    host: '{env.REDIS_HOST}'
+    port: '{env.REDIS_PORT}'
+    password: '{env.REDIS_PASSWORD}'
+    url: 'redis://:{env.REDIS_PASSWORD}@{env.REDIS_HOST}:{env.REDIS_PORT}/{env.REDIS_DB}'
+    
+plugins:
+  - responseCache:
+      cacheKey: "{operationName}-{documentString|hash}-{variableValues.offset}-{variableValues.limit}-{variableValues.geolocation.properties.name}-{variableValues.topicIds|hash}-{variableValues.skillIds|hash}"
+      ttl: 0
+      ttlPerCoordinate:
+        # cache operation containing Query.discoverSpaces selection for 10 minutes
+        - coordinate: Query.discoverSpaces
+          ttl: 600000
+
 serve:
   browser: false

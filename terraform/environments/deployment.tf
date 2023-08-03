@@ -72,6 +72,22 @@ resource "google_cloud_run_service" "unified_api" {
           value = local.volunteering_api_url
         }
         env {
+          name  = "REDIS_HOST"
+          value = data.terraform_remote_state.holi_infra_state.outputs.redis_host_development
+        }
+        env {
+          name  = "REDIS_PORT"
+          value = data.terraform_remote_state.holi_infra_state.outputs.redis_port_development
+        }
+        env {
+          name  = "REDIS_PASSWORD"
+          value = data.terraform_remote_state.holi_infra_state.outputs.redis_password_development
+        }
+        env {
+          name  = "REDIS_DB"
+          value = local.environment == "production" ? "13" : "5"
+        }
+        env {
           name  = "MATRIX_SERVER_BASE_URL"
           value = local.environment == "production" ? "https://production.chat.holi.social" : "https://staging.chat.holi.social"
         }
@@ -95,6 +111,19 @@ resource "google_cloud_run_service" "unified_api" {
         env {
           name  = "AUTHENTICATORS_BEARER_TOKEN_CONFIG_CHECK_SESSION_URL"
           value = local.environment == "production" ? "https://auth.holi.social/sessions/whoami" : "https://dev-auth.holi.social/sessions/whoami"
+        }
+        env {
+          name  = "VIDEOCALL_URL"
+          value = local.environment == "production" ? "https://meet.holi.social" : "https://development.meet.holi.social"
+        }
+        env {
+          name = "JITSI_JWT_SECRET"
+          value_from {
+            secret_key_ref {
+              key  = "latest"
+              name = local.environment == "production" ? "JITSI_JWT_SECRET_PRODUCTION" : "JITSI_JWT_SECRET_DEVELOPMENT"
+            }
+          }
         }
         volume_mounts {
           mount_path = "/opt/oathkeeper/secrets/"
