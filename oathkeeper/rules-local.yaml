@@ -73,3 +73,31 @@
     handler: allow
   mutators:
     - handler: header
+- id: videocall_login
+  version: v0.40.3
+  upstream:
+    url: http://host.docker.internal:4000 # always true, as this process runs alongside the GraphQL mesh
+    strip_path: /api
+  match:
+    url: http://localhost:4455/api/video-call/<.*>
+    methods:
+      - GET
+      - HEAD
+      - POST
+      - PUT
+      - DELETE
+      - OPTIONS
+      - CONNECT
+      - TRACE
+      - PATCH
+  authenticators:
+    - handler: cookie_session
+    - handler: bearer_token
+    - handler: anonymous
+  authorizer:
+    handler: allow
+  mutators:
+    - handler: header
+      config:
+        headers:
+          X-Holi-User-Name: '{{ if and .Extra (index .Extra "identity")}}{{ .Extra.identity.traits.name }}{{ else }}anonymous{{ end }}'
