@@ -8,6 +8,7 @@ sources:
           sentry-trace: "{context.headers['sentry-trace']}"
           X-Holi-User-ID: "{context.headers['x-holi-user-id']}"
           X-Holi-User-Email: "{context.headers['x-holi-user-email']}"
+          X-Disable-Sentry: "{context.headers['x-disable-sentry']}"
   - name: app-donations
     handler:
       graphql:
