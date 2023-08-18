@@ -157,7 +157,7 @@ resource "google_cloud_run_service" "unified_api" {
     metadata {
       annotations = {
         "autoscaling.knative.dev/minScale"        = local.environment == "production" ? "1" : "0"
-        "autoscaling.knative.dev/maxScale"        = local.environment == "production" ? "10" : "1"
+        "autoscaling.knative.dev/maxScale"        = local.environment == "production" ? "10" : "5"
         "run.googleapis.com/vpc-access-connector" = data.terraform_remote_state.holi_infra_state.outputs.vpc_access_connector_name
         # possible values: all-traffic/private-ranges-only(default) https://cloud.google.com/sdk/gcloud/reference/run/services/update#--vpc-egress
         # this needs to be set to all-traffic in order to route a cloud run url correctly, since it does resolve to a non-private ip address.
