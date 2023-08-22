@@ -5,7 +5,7 @@
 - id: matrix
   version: v0.40.3
   upstream:
-    url: https://production.chat.holi.social:8008
+    url: https://chat.holi.social:8008
   match:
     url: https://production.unified.apis.holi.social/_matrix/<.*>
     methods:
