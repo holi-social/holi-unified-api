@@ -12,6 +12,7 @@
     "clean:all": "rimraf node_modules"
   },
   "dependencies": {
+    "@escape.tech/graphql-armor-max-depth": "^2.2.0",
     "@graphql-mesh/cache-localforage": "^0.94.3",
     "@graphql-mesh/cache-redis": "^0.94.3",
     "@graphql-mesh/cli": "^0.85.1",
