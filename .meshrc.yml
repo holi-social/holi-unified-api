@@ -106,6 +106,7 @@ plugins:
         # cache operation containing Query.discoverSpaces selection for 10 minutes
         - coordinate: Query.discoverSpaces
           ttl: 600000
-
+  - maxDepth:
+      n: 15 # maximum nesting level an operation is allowed to have
 serve:
   browser: false
