@@ -114,11 +114,11 @@ plugins:
           field: "*"
           max: 20
           ttl: 1000
-          identifier: "{context.headers['x-holi-user-id']}"
+          identifier: "{context.req.socket.remoteAddress}"
         - type: Mutation
           field: "*"
           max: 20
           ttl: 1000
-          identifier: "{context.headers['x-holi-user-id']}"
+          identifier: "{context.req.socket.remoteAddress}"
 serve:
   browser: false
