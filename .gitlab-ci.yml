@@ -241,7 +241,12 @@ deploy_production:
     ENVIRONMENT_ID: production
   only:
     - production
+
+trigger_docs_generation:
+  needs: ['deploy_production']
   trigger:
     project: app/app.gitlab-pages.holi.team
     branch: main
     strategy: depend
+  only:
+    - production
