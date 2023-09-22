@@ -241,3 +241,7 @@ deploy_production:
     ENVIRONMENT_ID: production
   only:
     - production
+  trigger:
+    project: app/app.gitlab-pages.holi.team
+    branch: main
+    strategy: depend
