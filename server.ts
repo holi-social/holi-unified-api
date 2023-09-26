@@ -41,7 +41,10 @@ const app = express()
 // It is necessary to disable the Content-Security-Policy in the development environments to enable Yoga GraphiQL.
 app.use(helmet({ contentSecurityPolicy: process.env.ENVIRONMENT_ID === 'production' }))
 
-app.use('/graphql', createBuiltMeshHTTPHandler())
+// Disable GraphQL Yoga in production
+if (process.env.ENVIRONMENT_ID !== 'production') {
+  app.use('/graphql', createBuiltMeshHTTPHandler())
+}
 
 // add authorization token to login requests
 const loginUrl = '/_matrix/client/r0/login'
