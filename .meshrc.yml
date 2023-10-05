@@ -108,17 +108,5 @@ plugins:
           ttl: 600000
   - maxDepth:
       n: 15 # maximum nesting level an operation is allowed to have
-  - rateLimit:
-      config:
-        - type: Query
-          field: "*"
-          max: 20
-          ttl: 1000
-          identifier: "{context.req.socket.remoteAddress}"
-        - type: Mutation
-          field: "*"
-          max: 20
-          ttl: 1000
-          identifier: "{context.req.socket.remoteAddress}"
 serve:
   browser: false
