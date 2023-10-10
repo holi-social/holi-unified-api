@@ -7,12 +7,25 @@ nodenv install -s $(cat .node-version)
 # . ~/.nvm/nvm.sh # load nvm command
 # nvm use
 
+backendUrl() {
+  LOCAL_ENABLED=$1
+  LOCAL=$2
+  REMOTE=$3
+  if [ "$LOCAL_ENABLED" = "true" ]; then
+    echo $LOCAL
+  else
+    echo $REMOTE
+  fi
+}
+
 export OKUNA_URL=http://127.0.0.1:8000/graphql
+
 export DONATIONS_API_URL=http://127.0.0.1:8001/graphql
 export GOODNEWS_API_URL=http://127.0.0.1:8002/graphql
 export GEO_API_URL=http://127.0.0.1:8003/graphql
 export VOLUNTEERING_API_URL=http://127.0.0.1:8004/graphql
-export MATRIX_SERVER_BASE_URL=http://127.0.0.1:8008
+
+export MATRIX_SERVER_BASE_URL=$(backendUrl $LOCAL_BACKEND_CHAT "http://127.0.0.1:8008" "https://staging.chat.holi.social")
 export REDIS_HOST=localhost
 export REDIS_PORT=6380
 export REDIS_PASSWORD=
