@@ -42,9 +42,9 @@ const app = express()
 app.use(helmet({ contentSecurityPolicy: process.env.ENVIRONMENT_ID === 'production' }))
 
 // Disable GraphQL Yoga in production
-if (process.env.ENVIRONMENT_ID !== 'production') {
-  app.use('/graphql', createBuiltMeshHTTPHandler())
-}
+//if (process.env.ENVIRONMENT_ID !== 'production') {
+app.use('/graphql', createBuiltMeshHTTPHandler())
+//}
 
 // add authorization token to login requests
 const loginUrl = '/_matrix/client/r0/login'
