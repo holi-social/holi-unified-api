@@ -22,7 +22,7 @@ variables:
 
 .deploy:
   image: 
-    name: 'hashicorp/terraform:1.1.9'
+    name: 'hashicorp/terraform:1.6.1'
     # default entrypoint is terraform command, but we want to run shell scripts
     entrypoint: ["/bin/sh", "-c"]
   variables:
@@ -153,7 +153,7 @@ e2e_review:
 destroy_review:
   needs: ['deploy_review']
   image:
-    name: 'hashicorp/terraform:1.1.9'
+    name: 'hashicorp/terraform:1.6.1'
     # default entrypoint is terraform command, but we want to run shell scripts
     entrypoint: ["/bin/sh", "-c"]
   variables:
