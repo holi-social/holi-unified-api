@@ -16,6 +16,9 @@ stages:
   - test
 
 variables:
+  # This variable needs to be named differently than in triggering projects
+  # because if not, it gets set to '/api_domain', which breaks the e2e stage
+  # due to the file not being in the artifacts.
   API_DOMAIN_FILE: "$CI_PROJECT_DIR/api_domain"
 
 # job templates
