@@ -76,12 +76,12 @@ app.get('/video-call/:roomName', (req, res) => {
   res.redirect(process.env.VIDEOCALL_URL + '/' + roomName + queryParameter)
 })
 
-// Webhook receiver to validate the incoming request using HMAC and forward it to okuna to process it.
+// Notification webhook receiver to validate the incoming request using HMAC and forward it to okuna to process it.
 const novuSignature = createHmac('sha256', process.env.NOVU_API_KEY)
   .update(process.env.NOVU_ENVIRONMENT_ID)
   .digest('hex')
 
-app.post('/webhook', express.json(), async (req, res) => {
+app.post('/notification-webhook', express.json(), async (req, res) => {
   const hmac = req.headers['nv-hmac-256']
   if (hmac !== novuSignature) {
     res.status(401).send('Unauthorized')
@@ -89,7 +89,7 @@ app.post('/webhook', express.json(), async (req, res) => {
   }
 
   const { body } = req
-  const response = await fetch(`${process.env.OKUNA_WEBHOOK_URL}`, {
+  const response = await fetch(`${process.env.OKUNA_NOTIFICATION_WEBHOOK_URL}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
