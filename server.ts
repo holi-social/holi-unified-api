@@ -1,3 +1,4 @@
+import { createHmac } from 'crypto'
 import express, { Request } from 'express'
 import helmet from 'helmet'
 import http from 'http'
@@ -73,6 +74,34 @@ app.get('/video-call/:roomName', (req, res) => {
   const jwt = userId && userId !== 'anonymous' && createJitsiJWT(userId, userName)
   const queryParameter = jwt ? `?jwt=${jwt}` : ''
   res.redirect(process.env.VIDEOCALL_URL + '/' + roomName + queryParameter)
+})
+
+// Notification webhook receiver to validate the incoming request using HMAC and forward it to okuna to process it.
+const novuSignature = createHmac('sha256', process.env.NOVU_API_KEY)
+  .update(process.env.NOVU_ENVIRONMENT_ID)
+  .digest('hex')
+
+app.post('/notification-webhook', express.json(), async (req, res) => {
+  const hmac = req.headers['nv-hmac-256']
+  if (hmac !== novuSignature) {
+    res.status(401).send('Unauthorized')
+    return
+  }
+
+  const { body } = req
+  const response = await fetch(`${process.env.OKUNA_NOTIFICATION_WEBHOOK_URL}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
+
+  if (response.status === 200) {
+    res.status(200).send(await response.json())
+  } else {
+    res.status(response.status).send({ error: await response.text() })
+  }
 })
 
 app.listen(port, () => {

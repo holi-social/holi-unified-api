@@ -56,6 +56,10 @@ resource "google_cloud_run_service" "unified_api" {
           value = local.okuna_url
         }
         env {
+          name  = "OKUNA_NOTIFICATION_WEBHOOK_URL"
+          value = local.okuna_webhook_url
+        }
+        env {
           name  = "DONATIONS_API_URL"
           value = local.donations_api_url
         }
@@ -120,6 +124,24 @@ resource "google_cloud_run_service" "unified_api" {
         env {
           name  = "VIDEOCALL_URL"
           value = local.environment == "production" ? "https://meet.holi.social" : "https://development.meet.holi.social"
+        }
+        env {
+          name = "NOVU_API_KEY"
+          value_from {
+            secret_key_ref {
+              key  = "latest"
+              name = local.environment == "production" ? "NOVU_API_KEY_PRODUCTION" : "NOVU_API_KEY_DEVELOPMENT"
+            }
+          }
+        }
+        env {
+          name = "NOVU_ENVIRONMENT_ID"
+          value_from {
+            secret_key_ref {
+              key  = "latest"
+              name = local.environment == "production" ? "NOVU_ENVIRONMENT_ID_PRODUCTION" : "NOVU_ENVIRONMENT_ID_DEVELOPMENT"
+            }
+          }
         }
         env {
           name = "JITSI_JWT_SECRET"
