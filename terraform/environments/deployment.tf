@@ -56,6 +56,10 @@ resource "google_cloud_run_service" "unified_api" {
           value = local.okuna_url
         }
         env {
+          name  = "OKUNA_WEBHOOK_URL"
+          value = local.okuna_webhook_url
+        }
+        env {
           name  = "DONATIONS_API_URL"
           value = local.donations_api_url
         }
