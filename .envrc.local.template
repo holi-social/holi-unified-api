@@ -18,7 +18,7 @@ backendUrl() {
   fi
 }
 
-export OKUNA_WEBHOOK_URL=http://127.0.0.1:8000/webhook
+export OKUNA_NOTIFICATION_WEBHOOK_URL=http://127.0.0.1:8000/notification-webhook
 export OKUNA_URL=http://127.0.0.1:8000/graphql
 
 export DONATIONS_API_URL=http://127.0.0.1:8001/graphql
@@ -33,3 +33,6 @@ export REDIS_PASSWORD=
 export REDIS_DB=5
 export JITSI_JWT_SECRET=
 export VIDEOCALL_URL=https://development.meet.holi.social
+
+export NOVU_API_KEY=
+export NOVU_ENVIRONMENT_ID=
