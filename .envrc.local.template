@@ -18,6 +18,7 @@ backendUrl() {
   fi
 }
 
+export OKUNA_WEBHOOK_URL=http://127.0.0.1:8000/webhook
 export OKUNA_URL=http://127.0.0.1:8000/graphql
 
 export DONATIONS_API_URL=http://127.0.0.1:8001/graphql
