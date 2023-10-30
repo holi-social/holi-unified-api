@@ -47,9 +47,9 @@ app.use('/graphql', createBuiltMeshHTTPHandler())
 // add authorization token to login requests
 const loginUrl = '/_matrix/client/r0/login'
 app.post(loginUrl, express.json()) // this is needed to make the JSON body accessible
-app.post(loginUrl, createProxyMiddleware(matrixLoginProxyConfig))
+app.post(loginUrl, createProxyMiddleware(loginUrl, matrixLoginProxyConfig))
 
-app.post('/ory-webhook', createProxyMiddleware({ target: process.env.OKUNA_DOMAIN }))
+app.post('/ory-webhook', createProxyMiddleware('/ory-webhook', { target: process.env.OKUNA_DOMAIN }))
 
 const createJitsiJWT = (userId, userName) => {
   const context = {
