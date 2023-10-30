@@ -115,3 +115,17 @@
     handler: allow
   mutators:
     - handler: noop
+- id: ory-webhook
+  version: v0.40.3
+  upstream:
+    url: http://localhost:4000
+  match:
+    url: https://staging.unified.apis.holi.social/ory-webhook
+    methods:
+      - POST
+  authenticators:
+    - handler: anonymous
+  authorizer:
+    handler: allow
+  mutators:
+    - handler: noop

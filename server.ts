@@ -49,6 +49,8 @@ const loginUrl = '/_matrix/client/r0/login'
 app.post(loginUrl, express.json()) // this is needed to make the JSON body accessible
 app.post(loginUrl, createProxyMiddleware(matrixLoginProxyConfig))
 
+app.post('/ory-webhook', createProxyMiddleware({ target: process.env.OKUNA_DOMAIN }))
+
 const createJitsiJWT = (userId, userName) => {
   const context = {
     id: `holi_${userId}`,

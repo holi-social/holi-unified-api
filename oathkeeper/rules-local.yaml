@@ -115,3 +115,17 @@
     handler: allow
   mutators:
     - handler: noop
+- id: ory-webhook
+  version: v0.40.3
+  upstream:
+    url: http://host.docker.internal:4000
+  match:
+    url: http://<.*>:4455/ory-webhook
+    methods:
+      - POST
+  authenticators:
+    - handler: anonymous
+  authorizer:
+    handler: allow
+  mutators:
+    - handler: noop
