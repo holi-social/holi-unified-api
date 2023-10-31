@@ -19,6 +19,7 @@ backendUrl() {
 }
 
 export OKUNA_NOTIFICATION_WEBHOOK_URL=http://127.0.0.1:8000/notification-webhook
+export OKUNA_DOMAIN=http://127.0.0.1:8000
 export OKUNA_URL=http://127.0.0.1:8000/graphql
 
 export DONATIONS_API_URL=http://127.0.0.1:8001/graphql
