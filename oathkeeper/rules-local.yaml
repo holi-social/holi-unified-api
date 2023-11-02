@@ -101,21 +101,20 @@
       config:
         headers:
           X-Holi-User-Name: '{{ if and .Extra (index .Extra "identity")}}{{ .Extra.identity.traits.name }}{{ else }}anonymous{{ end }}'
-- id: novu-credentials
+- id: notification-webhook
   version: v0.40.3
   upstream:
     url: http://host.docker.internal:4000
   match:
-    url: http://<.*>:4455/api/novu/credentials
+    url: http://<.*>:4455/notification-webhook
     methods:
-      - GET
+      - POST
   authenticators:
-    - handler: cookie_session
-    - handler: bearer_token
+    - handler: anonymous
   authorizer:
     handler: allow
   mutators:
-    - handler: header
+    - handler: noop
 - id: ory-webhook
   version: v0.40.3
   upstream:
