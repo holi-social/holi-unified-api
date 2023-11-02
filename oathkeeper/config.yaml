@@ -25,7 +25,7 @@ mutators:
     enabled: true
     config:
       headers:
-        X-Holi-User-ID: "{{ print .Subject }}"
+        X-Holi-User-ID: '{{ print .Subject }}'
         X-Holi-User-Email: '{{ if and .Extra (index .Extra "identity")}}{{ .Extra.identity.traits.email }}{{ else }}anonymous{{ end }}'
   noop:
     enabled: true
@@ -35,7 +35,7 @@ mutators:
       issuer_url: https://dev-auth.holi.social # overridden via env var with environment specific value
       jwks_url: file:///opt/oathkeeper/secrets/jwks.json
       ttl: 60s
-      claims: '{ {{ if and .Extra (index .Extra "identity") (index .Extra.identity.traits "identity") }}"ident": "{{ print (lower .Extra.identity.traits.identity) }}"{{ end }} }'
+      claims: '{ {{ if and .Extra (index .Extra "identity") (index .Extra.identity "metadata_public") (index .Extra.identity.metadata_public "identity") }}"ident": "{{ print (lower .Extra.identity.metadata_public.identity) }}"{{ else if and .Extra (index .Extra "identity") (index .Extra.identity.traits "identity") }}"ident": "{{ print (lower .Extra.identity.traits.identity) }}"{{ end }} }'
 
 authorizers:
   allow:
@@ -55,8 +55,8 @@ authenticators:
     config:
       check_session_url: https://dev-auth.holi.social/sessions/whoami # overridden via env var with environment specific value
       preserve_path: true
-      extra_from: "@this"
-      subject_from: "identity.id"
+      extra_from: '@this'
+      subject_from: 'identity.id'
       additional_headers:
         accept-encoding: identity
       only:
@@ -66,8 +66,8 @@ authenticators:
     config:
       check_session_url: https://dev-auth.holi.social/sessions/whoami # overridden via env var with environment specific value
       preserve_path: true
-      extra_from: "@this"
-      subject_from: "identity.id"
+      extra_from: '@this'
+      subject_from: 'identity.id'
       additional_headers:
         accept-encoding: identity
 
