@@ -11,6 +11,7 @@ locals {
   goodnews_api_url     = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_goodnews_api_common_state.outputs.dns_goodnews_api_domain}/graphql"
   geo_api_url          = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_geo_api_common_state.outputs.dns_geo_api_domain}/graphql"
   volunteering_api_url = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_volunteering_api_common_state.outputs.dns_volunteering_api_domain}/graphql"
+  okuna_webhook_url    = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_okuna_common_state.outputs.dns_okuna_domain}/notification-webhook"
 }
 
 output "okuna_domain" {
@@ -35,4 +36,8 @@ output "geo_api_url" {
 
 output "volunteering_api_url" {
   value = local.volunteering_api_url
+}
+
+output "okuna_webhook_url" {
+  value = local.okuna_webhook_url
 }
