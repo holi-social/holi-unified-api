@@ -124,7 +124,8 @@
     methods:
       - POST
   authenticators:
-    - handler: anonymous
+    - handler: cookie_session
+    - handler: bearer_token
   authorizer:
     handler: allow
   mutators:
