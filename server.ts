@@ -86,7 +86,7 @@ app.get('/video-call/:roomName', (req, res) => {
 })
 
 app.get('/api/novu/credentials', async (req, res) => {
-  const userId = req.headers['x-holi-user-id']
+  const userId = req.headers['X-Holi-User-ID']
   if (!userId || Array.isArray(userId)) {
     res.status(401).send('Unauthorized')
     return
