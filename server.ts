@@ -85,31 +85,18 @@ app.get('/video-call/:roomName', (req, res) => {
   res.redirect(process.env.VIDEOCALL_URL + '/' + roomName + queryParameter)
 })
 
-// Notification webhook receiver to validate the incoming request using HMAC and forward it to okuna to process it.
-const novuSignature = createHmac('sha256', process.env.NOVU_API_KEY)
-  .update(process.env.NOVU_ENVIRONMENT_ID)
-  .digest('hex')
-
-app.post('/notification-webhook', express.json(), async (req, res) => {
-  const hmac = req.headers['nv-hmac-256']
-  if (hmac !== novuSignature) {
+app.get('/api/novu/credentials', async (req, res) => {
+  const userId = req.headers['x-holi-user-id']
+  if (!userId || Array.isArray(userId)) {
     res.status(401).send('Unauthorized')
     return
   }
 
-  const { body } = req
-  const response = await fetch(`${process.env.OKUNA_NOTIFICATION_WEBHOOK_URL}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-  })
-
-  if (response.status === 200) {
-    res.status(200).send(await response.json())
-  } else {
-    res.status(response.status).send({ error: await response.text() })
+  try {
+    const usersHmacHash = createHmac('sha256', process.env.NOVU_API_KEY).update(userId).digest('hex')
+    res.status(200).send({ hmacHash: usersHmacHash })
+  } catch (e) {
+    res.status(400).send("Couldn't generate the users credentials.")
   }
 })
 
