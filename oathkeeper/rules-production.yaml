@@ -101,20 +101,21 @@
       config:
         headers:
           X-Holi-User-Name: '{{ if and .Extra (index .Extra "identity")}}{{ .Extra.identity.traits.name }}{{ else }}anonymous{{ end }}'
-- id: notification-webhook
+- id: novu-credentials
   version: v0.40.3
   upstream:
     url: http://localhost:4000
   match:
-    url: https://production.unified.apis.holi.social/notification-webhook
+    url: https://production.unified.apis.holi.social/api/novu/credentials
     methods:
-      - POST
+      - GET
   authenticators:
-    - handler: anonymous
+    - handler: cookie_session
+    - handler: bearer_token
   authorizer:
     handler: allow
   mutators:
-    - handler: noop
+    - handler: header
 - id: ory-webhook
   version: v0.40.3
   upstream:
