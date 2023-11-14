@@ -17,7 +17,7 @@ ENV S6_CMD_WAIT_FOR_SERVICES=1
 RUN apk --no-cache --update-cache --upgrade --latest add ca-certificates
 RUN addgroup -S ory; adduser -S ory -G ory -D -H -s /bin/nologin
 # hadolint ignore=SC3001
-RUN sh <(wget -c -q https://raw.githubusercontent.com/ory/meta/master/install.sh -O -) -d -b /opt/oathkeeper oathkeeper v0.40.3
+RUN sh <(wget -c -q https://raw.githubusercontent.com/ory/meta/master/install.sh -O -) -d -b /opt/oathkeeper oathkeeper v0.40.6
 
 # install curl (used in start.sh)
 RUN apk --no-cache --update-cache --upgrade --latest add curl
