@@ -6,6 +6,25 @@ serve:
     port: 4455 # run the proxy at port 4455
   api:
     port: 4456 # run the api at port 4456
+  public:
+    cors:
+      enabled: true
+      allowed_origins:
+        - https://*.dev.holi.social
+        - https://*.holi.social
+      allowed_methods:
+        - POST
+        - GET
+        - PUT
+        - PATCH
+        - DELETE
+      allowed_headers:
+        - Authorization
+        - Cookie
+        - Content-Type
+      exposed_headers:
+        - Content-Type
+        - Set-Cookie
 
 access_rules:
   repositories: # can be overridden by e.g. setting ACCESS_RULES_REPOSITORIES env variable with JSON content, see https://www.ory.sh/docs/ecosystem/configuring
