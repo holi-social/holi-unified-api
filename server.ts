@@ -31,10 +31,6 @@ const matrixLoginProxyConfig = {
     if (!oldBody.token && jwt && jwt.startsWith('Bearer ')) {
       oldBody.token = jwt.slice(7)
     }
-
-    // Remove the baggage header
-    proxyReq.removeHeader('baggage')
-
     const newBody = JSON.stringify(oldBody)
     proxyReq.setHeader('Content-Length', Buffer.byteLength(newBody))
     proxyReq.end(newBody)
