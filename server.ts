@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken'
 import { exit } from 'process'
 
 import { createBuiltMeshHTTPHandler } from './.mesh'
-import { setupNotificationWebhook } from './app/notificationWebhook'
+import { setupNotificationWebhook } from './handlers/notificationWebhook'
 
 const asNumber = (str?: string) => (str ? Number(str) : undefined)
 
