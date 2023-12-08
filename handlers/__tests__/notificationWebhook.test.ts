@@ -2,7 +2,7 @@ import { Server } from 'http';
 import { Mockttp, getLocal } from 'mockttp'
 import request from 'supertest'
 
-import { setupNotificationWebhook } from '../notificationWebhook'
+import { NOVU_SIGNATURE_HEADER, setupNotificationWebhook } from '../notificationWebhook'
 import express from 'express'
 
 describe('Notification Webhook', () => {
@@ -36,7 +36,7 @@ describe('Notification Webhook', () => {
   it('should reject requests with invalid signature', async () => {
     return request(server)
       .post(webhookUrl)
-      .set('nv-hmac-256', 'invalid')
+      .set(NOVU_SIGNATURE_HEADER, 'invalid')
       .expect(401, 'Unauthorized')
   })
 
@@ -44,7 +44,7 @@ describe('Notification Webhook', () => {
     mockOkuna.forPost('/notification-webhook').thenReply(200, 'MOCK OK')
     await request(server)
       .post(webhookUrl)
-      .set('nv-hmac-256', expectedNovuSignature)
+      .set(NOVU_SIGNATURE_HEADER, expectedNovuSignature)
       .expect(200, 'MOCK OK')
   })
 })
