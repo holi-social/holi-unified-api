@@ -7,6 +7,7 @@ import jwt from 'jsonwebtoken'
 import { exit } from 'process'
 
 import { createBuiltMeshHTTPHandler } from './.mesh'
+import { setupNotificationWebhook } from './handlers/notificationWebhook'
 
 const asNumber = (str?: string) => (str ? Number(str) : undefined)
 
@@ -99,6 +100,8 @@ app.get('/api/novu/credentials', async (req, res) => {
     res.status(400).send("Couldn't generate the users credentials.")
   }
 })
+
+setupNotificationWebhook(app, '/notification-webhook')
 
 app.listen(port, () => {
   console.info(`Server listening on port ${port}`)

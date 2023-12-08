@@ -7,7 +7,7 @@
     "build": "OKUNA_URL=${OKUNA_URL:-http://127.0.0.1:8000/graphql} DONATIONS_API_URL=${DONATIONS_API_URL:-http://127.0.0.1:8001/graphql} GOODNEWS_API_URL=${GOODNEWS_API_URL:-http://127.0.0.1:8002/graphql} GEO_API_URL=${GEO_API_URL:-http://127.0.0.1:8003/graphql} VOLUNTEERING_API_URL=${VOLUNTEERING_API_URL:-http://127.0.0.1:8004/graphql} REDIS_HOST=${REDIS_HOST:-http://127.0.0.1} REDIS_PORT=${REDIS_PORT:-6380} REDIS_DB=${REDIS_DB:-5} DEBUG=1 mesh build",
     "serve": "OKUNA_URL=${OKUNA_URL:-http://127.0.0.1:8000/graphql} DONATIONS_API_URL=${DONATIONS_API_URL:-http://127.0.0.1:8001/graphql} GOODNEWS_API_URL=${GOODNEWS_API_URL:-http://127.0.0.1:8002/graphql} GEO_API_URL=${GEO_API_URL:-http://127.0.0.1:8003/graphql} VOLUNTEERING_API_URL=${VOLUNTEERING_API_URL:-http://127.0.0.1:8004/graphql} MATRIX_SERVER_BASE_URL=${MATRIX_SERVER_BASE_URL:-http://127.0.0.1:8008} REDIS_HOST=${REDIS_HOST:-http://127.0.0.1} REDIS_PORT=${REDIS_PORT:-6380} REDIS_DB=${REDIS_DB:-5} DEBUG=1 ts-node server",
     "lint": "echo 'nothing to be linted ATM'",
-    "test": "echo 'unit testing goes here'",
+    "test": "jest",
     "clean": "echo 'nothing to be done'",
     "clean:all": "rimraf node_modules"
   },
@@ -34,11 +34,17 @@
     "@types/express": "^4.17.17",
     "@types/helmet": "^4.0.0",
     "@types/http-proxy-middleware": "^1.0.0",
+    "@types/jest": "^29.5.11",
+    "@types/supertest": "^2.0.16",
     "eslint": "^8.16.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^29.7.0",
+    "mockttp": "^3.9.4",
     "prettier": "^2.6.2",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.1.1",
     "typescript": "4.5.5"
   }
 }
