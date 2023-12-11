@@ -119,7 +119,7 @@
 - id: notification-webhook
   version: v0.40.6
   upstream:
-    url: http://host.docker.internal:4000
+    url: http://localhost:4000
   match:
     url: https://production.unified.apis.holi.social/notification-webhook
     methods:
