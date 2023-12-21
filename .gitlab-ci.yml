@@ -118,6 +118,7 @@ build_mesh_staging:
     GOODNEWS_API_URL: https://staging.goodnews.apis.holi.social/graphql
     OKUNA_URL: https://staging.social.apis.holi.social/graphql
     VOLUNTEERING_API_URL: https://staging.volunteering.apis.holi.social/graphql
+    NOTIFICATIONS_API_URL: https://staging.notifications.apis.holi.social/graphql
     REDIS_HOST: 10.104.0.3
     REDIS_PORT: 6379
     REDIS_DB: 5
@@ -216,6 +217,7 @@ build_mesh_production:
     GOODNEWS_API_URL: https://production.goodnews.apis.holi.social/graphql
     OKUNA_URL: https://production.social.apis.holi.social/graphql
     VOLUNTEERING_API_URL: https://production.volunteering.apis.holi.social/graphql
+    NOTIFICATIONS_API_URL: https://production.notifications.apis.holi.social/graphql
     REDIS_HOST: 10.104.0.3
     REDIS_PORT: 6379
     REDIS_DB: 13

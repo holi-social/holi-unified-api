@@ -89,6 +89,27 @@ sources:
           value: geo_
           includeRootOperations: true
           includeTypes: false
+  - name: notifications
+    handler:
+      graphql:
+        endpoint: '{env.NOTIFICATIONS_API_URL}'
+        operationHeaders:
+          Accept-Language: "{context.headers['accept-language']}"
+          sentry-trace: "{context.headers['sentry-trace']}"
+          X-Holi-User-ID: "{context.headers['x-holi-user-id']}"
+    transforms:
+      # Prefix for types
+      - prefix:
+          mode: wrap
+          value: Notifications_
+          includeRootOperations: false
+          includeTypes: true
+      # Prefix for operations
+      - prefix:
+          mode: wrap
+          value: notifications_
+          includeRootOperations: true
+          includeTypes: false
 logger: './logger'
 
 cache:
