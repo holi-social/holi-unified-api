@@ -76,6 +76,10 @@ resource "google_cloud_run_service" "unified_api" {
           value = local.volunteering_api_url
         }
         env {
+          name  = "NOTIFICATIONS_API_URL"
+          value = local.notifications_api_url
+        }
+        env {
           name  = "REDIS_HOST"
           value = data.terraform_remote_state.holi_infra_state.outputs.redis_host_development
         }
