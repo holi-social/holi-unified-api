@@ -103,6 +103,6 @@ app.get('/api/novu/credentials', async (req, res) => {
 
 setupNotificationWebhook(app, '/notification-webhook')
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.info(`Server listening on port ${port}`)
 })
