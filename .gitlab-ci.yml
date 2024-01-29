@@ -79,6 +79,29 @@ sast:
 include:
 - template: Security/SAST.gitlab-ci.yml
 
+snyk:
+  stage: test
+  image: 
+    name: snyk/snyk:alpine
+    entrypoint: [""]
+  script:
+    - snyk test --org=holi --fail-on=upgradable
+  rules:
+    # run this job, if the pipeline is running as scheduled, and don't allow failure
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: always
+      allow_failure: false
+    # run this job if the pushed branch changes the dependencies, but allow failure
+    - if: $CI_PIPELINE_SOURCE == "push"
+      changes:
+        - yarn.lock
+      when: on_success
+      allow_failure: true
+    # only run this job manually for all other changes
+    - if: $CI_PIPELINE_SOURCE == "push"
+      when: manual
+      allow_failure: true
+
 .build_mesh:
   needs: ['install_lint_test']
   image: 'node:18-alpine'
