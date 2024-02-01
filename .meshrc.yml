@@ -89,6 +89,27 @@ sources:
           value: geo_
           includeRootOperations: true
           includeTypes: false
+  - name: notifications
+    handler:
+      graphql:
+        endpoint: '{env.NOTIFICATIONS_API_URL}'
+        operationHeaders:
+          Accept-Language: "{context.headers['accept-language']}"
+          sentry-trace: "{context.headers['sentry-trace']}"
+          X-Holi-User-ID: "{context.headers['x-holi-user-id']}"
+    transforms:
+      # Prefix for types
+      - prefix:
+          mode: wrap
+          value: Notifications_
+          includeRootOperations: false
+          includeTypes: true
+      # Prefix for operations
+      - prefix:
+          mode: wrap
+          value: notifications_
+          includeRootOperations: true
+          includeTypes: false
 logger: './logger'
 
 cache:
@@ -100,7 +121,7 @@ cache:
     
 plugins:
   - responseCache:
-      cacheKey: "{operationName}-{documentString|hash}-{variableValues.offset}-{variableValues.limit}-{variableValues.geolocation.properties.name}-{variableValues.topicIds|hash}-{variableValues.skillIds|hash}"
+      cacheKey: "{operationName}-{documentString|hash}-{variableValues.offset}-{variableValues.limit}-{variableValues.geolocation.properties.place_id}-{variableValues.topicIds|hash}-{variableValues.skillIds|hash}"
       ttl: 0
       ttlPerCoordinate:
         # cache operation containing Query.discoverSpaces selection for 10 minutes
