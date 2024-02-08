@@ -4,3 +4,12 @@ node_modules/
 .envrc.local
 .DS_Store
 /oathkeeper/secrets/
+
+# yarn default ignores (also for any subfolders, like apps/mobile and e2e/web)
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
