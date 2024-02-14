@@ -26,6 +26,7 @@ export GOODNEWS_API_URL=http://127.0.0.1:8002/graphql
 export GEO_API_URL=http://127.0.0.1:8003/graphql
 export VOLUNTEERING_API_URL=http://127.0.0.1:8004/graphql
 export NOTIFICATIONS_API_URL=http://127.0.0.1:8005/graphql
+export TRACKING_ENDPOINT_URL=http://127.0.0.1:8006/graphql
 
 export MATRIX_SERVER_BASE_URL=$(backendUrl $LOCAL_BACKEND_CHAT "http://127.0.0.1:8008" "https://development-chat.holi.social")
 export REDIS_HOST=localhost
