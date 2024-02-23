@@ -80,6 +80,10 @@ resource "google_cloud_run_service" "unified_api" {
           value = local.notifications_api_url
         }
         env {
+          name  = "TRACKING_ENDPOINT_URL"
+          value = local.tracking_endpoint_url
+        }
+        env {
           name  = "REDIS_HOST"
           value = data.terraform_remote_state.holi_infra_state.outputs.redis_host_development
         }
