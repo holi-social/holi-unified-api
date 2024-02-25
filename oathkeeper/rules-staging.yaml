@@ -7,7 +7,7 @@
   upstream:
     url: https://development-chat.holi.social:8008
   match:
-    url: https://<.*>.unified.apis.holi.social/_matrix/<.*>
+    url: https://staging.unified.apis.holi.social/_matrix/<.*>
     methods:
       - GET
       - HEAD
@@ -30,7 +30,7 @@
     url: http://localhost:4000 # always true, as this process runs a reverse proxy aside the GraphQL mesh
     strip_path: /api/chatlogin
   match:
-    url: https://<.*>.unified.apis.holi.social/api/chatlogin/<.*>
+    url: https://staging.unified.apis.holi.social/api/chatlogin/<.*>
     methods:
       - GET
       - HEAD
@@ -54,7 +54,7 @@
   upstream:
     url: http://localhost:4000 # always true, as this GraphQL mesh is run within this Docker container
   match:
-    url: https://<.*>.unified.apis.holi.social/graphql
+    url: https://staging.unified.apis.holi.social/graphql
     methods:
       - GET
       - HEAD
@@ -79,7 +79,7 @@
     url: http://localhost:4000 # always true, as this process runs alongside the GraphQL mesh
     strip_path: /api
   match:
-    url: https://<.*>.unified.apis.holi.social/api/video-call/<.*>
+    url: https://staging.unified.apis.<project-holi.org|holi.social>/api/video-call/<.*>
     methods:
       - GET
       - HEAD
@@ -106,7 +106,7 @@
   upstream:
     url: http://localhost:4000
   match:
-    url: https://<.*>.unified.apis.holi.social/api/novu/credentials
+    url: https://staging.unified.apis.holi.social/api/novu/credentials
     methods:
       - GET
   authenticators:
@@ -121,7 +121,7 @@
   upstream:
     url: http://localhost:4000
   match:
-    url: https://<.*>.unified.apis.holi.social/notification-webhook
+    url: https://staging.unified.apis.holi.social/notification-webhook
     methods:
       - POST
   authenticators:
@@ -135,7 +135,7 @@
   upstream:
     url: http://localhost:4000
   match:
-    url: https://<.*>.unified.apis.holi.social/ory-webhook
+    url: https://staging.unified.apis.holi.social/ory-webhook
     methods:
       - POST
   authenticators:
