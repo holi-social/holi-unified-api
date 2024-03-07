@@ -80,6 +80,10 @@ resource "google_cloud_run_service" "unified_api" {
           value = local.notifications_api_url
         }
         env {
+          name  = "TRACKING_ENDPOINT_URL"
+          value = local.tracking_endpoint_url
+        }
+        env {
           name  = "REDIS_HOST"
           value = data.terraform_remote_state.holi_infra_state.outputs.redis_host_development
         }
@@ -168,7 +172,7 @@ resource "google_cloud_run_service" "unified_api" {
             memory = local.environment == "production" ? "512Mi" : "384Mi"
           }
           requests = {
-            cpu    = local.environment == "production" ? "1000m" : "100m"
+            cpu    = local.environment == "production" ? "1000m" : "200m"
             memory = local.environment == "production" ? "512Mi" : "256Mi"
           }
         }
@@ -188,7 +192,7 @@ resource "google_cloud_run_service" "unified_api" {
     metadata {
       annotations = {
         "autoscaling.knative.dev/minScale"        = local.environment == "production" ? "1" : "0"
-        "autoscaling.knative.dev/maxScale"        = local.environment == "production" ? "10" : "5"
+        "autoscaling.knative.dev/maxScale"        = local.environment == "production" ? "10" : "2"
         "run.googleapis.com/vpc-access-connector" = data.terraform_remote_state.holi_infra_state.outputs.vpc_access_connector_name
         # possible values: all-traffic/private-ranges-only(default) https://cloud.google.com/sdk/gcloud/reference/run/services/update#--vpc-egress
         # this needs to be set to all-traffic in order to route a cloud run url correctly, since it does resolve to a non-private ip address.

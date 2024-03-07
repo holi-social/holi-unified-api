@@ -110,6 +110,23 @@ sources:
           value: notifications_
           includeRootOperations: true
           includeTypes: false
+  - name: tracking-endpoint
+    handler:
+      graphql:
+        endpoint: '{env.TRACKING_ENDPOINT_URL}'
+    transforms:
+      # Prefix for types
+      - prefix:
+          mode: wrap
+          value: TrackingEndpoint_
+          includeRootOperations: false
+          includeTypes: true
+      # Prefix for operations
+      - prefix:
+          mode: wrap
+          value: trackingEndpoint_
+          includeRootOperations: true
+          includeTypes: false
 logger: './logger'
 
 cache:
