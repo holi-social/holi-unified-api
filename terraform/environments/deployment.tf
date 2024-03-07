@@ -172,7 +172,7 @@ resource "google_cloud_run_service" "unified_api" {
             memory = local.environment == "production" ? "512Mi" : "384Mi"
           }
           requests = {
-            cpu    = local.environment == "production" ? "1000m" : "200m"
+            cpu    = local.environment == "production" ? "1000m" : "1000m"
             memory = local.environment == "production" ? "512Mi" : "256Mi"
           }
         }
