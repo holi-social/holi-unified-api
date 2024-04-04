@@ -4,7 +4,7 @@ default:
     - env
   interruptible: true
   tags:
-    - holi-small # build on smaller machine
+    - 1cpu-4gb # build on smaller machine
 
 stages:
   - build
@@ -65,7 +65,7 @@ install_lint_test:
     - yarn lint
     - yarn test
   tags:
-    - holi-big
+    - 4cpu-4gb
 
 # You can override the included template(s) by including variable overrides
 # SAST customization: https://docs.gitlab.com/ee/user/application_security/sast/#customizing-the-sast-settings
@@ -87,7 +87,7 @@ include:
     - yarn run mesh build
     - yarn run mesh validate
   tags:
-    - holi-big
+    - 4cpu-4gb
   artifacts:
     paths:
       - ".mesh/"
