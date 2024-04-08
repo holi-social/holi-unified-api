@@ -3,7 +3,7 @@
 # chatlogin - checks authorization and adds a JWT to the request that is then passed to our unified API server, which adds the JWT to the login body.
 # matrix - transfer all requests to the matrix server without any authorization checks, since Matrix uses it's own tokens.
 - id: matrix
-  version: v0.40.6
+  version: v0.40.7
   upstream:
     url: https://chat.holi.social:8008
   match:
@@ -25,7 +25,7 @@
   mutators:
     - handler: noop
 - id: chatlogin
-  version: v0.40.6
+  version: v0.40.7
   upstream:
     url: http://localhost:4000 # always true, as this process runs a reverse proxy aside the GraphQL mesh
     strip_path: /api/chatlogin
@@ -50,7 +50,7 @@
   mutators:
     - handler: id_token
 - id: graphql
-  version: v0.40.6
+  version: v0.40.7
   upstream:
     url: http://localhost:4000 # always true, as this GraphQL mesh is run within this Docker container
   match:
@@ -74,7 +74,7 @@
   mutators:
     - handler: header
 - id: videocall_login
-  version: v0.40.6
+  version: v0.40.7
   upstream:
     url: http://localhost:4000 # always true, as this process runs alongside the GraphQL mesh
     strip_path: /api
@@ -102,7 +102,7 @@
         headers:
           X-Holi-User-Name: '{{ if and .Extra (index .Extra "identity")}}{{ .Extra.identity.traits.name }}{{ else }}anonymous{{ end }}'
 - id: novu-credentials
-  version: v0.40.6
+  version: v0.40.7
   upstream:
     url: http://localhost:4000
   match:
@@ -117,7 +117,7 @@
   mutators:
     - handler: header
 - id: notification-webhook
-  version: v0.40.6
+  version: v0.40.7
   upstream:
     url: http://localhost:4000
   match:
@@ -131,7 +131,7 @@
   mutators:
     - handler: noop
 - id: ory-webhook
-  version: v0.40.6
+  version: v0.40.7
   upstream:
     url: http://localhost:4000
   match:
