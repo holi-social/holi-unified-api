@@ -85,18 +85,18 @@ resource "google_cloud_run_service" "unified_api" {
         }
         env {
           name  = "REDIS_HOST"
-          value = data.terraform_remote_state.holi_infra_state.outputs.redis_host_development
+          value = data.terraform_remote_state.holi_infra_state.outputs.redis_host_cmek_development
         }
         env {
           name  = "REDIS_PORT"
-          value = data.terraform_remote_state.holi_infra_state.outputs.redis_port_development
+          value = data.terraform_remote_state.holi_infra_state.outputs.redis_port_cmek_development
         }
         env {
           name = "REDIS_PASSWORD"
           value_from {
             secret_key_ref {
               key  = "latest"
-              name = "REDIS_PASSWORD"
+              name = "REDIS_CMEK_PASSWORD"
             }
           }
         }
