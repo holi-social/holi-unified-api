@@ -7,6 +7,8 @@ sources:
           Accept-Language: "{context.headers['accept-language']}"
           sentry-trace: "{context.headers['sentry-trace']}"
           X-Holi-User-ID: "{context.headers['x-holi-user-id']}"
+          X-Holi-Session: "{context.headers['x-holi-session']}"
+          X-Holi-Session-Expiry: "{context.headers['x-holi-session-expiry']}"
           X-Holi-User-Email: "{context.headers['x-holi-user-email']}"
           X-Disable-Sentry: "{context.headers['x-disable-sentry']}"
   - name: app-donations
@@ -135,10 +137,10 @@ cache:
     port: '{env.REDIS_PORT}'
     password: '{env.REDIS_PASSWORD}'
     url: 'redis://:{env.REDIS_PASSWORD}@{env.REDIS_HOST}:{env.REDIS_PORT}/{env.REDIS_DB}'
-    
+
 plugins:
   - responseCache:
-      cacheKey: "{operationName}-{documentString|hash}-{variableValues.offset}-{variableValues.limit}-{variableValues.geolocation.properties.place_id}-{variableValues.topicIds|hash}-{variableValues.skillIds|hash}"
+      cacheKey: '{operationName}-{documentString|hash}-{variableValues.offset}-{variableValues.limit}-{variableValues.geolocation.properties.place_id}-{variableValues.topicIds|hash}-{variableValues.skillIds|hash}'
       ttl: 0
       ttlPerCoordinate:
         # cache operation containing Query.discoverSpaces selection for 10 minutes
