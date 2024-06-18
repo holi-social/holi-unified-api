@@ -38,7 +38,6 @@ app.post(
     on: {
       proxyReq: (proxyReq: http.ClientRequest, req: Request) => {
         const oldBody = req.body
-        console.log('oldBody', oldBody)
         if (!oldBody) return
 
         // TODO - This is a hack to get the token from the authorization header
