@@ -19,8 +19,11 @@ export const setupNotificationWebhook = (app: Express, webhookUrl: string) => {
       next()
     }
   })
-  app.post(webhookUrl, createProxyMiddleware(webhookUrl, {
-    target: process.env.OKUNA_DOMAIN,
-    changeOrigin: true,
-  }))
+  app.post(
+    webhookUrl,
+    createProxyMiddleware({
+      target: process.env.OKUNA_DOMAIN,
+      changeOrigin: true,
+    }),
+  )
 }

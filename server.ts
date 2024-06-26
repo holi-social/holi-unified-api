@@ -20,24 +20,6 @@ if (!matrixServerUrl) {
 
 console.debug(`Server starting on port ${port}`)
 
-const matrixLoginProxyConfig = {
-  target: matrixServerUrl,
-  changeOrigin: true,
-  onProxyReq: (proxyReq: http.ClientRequest, req: Request) => {
-    const oldBody = req.body
-    if (!oldBody) return
-
-    // TODO - This is a hack to get the token from the authorization header
-    const jwt = req.get('authorization')
-    if (!oldBody.token && jwt && jwt.startsWith('Bearer ')) {
-      oldBody.token = jwt.slice(7)
-    }
-    const newBody = JSON.stringify(oldBody)
-    proxyReq.setHeader('Content-Length', Buffer.byteLength(newBody))
-    proxyReq.end(newBody)
-  },
-}
-
 const app = express()
 
 // It is necessary to disable the Content-Security-Policy in the development environments to enable Yoga GraphiQL.
@@ -48,15 +30,36 @@ app.use('/graphql', createBuiltMeshHTTPHandler())
 // add authorization token to login requests
 const loginUrl = '/_matrix/client/r0/login'
 app.post(loginUrl, express.json()) // this is needed to make the JSON body accessible
-app.post(loginUrl, createProxyMiddleware(loginUrl, matrixLoginProxyConfig))
+app.post(
+  loginUrl,
+  createProxyMiddleware({
+    target: matrixServerUrl,
+    changeOrigin: true,
+    on: {
+      proxyReq: (proxyReq: http.ClientRequest, req: Request) => {
+        const oldBody = req.body
+        if (!oldBody) return
+
+        // TODO - This is a hack to get the token from the authorization header
+        const jwt = req.get('authorization')
+        if (!oldBody.token && jwt && jwt.startsWith('Bearer ')) {
+          oldBody.token = jwt.slice(7)
+        }
+        const newBody = JSON.stringify(oldBody)
+        proxyReq.setHeader('Content-Length', Buffer.byteLength(newBody))
+        proxyReq.end(newBody)
+      },
+    },
+  }),
+)
 
 const oryWebhookUrl = '/ory-webhook'
 app.post(
   oryWebhookUrl,
-  createProxyMiddleware(oryWebhookUrl, {
+  createProxyMiddleware({
     target: process.env.OKUNA_DOMAIN,
     changeOrigin: true,
-  })
+  }),
 )
 
 const createJitsiJWT = (userId, userName) => {
