@@ -27,6 +27,7 @@
     "http-proxy-middleware": "^3.0.0",
     "jsonwebtoken": "^9.0.2",
     "pino": "^9.2.0",
+    "posthog-node": "^4.0.1",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {

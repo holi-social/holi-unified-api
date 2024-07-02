@@ -4001,6 +4001,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"axios@npm:^1.6.2":
+  version: 1.7.2
+  resolution: "axios@npm:1.7.2"
+  dependencies:
+    follow-redirects: "npm:^1.15.6"
+    form-data: "npm:^4.0.0"
+    proxy-from-env: "npm:^1.1.0"
+  checksum: 10c0/cbd47ce380fe045313364e740bb03b936420b8b5558c7ea36a4563db1258c658f05e40feb5ddd41f6633fdd96d37ac2a76f884dad599c5b0224b4c451b3fa7ae
+  languageName: node
+  linkType: hard
+
 "babel-jest@npm:^29.7.0":
   version: 29.7.0
   resolution: "babel-jest@npm:29.7.0"
@@ -5850,6 +5861,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"follow-redirects@npm:^1.15.6":
+  version: 1.15.6
+  resolution: "follow-redirects@npm:1.15.6"
+  peerDependenciesMeta:
+    debug:
+      optional: true
+  checksum: 10c0/9ff767f0d7be6aa6870c82ac79cf0368cd73e01bbc00e9eb1c2a16fbb198ec105e3c9b6628bb98e9f3ac66fe29a957b9645bcb9a490bb7aa0d35f908b6b85071
+  languageName: node
+  linkType: hard
+
 "foreach@npm:^2.0.4":
   version: 2.0.6
   resolution: "foreach@npm:2.0.6"
@@ -6522,6 +6543,7 @@ __metadata:
     jsonwebtoken: "npm:^9.0.2"
     mockttp: "npm:^3.10.2"
     pino: "npm:^9.2.0"
+    posthog-node: "npm:^4.0.1"
     prettier: "npm:^3.2.5"
     supertest: "npm:^6.3.4"
     ts-jest: "npm:^29.1.2"
@@ -9074,6 +9096,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"posthog-node@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "posthog-node@npm:4.0.1"
+  dependencies:
+    axios: "npm:^1.6.2"
+    rusha: "npm:^0.8.14"
+  checksum: 10c0/04389265fa47afedac7f31fc2314b99e2075a3051ba6d5f1b680fe4cafceaa9e7b22a33fd4a38a21803568e236aa0e202a0651f86c0a46baa9df9d7f983d5108
+  languageName: node
+  linkType: hard
+
 "prelude-ls@npm:^1.2.1":
   version: 1.2.1
   resolution: "prelude-ls@npm:1.2.1"
@@ -9185,6 +9217,13 @@ __metadata:
     forwarded: "npm:0.2.0"
     ipaddr.js: "npm:1.9.1"
   checksum: 10c0/c3eed999781a35f7fd935f398b6d8920b6fb00bbc14287bc6de78128ccc1a02c89b95b56742bf7cf0362cc333c61d138532049c7dedc7a328ef13343eff81210
+  languageName: node
+  linkType: hard
+
+"proxy-from-env@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "proxy-from-env@npm:1.1.0"
+  checksum: 10c0/fe7dd8b1bdbbbea18d1459107729c3e4a2243ca870d26d34c2c1bcd3e4425b7bcc5112362df2d93cc7fb9746f6142b5e272fd1cc5c86ddf8580175186f6ad42b
   languageName: node
   linkType: hard
 
@@ -9578,6 +9617,13 @@ __metadata:
   dependencies:
     queue-microtask: "npm:^1.2.2"
   checksum: 10c0/200b5ab25b5b8b7113f9901bfe3afc347e19bb7475b267d55ad0eb86a62a46d77510cb0f232507c9e5d497ebda569a08a9867d0d14f57a82ad5564d991588b39
+  languageName: node
+  linkType: hard
+
+"rusha@npm:^0.8.14":
+  version: 0.8.14
+  resolution: "rusha@npm:0.8.14"
+  checksum: 10c0/5009ac30a0f8d17886c54b0eaf4f316dbd3ae21c07f9d6827c4d73a2d26f270278a6a40e4e86d22932c4c4a785c0300f2232c3c2404bf670f69647f3a48ae8bc
   languageName: node
   linkType: hard
 

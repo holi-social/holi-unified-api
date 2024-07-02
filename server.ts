@@ -1,4 +1,4 @@
-import { createHmac } from 'crypto'
+import { createHmac, randomUUID } from 'crypto'
 import express, { Request } from 'express'
 import helmet from 'helmet'
 import http from 'http'
@@ -8,6 +8,7 @@ import { exit } from 'process'
 
 import { createBuiltMeshHTTPHandler } from './.mesh'
 import { setupNotificationWebhook } from './handlers/notificationWebhook'
+import { PostHog } from 'posthog-node'
 
 const asNumber = (str?: string) => (str ? Number(str) : undefined)
 
@@ -102,6 +103,20 @@ app.get('/api/novu/credentials', async (req, res) => {
   } catch (e) {
     res.status(400).send("Couldn't generate the users credentials.")
   }
+})
+
+app.get('/feature-flags', async (request: Request, response) => {
+  // in case this is an anonymous request (i.e., no user ID in header), we use a random UUID to give to posthog,
+  // which will return the default cases for all feature flags
+  const userId = request.header('x-holi-user-id') ?? randomUUID() 
+
+  const posthog = new PostHog(process.env.POSTHOG_API_KEY, { host: "https://eu.posthog.com" })
+  
+  response
+    .status(200)
+    .send(
+      await posthog.getAllFlagsAndPayloads(userId)
+    )
 })
 
 setupNotificationWebhook(app, '/notification-webhook')

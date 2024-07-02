@@ -144,3 +144,21 @@
     handler: allow
   mutators:
     - handler: noop
+
+- id: feature-flags
+  version: v0.40.7
+  upstream:
+    url: http://host.docker.internal:4000
+    strip_path: /api
+  match:
+    url: http://<.*>:4455/api/feature-flags
+    methods:
+      - GET
+  authenticators:
+    - handler: cookie_session
+    - handler: bearer_token
+    - handler: anonymous
+  authorizer:
+    handler: allow
+  mutators:
+    - handler: header

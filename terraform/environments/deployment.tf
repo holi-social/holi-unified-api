@@ -160,6 +160,17 @@ resource "google_cloud_run_service" "unified_api" {
             }
           }
         }
+
+        env {
+          name = "POSTHOG_API_KEY"
+          value_from {
+             secret_key_ref {
+               key = "latest"
+               name = local.environment == "production" ? "POSTHOG_API_KEY_PRODUCTION" : "POSTHOG_API_KEY_DEVELOPMENT"
+             }
+          }
+        }
+
         volume_mounts {
           mount_path = "/opt/oathkeeper/secrets/"
           name       = "JWKS"
