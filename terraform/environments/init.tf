@@ -69,14 +69,6 @@ data "terraform_remote_state" "holi_notifications_api_common_state" {
   }
 }
 
-data "terraform_remote_state" "holi_tracking_endpoint_common_state" {
-  backend = "gcs"
-  config = {
-    bucket = "holi-shared-terraform-state"
-    prefix = "tracking-endpoint-common"
-  }
-}
-
 # provider google including beta features
 provider "google" {
   region = "europe-north1"
