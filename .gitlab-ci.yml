@@ -41,7 +41,7 @@ variables:
   script:
     - export GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_CLOUD_SERVICE_ACCOUNT}
     - terraform/environments/scripts/create-or-update-env.sh $ENVIRONMENT_ID ${CI_COMMIT_SHA}_${CI_PIPELINE_IID}
-    - echo "$(terraform/environments/scripts/get-api-domain.sh)" > $API_DOMAIN_FILE
+    - echo "$(terraform/environments/scripts/get-output.sh api_domain)" > $API_DOMAIN_FILE
   resource_group: $ENVIRONMENT_ID # never execute terraform in parallel on the same environment
   interruptible: false
 
