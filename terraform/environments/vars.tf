@@ -12,8 +12,8 @@ locals {
   geo_api_url           = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_geo_api_common_state.outputs.dns_geo_api_domain}/graphql"
   volunteering_api_url  = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_volunteering_api_common_state.outputs.dns_volunteering_api_domain}/graphql"
   notifications_api_url = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_notifications_api_common_state.outputs.dns_notifications_api_domain}/graphql"
-
-  default_region = data.terraform_remote_state.holi_infra_state.outputs.default_region
+  translation_api_url   = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_translation_api_common_state.outputs.dns_translation_api_domain}/graphql"
+  default_region        = data.terraform_remote_state.holi_infra_state.outputs.default_region
 }
 
 output "okuna_domain" {
@@ -42,4 +42,8 @@ output "volunteering_api_url" {
 
 output "notifications_api_url" {
   value = local.notifications_api_url
+}
+
+output "translation_api_url" {
+  value = local.translation_api_url
 }
