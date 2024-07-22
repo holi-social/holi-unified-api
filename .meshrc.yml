@@ -143,12 +143,15 @@ cache:
 
 plugins:
   - responseCache:
-      cacheKey: '{operationName}-{documentString|hash}-{variableValues.offset}-{variableValues.limit}-{variableValues.geolocation.properties.place_id}-{variableValues.topicIds|hash}-{variableValues.skillIds|hash}'
+      cacheKey: '{operationName}-{documentString|hash}-{variableValues.offset}-{variableValues.limit}-{variableValues.geolocation.properties.place_id}-{variableValues.topicIds|hash}-{variableValues.skillIds|hash}-{variableValues.text|hash}-{variableValues.targetLanguage|hash}'
       ttl: 0
       ttlPerCoordinate:
         # cache operation containing Query.discoverSpaces selection for 10 minutes
         - coordinate: Query.discoverSpaces
           ttl: 600000
+        # cache translation for 7 days
+        - coordinate: Query.translation_translate
+          ttl: 604800000
   - maxDepth:
       n: 15 # maximum nesting level an operation is allowed to have
 serve:
