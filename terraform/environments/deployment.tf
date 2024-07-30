@@ -34,7 +34,7 @@ variable "image_tag" {
 resource "google_cloud_run_service" "unified_api" {
   project  = data.terraform_remote_state.holi_infra_state.outputs.shared_project_id
   name     = random_id.main.hex
-  location = "europe-north1" # finland, low CO2 emissions
+  location = local.default_region # finland, low CO2 emissions
   # https://github.com/hashicorp/terraform-provider-google/issues/5898
   autogenerate_revision_name = true
 
@@ -78,6 +78,10 @@ resource "google_cloud_run_service" "unified_api" {
         env {
           name  = "NOTIFICATIONS_API_URL"
           value = local.notifications_api_url
+        }
+        env {
+          name  = "TRANSLATION_API_URL"
+          value = local.translation_api_url
         }
         env {
           name  = "REDIS_HOST"

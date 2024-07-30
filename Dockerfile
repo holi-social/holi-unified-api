@@ -1,4 +1,4 @@
-FROM node:20.11.0-alpine
+FROM europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:20.11.0-alpine
 
 # shell sanity with pipes (https://github.com/hadolint/hadolint/wiki/DL4006)
 # needed for installation of s6

@@ -91,6 +91,26 @@ sources:
           value: geo_
           includeRootOperations: true
           includeTypes: false
+  - name: translation
+    handler:
+      graphql:
+        endpoint: '{env.TRANSLATION_API_URL}'
+        operationHeaders:
+          Accept-Language: "{context.headers['accept-language']}"
+          sentry-trace: "{context.headers['sentry-trace']}"
+    transforms:
+      # Prefix for types
+      - prefix:
+          mode: wrap
+          value: Translation_
+          includeRootOperations: false
+          includeTypes: true
+      # Prefix for operations
+      - prefix:
+          mode: wrap
+          value: translation_
+          includeRootOperations: true
+          includeTypes: false
   - name: notifications
     handler:
       graphql:
