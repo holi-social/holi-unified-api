@@ -1515,6 +1515,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@graphql-mesh/cache-localforage@npm:^0.99.0":
+  version: 0.99.7
+  resolution: "@graphql-mesh/cache-localforage@npm:0.99.7"
+  dependencies:
+    localforage: "npm:1.10.0"
+  peerDependencies:
+    "@graphql-mesh/types": ^0.99.7
+    "@graphql-mesh/utils": ^0.99.7
+    graphql: "*"
+    tslib: ^2.4.0
+  checksum: 10c0/dbefc8687f6cae597ee9c98b39601a82929667b6bdb33ba06d017fa34ca56378abe6c9b67f7fbb3aa7ac6c990c1e1530c1b2ec8cdfda5037491f5f19fb6afd18
+  languageName: node
+  linkType: hard
+
 "@graphql-mesh/cache-redis@npm:^0.98.7":
   version: 0.98.7
   resolution: "@graphql-mesh/cache-redis@npm:0.98.7"
@@ -6496,7 +6510,7 @@ __metadata:
   resolution: "holi-unified-api@workspace:."
   dependencies:
     "@escape.tech/graphql-armor-max-depth": "npm:^2.3.0"
-    "@graphql-mesh/cache-localforage": "npm:^0.98.7"
+    "@graphql-mesh/cache-localforage": "npm:^0.99.0"
     "@graphql-mesh/cache-redis": "npm:^0.98.7"
     "@graphql-mesh/cli": "npm:^0.90.10"
     "@graphql-mesh/graphql": "npm:^0.98.8"
