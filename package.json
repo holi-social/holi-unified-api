@@ -14,7 +14,7 @@
   "dependencies": {
     "@escape.tech/graphql-armor-max-depth": "^2.3.0",
     "@graphql-mesh/cache-localforage": "^0.99.0",
-    "@graphql-mesh/cache-redis": "^0.98.7",
+    "@graphql-mesh/cache-redis": "^0.99.0",
     "@graphql-mesh/cli": "^0.90.10",
     "@graphql-mesh/graphql": "^0.98.8",
     "@graphql-mesh/openapi": "^0.100.12",
