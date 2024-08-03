@@ -60,7 +60,7 @@ variables:
 ## common steps
 install_lint_test:
   stage: build
-  image: 'europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:18-alpine'
+  image: 'europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:22-alpine'
   script:
     - yarn install
     - yarn lint
@@ -82,7 +82,7 @@ include:
 
 .build_mesh:
   needs: ['install_lint_test']
-  image: 'europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:18-alpine'
+  image: 'europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:22-alpine'
   script:
     - yarn install
     - yarn run mesh build
