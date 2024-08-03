@@ -1854,20 +1854,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-mesh/transform-prefix@npm:^0.98.7":
-  version: 0.98.7
-  resolution: "@graphql-mesh/transform-prefix@npm:0.98.7"
+"@graphql-mesh/transform-prefix@npm:^0.99.0":
+  version: 0.99.7
+  resolution: "@graphql-mesh/transform-prefix@npm:0.99.7"
   dependencies:
-    "@graphql-tools/delegate": "npm:^10.0.11"
+    "@graphql-tools/delegate": "npm:^10.0.17"
     "@graphql-tools/wrap": "npm:^10.0.5"
     graphql-scalars: "npm:^1.22.4"
   peerDependencies:
-    "@graphql-mesh/types": ^0.98.7
-    "@graphql-mesh/utils": ^0.98.7
-    "@graphql-tools/utils": ^10.2.1
+    "@graphql-mesh/types": ^0.99.7
+    "@graphql-mesh/utils": ^0.99.7
+    "@graphql-tools/utils": ^10.2.3
     graphql: "*"
     tslib: ^2.4.0
-  checksum: 10c0/6411927355e7344006539633ba1cb0dacc4e7f1ad1905cfb7d3e8f143f429f5e6acedfef8e8daa22b8f9dc5d2a763f6c0f0fa668639b3e0273d089a50c20085b
+  checksum: 10c0/7e42f441e009d13352353a7e2138d5de8738cf754c5609f6c82abbfbd1a7ae650f219a5535cc5cf6cc83d82ddec97b0794aa3d35d13077e1c0fc2575bf9edb9c
   languageName: node
   linkType: hard
 
@@ -6699,7 +6699,7 @@ __metadata:
     "@graphql-mesh/openapi": "npm:^0.103.0"
     "@graphql-mesh/plugin-response-cache": "npm:^0.99.0"
     "@graphql-mesh/runtime": "npm:^0.100.0"
-    "@graphql-mesh/transform-prefix": "npm:^0.98.7"
+    "@graphql-mesh/transform-prefix": "npm:^0.99.0"
     "@trivago/prettier-plugin-sort-imports": "npm:^4.3.0"
     "@types/express": "npm:^4.17.21"
     "@types/helmet": "npm:^4.0.0"
