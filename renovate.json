@@ -9,7 +9,7 @@
       "automerge": true
     },
     {
-      "matchCategories": ["node"],
+      "matchCategories": ["npm"],
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true
     },
