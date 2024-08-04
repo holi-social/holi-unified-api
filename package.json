@@ -20,7 +20,7 @@
     "@graphql-mesh/openapi": "^0.103.0",
     "@graphql-mesh/plugin-response-cache": "^0.99.0",
     "@graphql-mesh/runtime": "^0.100.0",
-    "@graphql-mesh/transform-prefix": "^0.98.7",
+    "@graphql-mesh/transform-prefix": "^0.99.0",
     "express": "^4.19.2",
     "graphql": "^16.8.2",
     "helmet": "^7.1.0",
