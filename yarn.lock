@@ -1741,7 +1741,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-mesh/plugin-response-cache@npm:^0.99.0":
+"@graphql-mesh/plugin-response-cache@npm:^0.99.7":
   version: 0.99.7
   resolution: "@graphql-mesh/plugin-response-cache@npm:0.99.7"
   dependencies:
@@ -1801,7 +1801,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-mesh/string-interpolation@npm:0.5.4, @graphql-mesh/string-interpolation@npm:^0.5.4":
+"@graphql-mesh/string-interpolation@npm:0.5.4":
   version: 0.5.4
   resolution: "@graphql-mesh/string-interpolation@npm:0.5.4"
   dependencies:
@@ -1815,7 +1815,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-mesh/string-interpolation@npm:0.5.5":
+"@graphql-mesh/string-interpolation@npm:0.5.5, @graphql-mesh/string-interpolation@npm:^0.5.4":
   version: 0.5.5
   resolution: "@graphql-mesh/string-interpolation@npm:0.5.5"
   dependencies:
@@ -6622,7 +6622,7 @@ __metadata:
     "@graphql-mesh/cli": "npm:^0.90.10"
     "@graphql-mesh/graphql": "npm:^0.98.8"
     "@graphql-mesh/openapi": "npm:^0.100.12"
-    "@graphql-mesh/plugin-response-cache": "npm:^0.99.0"
+    "@graphql-mesh/plugin-response-cache": "npm:^0.99.7"
     "@graphql-mesh/runtime": "npm:^0.99.8"
     "@graphql-mesh/transform-prefix": "npm:^0.98.7"
     "@trivago/prettier-plugin-sort-imports": "npm:^4.3.0"
