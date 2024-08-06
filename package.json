@@ -8,19 +8,19 @@
     "serve": "OKUNA_URL=${OKUNA_URL:-http://127.0.0.1:8000/graphql} DONATIONS_API_URL=${DONATIONS_API_URL:-http://127.0.0.1:8001/graphql} GOODNEWS_API_URL=${GOODNEWS_API_URL:-http://127.0.0.1:8002/graphql} GEO_API_URL=${GEO_API_URL:-http://127.0.0.1:8003/graphql} VOLUNTEERING_API_URL=${VOLUNTEERING_API_URL:-http://127.0.0.1:8004/graphql} NOTIFICATIONS_API_URL=${NOTIFICATIONS_API_URL:-http://127.0.0.1:8005/graphql} TRANSLATION_API_URL=${TRANSLATION_API_URL:-http://127.0.0.1:8089/graphql} MATRIX_SERVER_BASE_URL=${MATRIX_SERVER_BASE_URL:-http://127.0.0.1:8008} REDIS_HOST=${REDIS_HOST:-http://127.0.0.1} REDIS_PORT=${REDIS_PORT:-6380} REDIS_DB=${REDIS_DB:-5} DEBUG=1 ts-node server",
     "lint": "echo 'nothing to be linted ATM'",
     "test": "jest",
-    "clean": "echo 'nothing to be done'",
-    "clean:all": "rimraf node_modules"
+    "clean": "npx rimraf .mesh && npx rimraf node_modules",
+    "clean:all": "npx rimraf node_modules"
   },
   "dependencies": {
     "@escape.tech/graphql-armor-max-depth": "^2.3.0",
-    "@graphql-mesh/cache-localforage": "^0.98.7",
-    "@graphql-mesh/cache-redis": "^0.98.7",
-    "@graphql-mesh/cli": "^0.90.10",
-    "@graphql-mesh/graphql": "^0.98.8",
-    "@graphql-mesh/openapi": "^0.100.12",
+    "@graphql-mesh/cache-localforage": "^0.99.0",
+    "@graphql-mesh/cache-redis": "^0.99.0",
+    "@graphql-mesh/cli": "^0.92.0",
+    "@graphql-mesh/graphql": "^0.99.0",
+    "@graphql-mesh/openapi": "^0.103.0",
     "@graphql-mesh/plugin-response-cache": "^0.98.8",
-    "@graphql-mesh/runtime": "^0.99.8",
-    "@graphql-mesh/transform-prefix": "^0.98.7",
+    "@graphql-mesh/runtime": "^0.100.0",
+    "@graphql-mesh/transform-prefix": "^0.99.0",
     "express": "^4.19.2",
     "graphql": "^16.8.2",
     "helmet": "^7.1.0",
@@ -43,8 +43,8 @@
     "jest": "^29.7.0",
     "mockttp": "^3.10.2",
     "prettier": "^3.2.5",
-    "supertest": "^6.3.4",
+    "supertest": "^7.0.0",
     "ts-jest": "^29.1.2",
-    "typescript": "5.4.4"
+    "typescript": "5.5.4"
   }
 }
