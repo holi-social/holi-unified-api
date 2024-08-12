@@ -6,8 +6,3 @@ resource "google_dns_record_set" "holi_social_unified_api_domain_record_set" {
   ttl          = 300
   rrdatas      = [google_cloud_run_domain_mapping.holi_social_unified_api.status[0].resource_records[0].rrdata]
 }
-
-output "api_domain" {
-  value       = trimsuffix(google_dns_record_set.holi_social_unified_api_domain_record_set.name, ".")
-  description = "Domain where the app resides"
-}

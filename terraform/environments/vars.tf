@@ -5,6 +5,9 @@ locals {
   # the dns name can be at most 64 chars in total. The environment passed in via gitlab is max 24 chars (CI_ENVIRONMENT_SLUG).
   dns_name = "${local.environment}.${data.terraform_remote_state.holi_unified_api_common_state.outputs.dns_unified_api_domain}"
 
+  api_domain            = trimsuffix(google_dns_record_set.holi_social_unified_api_domain_record_set.name, ".")
+  api_endpoint_url      = "${local.api_domain}/graphql"
+
   okuna_domain          = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_okuna_common_state.outputs.dns_okuna_domain}"
   okuna_url             = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_okuna_common_state.outputs.dns_okuna_domain}/graphql"
   donations_api_url     = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_donations_api_common_state.outputs.dns_donations_api_domain}/graphql"
@@ -46,4 +49,14 @@ output "notifications_api_url" {
 
 output "translation_api_url" {
   value = local.translation_api_url
+}
+
+output "api_domain" {
+  value = local.api_domain
+  description = "Domain under which the unified API runs"
+}
+
+output "api_endpoint_url" {
+  value = local.api_endpoint_url
+  description = "GraphQL API endpoint URL of the unified API"
 }
