@@ -9,13 +9,14 @@
       "automerge": true
     },
     {
-      "matchCategories": ["npm"],
-      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "matchManagers": ["npm"],
+      "matchUpdateTypes": ["patch", "pin", "digest"],
       "automerge": true
     },
     {
       "matchDepTypes": ["devDependencies"],
       "automerge": true
     }
-  ]
+  ], 
+  "platformAutomerge": false
 }
