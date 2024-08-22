@@ -15,7 +15,7 @@ stages:
   - deploy_review
   - build_production
   - deploy_production
-  - test
+  - smoketest
 
 variables:
   # This variable needs to be named differently than in triggering projects
@@ -46,12 +46,14 @@ variables:
   resource_group: $ENVIRONMENT_ID # never execute terraform in parallel on the same environment
   interruptible: false
 
-.e2e:
-  image: 'europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/archlinux:latest'
+.smoketest:
+  stage: "smoketest"
+  image: 'europe-north1-docker.pkg.dev/holi-shared/docker/holi-docker/holi-k6-builder'
   script:
-    - API_DOMAIN=`cat $API_DOMAIN_FILE`
-    - echo "e2e tests against $CI_ENVIRONMENT_SLUG environment go here and against $API_DOMAIN"
+    - API_DOMAIN=$(cat $API_DOMAIN_PATH)
     - terraform/environments/scripts/wait-for-ssl.sh "https://${API_DOMAIN}"
+    - BASE_URL="https://${API_DOMAIN}/graphql" /tmp/k6 run smoketest/main.js
+    # TODO should/could we roll back the service to the last working revision on test failure?
 
 # end job templates
 
@@ -145,9 +147,8 @@ deploy_review:
     - production
     - /^noenv\/.*/
 
-e2e_review:
-  stage: test
-  extends: .e2e
+smoketest_review:
+  extends: .smoketest
   needs: ['deploy_review']
   except:
     - main
@@ -198,8 +199,8 @@ deploy_staging:
   only:
     - main
 
-e2e_staging:
-  extends: .e2e
+smoketest_staging:
+  extends: .smoketest
   needs: ['deploy_staging']
   only:
     - main
@@ -246,6 +247,14 @@ deploy_production:
     ENVIRONMENT_ID: production
   only:
     - production
+
+smoketest_staging:
+  extends: .smoketest
+  needs: ['deploy_production']
+  only:
+    - production/home/ole/projects/holi/holi-meta/holi-okuna/smoketest
+
+
 
 trigger_docs_generation:
   needs: ['deploy_production']
