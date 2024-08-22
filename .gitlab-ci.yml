@@ -254,6 +254,7 @@ smoketest_staging:
     - production/home/ole/projects/holi/holi-meta/holi-okuna/smoketest
 
 trigger_docs_generation:
+  stage: deploy
   needs: ['deploy_production']
   trigger:
     project: app/app.gitlab-pages.holi.team
