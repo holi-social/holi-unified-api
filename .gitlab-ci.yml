@@ -10,11 +10,7 @@ default:
 
 stages:
   - build
-  - build_staging
-  - deploy_staging
-  - deploy_review
-  - build_production
-  - deploy_production
+  - deploy
   - smoketest
 
 variables:
@@ -79,6 +75,7 @@ install_lint_test:
 # See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
 sast:
   needs: ['install_lint_test']
+  stage: build
 include:
 - template: Security/SAST.gitlab-ci.yml
 
@@ -110,7 +107,7 @@ include:
     - docker push $GCR_IMAGE:$CI_COMMIT_REF_SLUG # just for easyly knowing which is the last image for a branch
 
 build_mesh_staging:
-  stage: build_staging
+  stage: build
   extends: .build_mesh
   variables:
     # these could be fetched via terraform output ("gcr_location" in infra project), but then we would need an extra job for terraform
@@ -126,7 +123,7 @@ build_mesh_staging:
     REDIS_DB: 5
 
 build_docker_staging:
-  stage: build_staging
+  stage: build
   extends: .build_docker
   needs: ['build_mesh_staging']
   variables:
@@ -134,7 +131,7 @@ build_docker_staging:
 
 ## review environments 
 deploy_review:
-  stage: deploy_review
+  stage: deploy
   extends: .deploy
   needs: ['build_docker_staging']
   environment:
@@ -187,7 +184,7 @@ destroy_review:
 ## staging environment
 
 deploy_staging:
-  stage: deploy_staging
+  stage: deploy
   extends: .deploy
   needs: ['build_docker_staging']
   environment:
@@ -208,7 +205,7 @@ smoketest_staging:
 ## production environment
 
 build_mesh_production:
-  stage: build_production
+  stage: build
   extends: .build_mesh
   variables:
     # these could be fetched via terraform output ("gcr_location" in infra project), but then we would need an extra job for terraform
@@ -226,7 +223,7 @@ build_mesh_production:
     - production
 
 build_docker_production:
-  stage: build_production
+  stage: build
   extends: .build_docker
   needs: ['build_mesh_production']
   variables:
@@ -235,7 +232,7 @@ build_docker_production:
     - production
 
 deploy_production:
-  stage: deploy_production
+  stage: deploy
   extends: .deploy
   needs: ['build_docker_production']
   allow_failure: false
@@ -253,8 +250,6 @@ smoketest_staging:
   needs: ['deploy_production']
   only:
     - production/home/ole/projects/holi/holi-meta/holi-okuna/smoketest
-
-
 
 trigger_docs_generation:
   needs: ['deploy_production']
