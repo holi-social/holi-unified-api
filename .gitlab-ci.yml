@@ -12,6 +12,7 @@ stages:
   - build
   - deploy
   - smoketest
+  - destroy
 
 variables:
   # This variable needs to be named differently than in triggering projects
@@ -153,6 +154,7 @@ smoketest_review:
     - /^noenv\/.*/
 
 destroy_review:
+  stage: destroy
   needs: ['deploy_review']
   image:
     name: 'europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/hashicorp/terraform:1.6.6'
