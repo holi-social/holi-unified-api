@@ -198,6 +198,10 @@ resource "google_cloud_run_service" "unified_api" {
         # this needs to be set to all-traffic in order to route a cloud run url correctly, since it does resolve to a non-private ip address.
         "run.googleapis.com/vpc-access-egress" = "all-traffic"
       }
+      labels = {
+        "environment_type" = local.environment_type
+        "holi_service"     = "unified-api"
+      }
     }
   }
 
