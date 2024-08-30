@@ -105,6 +105,10 @@ resource "google_cloud_run_service" "unified_api" {
           value = local.environment == "production" ? "13" : "5"
         }
         env {
+          name  = "MODERATION_BACKEND_URL"
+          value = local.moderation_backend_url
+        }
+        env {
           name  = "MATRIX_SERVER_BASE_URL"
           value = local.environment == "production" ? "https://chat.holi.social" : "https://development-chat.holi.social"
         }

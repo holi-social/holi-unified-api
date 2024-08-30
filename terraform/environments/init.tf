@@ -77,6 +77,16 @@ data "terraform_remote_state" "holi_translation_api_common_state" {
   }
 }
 
+data "terraform_remote_state" "holi_moderation_environment_state" {
+  backend   = "gcs"
+  # provide staging moderation environment state for all review deployments of unified-api
+  workspace = local.environment == "production" ? "production" : "staging"
+  config = {
+    bucket = "holi-shared-terraform-state"
+    prefix = "moderation-environments"
+  }
+}
+
 # provider google including beta features
 provider "google" {
   region = local.default_region
