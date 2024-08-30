@@ -1,39 +1,38 @@
 import http from 'k6/http'
-import { check, sleep } from 'k6'
-import exec from 'k6/execution'
+import { check } from 'k6'
 
-// This configuration only executes 1 test, enough for a smoketest
+const VIRTUAL_USERS = 1
+const REQUESTS_PER_VIRTUAL_USER = 1
+
+const allChecksNeedToPassTreshold = { checks: [{ threshold: 'rate==1', abortOnFail: true }] }
+
 export const options = {
-  vus: 1,
-  iterations: 1,
+  vus: VIRTUAL_USERS,
+  iterations: REQUESTS_PER_VIRTUAL_USER,
+  thresholds: allChecksNeedToPassTreshold,
 }
 
 export default () => {
-  // define the graphql request
   const params = {
     headers: {
       'Content-Type': 'application/json',
     },
   }
-  const query = `query{topics{totalResults}}`
+  const query = `
+    query {
+      topics {
+        totalResults
+      }
+    }
+  `
 
-  // perform the graphql request
-  const response = http.post(`${__ENV.BASE_URL}`, JSON.stringify({ query }), params)
+  const response = http.post(__ENV.BASE_URL, JSON.stringify({ query }), params)
 
-  // define the tests
-  const testResults = [
-    check(response, {
-      'is status 200': (r) => r.status === 200,
-    }),
-    check(JSON.parse(response.body), {
-      // there can be multiple tests here, e.g.
-      //"contains topics object": (r) => typeof r.data.topics != null,
-      'contains totalResults count': (r) => typeof r.data.topics.totalResults == 'number',
-    }),
-  ]
+  check(response, {
+    'is status 200': (r) => r.status === 200,
+  })
 
-  // fail on any unmet expectations. We need to do this explicitly, because k6 is a load testing tool
-  if (testResults.includes(false)) {
-    exec.test.abort('smoke test failed')
-  }
+  check(JSON.parse(response.body), {
+    'contains totalResults count': (r) => typeof r.data.topics.totalResults == 'number',
+  })
 }
