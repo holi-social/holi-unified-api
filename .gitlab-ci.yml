@@ -247,11 +247,11 @@ deploy_production:
   only:
     - production
 
-smoketest_staging:
+smoketest_production:
   extends: .smoketest
   needs: ['deploy_production']
   only:
-    - production/home/ole/projects/holi/holi-meta/holi-okuna/smoketest
+    - production
 
 trigger_docs_generation:
   stage: deploy
