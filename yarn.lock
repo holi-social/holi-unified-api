@@ -1829,6 +1829,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@graphql-mesh/transform-filter-schema@npm:^0.102.2":
+  version: 0.102.2
+  resolution: "@graphql-mesh/transform-filter-schema@npm:0.102.2"
+  dependencies:
+    "@graphql-tools/delegate": "npm:^10.0.19"
+    "@graphql-tools/wrap": "npm:^10.0.5"
+    minimatch: "npm:^10.0.0"
+  peerDependencies:
+    "@graphql-mesh/types": ^0.102.2
+    "@graphql-mesh/utils": ^0.102.2
+    "@graphql-tools/utils": ^10.5.3
+    graphql: "*"
+    tslib: ^2.4.0
+  checksum: 10c0/d0802187e692882b74ec5d94ac67d6d2f2ed8eaf01ccd1301d1e75a7f7d86dc3d8455470071c1e8a64f4831372c7dbe2f7fd5555a6ac9f17a6a10c87b99510e7
+  languageName: node
+  linkType: hard
+
 "@graphql-mesh/transform-prefix@npm:^0.100.0":
   version: 0.100.0
   resolution: "@graphql-mesh/transform-prefix@npm:0.100.0"
@@ -2044,6 +2061,23 @@ __metadata:
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
   checksum: 10c0/123744869454e7cb522db31d42643577e42c24314da1a5498434b4767a4e6584f46e38fbf1707ca60f9a4bc93464f5fdbfb4fbe75109fb0cd90fc6912c6c970e
+  languageName: node
+  linkType: hard
+
+"@graphql-tools/delegate@npm:^10.0.19":
+  version: 10.0.19
+  resolution: "@graphql-tools/delegate@npm:10.0.19"
+  dependencies:
+    "@graphql-tools/batch-execute": "npm:^9.0.4"
+    "@graphql-tools/executor": "npm:^1.3.1"
+    "@graphql-tools/schema": "npm:^10.0.4"
+    "@graphql-tools/utils": "npm:^10.3.4"
+    "@repeaterjs/repeater": "npm:^3.0.6"
+    dataloader: "npm:^2.2.2"
+    tslib: "npm:^2.5.0"
+  peerDependencies:
+    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+  checksum: 10c0/88721cf03b334a82f6de46e1605fe925408aa10d51e312914dd31e22714b71b2d14029aa045363ffdee3b5b3b2ce4758d365243c7efccae8e6c5511e90e747b3
   languageName: node
   linkType: hard
 
@@ -6670,6 +6704,7 @@ __metadata:
     "@graphql-mesh/openapi": "npm:^0.104.0"
     "@graphql-mesh/plugin-response-cache": "npm:^0.100.0"
     "@graphql-mesh/runtime": "npm:^0.101.0"
+    "@graphql-mesh/transform-filter-schema": "npm:^0.102.2"
     "@graphql-mesh/transform-prefix": "npm:^0.100.0"
     "@trivago/prettier-plugin-sort-imports": "npm:^4.3.0"
     "@types/express": "npm:^4.17.21"
