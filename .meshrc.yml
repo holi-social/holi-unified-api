@@ -132,6 +132,40 @@ sources:
           value: notifications_
           includeRootOperations: true
           includeTypes: false
+  - name: moderation
+    handler:
+      graphql:
+        endpoint: '{env.MODERATION_BACKEND_URL}'
+        operationHeaders:
+          Accept-Language: "{context.headers['accept-language']}"
+          X-Holi-User-ID: "{context.headers['x-holi-user-id']}"
+          X-Holi-Session: "{context.headers['x-holi-session']}"
+          X-Holi-Session-Expiry: "{context.headers['x-holi-session-expiry']}"
+          X-Holi-User-Email: "{context.headers['x-holi-user-email']}"
+    transforms:
+      - filterSchema:
+          mode: bare | wrap
+          filters:
+            # mesh only the report mutation
+            - Mutation.createReport
+            # remove all queries
+            - Query.!*
+            # remove most of the types that aren't needed for reporting
+            # gregor: don't see a way to do this as an include-filter - the other way around
+            - Type.!{*Token*, UserRole, User, *Auth*, Create*, Pagination, Report, ReportsFilter, ReportEvent, ReportLogEvent, ReportStatus}
+      # Prefix for types
+      - prefix:
+          mode: wrap
+          value: Moderation_
+          includeRootOperations: false
+          includeTypes: true
+      # Prefix for operations
+      - prefix:
+          mode: wrap
+          value: moderation_
+          includeRootOperations: true
+          includeTypes: false
+
 logger: './logger'
 
 cache:
@@ -151,5 +185,6 @@ plugins:
           ttl: 600000
   - maxDepth:
       n: 15 # maximum nesting level an operation is allowed to have
+
 serve:
   browser: false

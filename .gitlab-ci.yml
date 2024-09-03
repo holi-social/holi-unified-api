@@ -119,6 +119,7 @@ build_mesh_staging:
     VOLUNTEERING_API_URL: https://staging.volunteering.apis.holi.social/graphql
     NOTIFICATIONS_API_URL: https://staging.notifications.apis.holi.social/graphql
     TRANSLATION_API_URL: https://staging.translation.apis.holi.social/graphql
+    MODERATION_BACKEND_URL: https://staging.moderation.apis.holi.social/graphql
     REDIS_HOST: 10.104.0.3
     REDIS_PORT: 6379
     REDIS_DB: 5
@@ -247,11 +248,11 @@ deploy_production:
   only:
     - production
 
-smoketest_staging:
+smoketest_production:
   extends: .smoketest
   needs: ['deploy_production']
   only:
-    - production/home/ole/projects/holi/holi-meta/holi-okuna/smoketest
+    - production
 
 trigger_docs_generation:
   stage: deploy
