@@ -219,6 +219,7 @@ build_mesh_production:
     VOLUNTEERING_API_URL: https://production.volunteering.apis.holi.social/graphql
     NOTIFICATIONS_API_URL: https://production.notifications.apis.holi.social/graphql
     TRANSLATION_API_URL: https://production.translation.apis.holi.social/graphql
+    MODERATION_BACKEND_URL: https://moderation.apis.holi.social/graphql
     REDIS_HOST: 10.104.0.3
     REDIS_PORT: 6379
     REDIS_DB: 13
