@@ -2,22 +2,29 @@ FROM europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:22-slim
 
 # shell sanity with pipes (https://github.com/hadolint/hadolint/wiki/DL4006)
 # needed for installation of s6
-SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
+SHELL ["/bin/bash", "-eo", "pipefail", "-c"]
 
-# s6 for running ory oathkeeper proxy in the same container
-ARG S6_OVERLAY_VERSION=3.1.0.1
-RUN wget -c -q https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz -O - | tar -xJpC /
-RUN wget -c -q https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-x86_64.tar.xz -O - | tar -xJpC /
+ # s6 for running ory oathkeeper proxy in the same container
+ARG S6_OVERLAY_VERSION=3.2.0.0
+
+RUN apt-get -y -qq update && apt-get install -y --no-install-recommends xz-utils ca-certificates curl \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+
+ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz /tmp
+RUN tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz
+ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-x86_64.tar.xz /tmp
+RUN tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz
 ENTRYPOINT ["/init"]
 
 # start oathkeeper only when node is running (but we still need to wait until node opened the port, see oathkeeper/start.sh)
 ENV S6_CMD_WAIT_FOR_SERVICES=1
 
 # install oathkeeper
-RUN apk -U upgrade && apk --latest add curl ca-certificates
-RUN addgroup -S ory; adduser -S ory -G ory -D -H -s /bin/nologin
+RUN addgroup --system ory; adduser --system ory --group --disabled-login --no-create-home
 # hadolint ignore=SC3001
-RUN sh <(wget -c -q https://raw.githubusercontent.com/ory/meta/master/install.sh -O -) -d -b /opt/oathkeeper oathkeeper v0.40.7
+ADD https://raw.githubusercontent.com/ory/meta/master/install.sh /tmp
+RUN sh /tmp/install.sh -d -b /opt/oathkeeper oathkeeper v0.40.7
 
 # set up oathkeeper as background daemon
 COPY s6/run s6/finish /etc/services.d/node/
