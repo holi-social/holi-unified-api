@@ -1,6 +1,6 @@
-#!/command/with-contenv sh
+#!/command/with-contenv bash
 
-function check() {
+check() {
   curl --silent --output /dev/null http://localhost:4000/graphql -w "%{http_code}"
   return $?
 }
