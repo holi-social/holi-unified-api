@@ -31,7 +31,7 @@
     "ts-node": "^10.9.2"
   },
   "resolutions": {
-    "@envelop/response-cache": "6.2.1"
+    "@envelop/response-cache": "6.2.2"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
