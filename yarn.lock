@@ -1206,9 +1206,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@envelop/response-cache@npm:^6.1.1, @envelop/response-cache@npm:^6.1.2":
-  version: 6.1.2
-  resolution: "@envelop/response-cache@npm:6.1.2"
+"@envelop/response-cache@npm:6.2.1":
+  version: 6.2.1
+  resolution: "@envelop/response-cache@npm:6.2.1"
   dependencies:
     "@graphql-tools/utils": "npm:^10.0.3"
     "@whatwg-node/fetch": "npm:^0.9.0"
@@ -1218,7 +1218,7 @@ __metadata:
   peerDependencies:
     "@envelop/core": ^5.0.0
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 10c0/60c3304e819997ff584314c2fae82d88e603f031e3b2965f4ac5e94e5350462da9785a381e5e1c9d3379923b24c9d2f36b57f9e10bd80e0c97546a540c47c726
+  checksum: 10c0/2faaabd3da9fbae324c6fe916757ff9e314f9545808a17acedb9013e74f38fb5458f45bd8b9f540020607deaba22cd63e0075d1c9214a698be726ebb1e8e5ae7
   languageName: node
   linkType: hard
 
