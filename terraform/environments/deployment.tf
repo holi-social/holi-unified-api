@@ -201,6 +201,7 @@ resource "google_cloud_run_service" "unified_api" {
         # possible values: all-traffic/private-ranges-only(default) https://cloud.google.com/sdk/gcloud/reference/run/services/update#--vpc-egress
         # this needs to be set to all-traffic in order to route a cloud run url correctly, since it does resolve to a non-private ip address.
         "run.googleapis.com/vpc-access-egress" = "all-traffic"
+        "run.googleapis.com/startup-cpu-boost" = "true"
       }
       # labels set on the revision level
       labels = {
