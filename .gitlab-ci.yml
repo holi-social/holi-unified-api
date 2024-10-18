@@ -280,3 +280,5 @@ trigger_docs_generation:
   rules:
     - if: $CI_COMMIT_BRANCH == "production"
       when: on_success
+  resource_group: docs-deploy
+
