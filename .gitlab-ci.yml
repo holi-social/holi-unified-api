@@ -46,7 +46,7 @@ variables:
 
 .smoketest:
   stage: 'smoketest'
-  image: 'europe-north1-docker.pkg.dev/holi-shared/docker/holi-docker/holi-k6-builder'
+  image: 'europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/grafana/k6:latest'
   script:
     - API_DOMAIN=$(cat $API_DOMAIN_FILE)
     - terraform/environments/scripts/wait-for-ssl.sh "https://${API_DOMAIN}"
