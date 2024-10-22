@@ -1,6 +1,5 @@
-#!/usr/bin/env bash
-set -euo pipefail
-IFS=$'\n\t'
+#!/usr/bin/env sh
+set -eu
 
 # needs to start with https:// for this script to work, of course
 url="$1"
@@ -10,21 +9,19 @@ url="$1"
 number_of_consecutive_successful_tries_needed=10
 number_of_consecutive_successful_tries_achieved=0
 
-[ -z "$url" ] && echo "missing url as first param" && exit 1
-
-echo -n "Checking if SSL certificate for $url is installed: "
+printf "Checking if SSL certificate for '%s' is installed: " "$url"
 
 # storage for the return value of the curl command
 retval=0
 
 # shellcheck disable=SC2034
-for i in {1..2500}; do
+for i in $(seq 1 2500); do
   set +e
   out=$(curl -sSLI "$url" 2>&1)
   retval=$?
   set -e
   # shellcheck disable=SC2181
-  if [ $retval == 0 ]; then
+  if [ "$retval" -eq "0" ]; then
     number_of_consecutive_successful_tries_achieved=$((number_of_consecutive_successful_tries_achieved + 1))
     echo "Success (${number_of_consecutive_successful_tries_achieved})"
     if [ "$number_of_consecutive_successful_tries_achieved" -eq "$number_of_consecutive_successful_tries_needed" ]; then
@@ -32,11 +29,11 @@ for i in {1..2500}; do
       exit 0
     fi
   else
-    echo -n "."
+    printf "."
     number_of_consecutive_successful_tries_achieved=0
     sleep 1
   fi
 done
 
-echo -e "No success after $i tries. Last output was:\n$out"
+printf "No success after %s tries. Last output was:\n%s\n" "$i" "$out"
 exit 1
