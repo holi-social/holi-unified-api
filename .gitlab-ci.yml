@@ -7,7 +7,6 @@ default:
   interruptible: true
   tags:
     - 1cpu-4gb # build on smaller machine
-  resource_group: $CI_COMMIT_REF_NAME # only 1 job per branch
 
 stages:
   - build
