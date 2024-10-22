@@ -45,10 +45,7 @@ variables:
 
 .smoketest:
   stage: 'smoketest'
-  image: 
-    name: 'europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/grafana/k6:latest'
-    # default entrypoint is k6 command, but we want to run shell scripts
-    entrypoint: ['/bin/sh', '-c']
+  image: 'europe-north1-docker.pkg.dev/holi-shared/docker/holi-docker/holi-k6-builder'
   script:
     - API_DOMAIN=$(cat $API_DOMAIN_FILE)
     - terraform/environments/scripts/wait-for-ssl.sh "https://${API_DOMAIN}"
