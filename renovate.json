@@ -1,22 +1,32 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
+    "config:recommended",
+    ":configMigration",
+    ":enableVulnerabilityAlertsWithLabel('renovatebot/security')",
+    ":semanticCommits",
+    ":automergePatch",
+    ":automergeTesters",
+    ":automergeLinters"
   ],
   "packageRules": [
     {
-      "matchUpdateTypes": ["patch", "pin", "digest"],
+      "matchManagers": [
+        "npm"
+      ],
+      "matchUpdateTypes": [
+        "patch",
+        "pin",
+        "digest"
+      ],
       "automerge": true
     },
     {
-      "matchManagers": ["npm"],
-      "matchUpdateTypes": ["patch", "pin", "digest"],
-      "automerge": true
-    },
-    {
-      "matchDepTypes": ["devDependencies"],
+      "matchDepTypes": [
+        "devDependencies"
+      ],
       "automerge": true
     }
-  ], 
+  ],
   "platformAutomerge": false
 }
