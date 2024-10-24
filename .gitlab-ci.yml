@@ -49,8 +49,9 @@ variables:
   script:
     - API_DOMAIN=$(cat $API_DOMAIN_FILE)
     - terraform/environments/scripts/wait-for-ssl.sh "https://${API_DOMAIN}"
-    - BASE_URL="https://${API_DOMAIN}/graphql" /tmp/k6 run smoketest/main.js
+    - BASE_URL="https://${API_DOMAIN}/graphql" k6 run smoketest/main.js
     # TODO should/could we roll back the service to the last working revision on test failure?
+  resource_group: $CI_COMMIT_REF_NAME # only 1 job per branch
 
 # end job templates
 
@@ -66,6 +67,7 @@ install_lint_test:
     - yarn test
   tags:
     - 4cpu-4gb
+  resource_group: $CI_COMMIT_REF_NAME # only 1 job per branch
 
 # You can override the included template(s) by including variable overrides
 # SAST customization: https://docs.gitlab.com/ee/user/application_security/sast/#customizing-the-sast-settings
@@ -77,6 +79,7 @@ install_lint_test:
 sast:
   needs: ['install_lint_test']
   stage: build
+  resource_group: $CI_COMMIT_REF_NAME # only 1 job per branch
 include:
   - template: Security/SAST.gitlab-ci.yml
 
@@ -92,6 +95,7 @@ include:
   artifacts:
     paths:
       - '.mesh/'
+  resource_group: $CI_COMMIT_REF_NAME # only 1 job per branch
 
 .build_docker:
   needs: ['install_lint_test']
@@ -106,6 +110,7 @@ include:
     - docker build --cache-from $GCR_IMAGE -t $GCR_IMAGE:latest -t $GCR_IMAGE:${CI_COMMIT_SHA}_${CI_PIPELINE_IID} -t $GCR_IMAGE:$CI_COMMIT_REF_SLUG .
     - docker push $GCR_IMAGE:${CI_COMMIT_SHA}_${CI_PIPELINE_IID} # this is the tag that is used for deployment
     - docker push $GCR_IMAGE:$CI_COMMIT_REF_SLUG # just for easyly knowing which is the last image for a branch
+  resource_group: $CI_COMMIT_REF_NAME # only 1 job per branch
 
 build_mesh_staging:
   stage: build
@@ -280,3 +285,5 @@ trigger_docs_generation:
   rules:
     - if: $CI_COMMIT_BRANCH == "production"
       when: on_success
+  resource_group: docs-deploy
+
