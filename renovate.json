@@ -12,6 +12,12 @@
   ],
   "packageRules": [
     {
+      "matchJsonata": [
+        "$match(depName,/@graphql-mesh$/)"
+      ],
+      "groupName": "graphql-mesh"
+    },
+    {
       "matchManagers": [
         "npm"
       ],
