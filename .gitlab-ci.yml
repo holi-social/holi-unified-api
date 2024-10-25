@@ -62,7 +62,7 @@ install_lint_test:
   stage: build
   image: 'europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:22-slim'
   script:
-    - yarn install
+    - yarn install --immutable --check-cache
     - yarn lint
     - yarn test
   tags:
@@ -87,7 +87,7 @@ include:
   needs: ['install_lint_test']
   image: 'europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:22-slim'
   script:
-    - yarn install
+    - yarn install --immutable --check-cache
     - yarn run mesh build
     - yarn run mesh validate
   tags:
