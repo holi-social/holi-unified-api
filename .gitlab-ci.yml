@@ -129,7 +129,7 @@ build_mesh_staging:
     REDIS_PORT: 6379
     REDIS_DB: 5
   rules:
-    - if: $CI_COMMIT_BRANCH == "main"
+    - if: $CI_COMMIT_BRANCH != "production"
       when: on_success
 
 build_docker_staging:
@@ -139,7 +139,7 @@ build_docker_staging:
   variables:
     ENVIRONMENT_ID: staging
   rules:
-    - if: $CI_COMMIT_BRANCH == "main"
+    - if: $CI_COMMIT_BRANCH != "production"
       when: on_success
 
 ## review environments
