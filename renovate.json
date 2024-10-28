@@ -1,22 +1,38 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
+    "config:recommended",
+    ":configMigration",
+    ":label('renovatebot')",
+    ":enableVulnerabilityAlertsWithLabel('renovatebot/security')",
+    ":semanticCommits",
+    ":automergePatch",
+    ":automergeTesters",
+    ":automergeLinters"
   ],
   "packageRules": [
     {
-      "matchUpdateTypes": ["patch", "pin", "digest"],
+      "matchJsonata": [
+        "$match(depName,/@graphql-mesh$/)"
+      ],
+      "groupName": "graphql-mesh"
+    },
+    {
+      "matchManagers": [
+        "npm"
+      ],
+      "matchUpdateTypes": [
+        "patch",
+        "pin",
+        "digest"
+      ],
       "automerge": true
     },
     {
-      "matchManagers": ["npm"],
-      "matchUpdateTypes": ["patch", "pin", "digest"],
-      "automerge": true
-    },
-    {
-      "matchDepTypes": ["devDependencies"],
+      "matchDepTypes": [
+        "devDependencies"
+      ],
       "automerge": true
     }
-  ], 
-  "platformAutomerge": false
+  ]
 }
