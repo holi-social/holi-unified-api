@@ -189,13 +189,12 @@ destroy_review:
     - cd main-clone
     - terraform/environments/scripts/destroy-env.sh $CI_ENVIRONMENT_SLUG
   # can't use rules here: https://gitlab.com/gitlab-org/gitlab/-/issues/34077
-  when: manual
   allow_failure: false
   rules:
     - if: $CI_COMMIT_BRANCH =~ /^main$|^production$|^noenv\/.*/
       when: never
     - if: $CI_COMMIT_BRANCH
-      when: on_success
+      when: manual
   resource_group: $ENVIRONMENT_ID # never execute terraform in parallel on the same environment
   interruptible: false
 
