@@ -211,13 +211,13 @@ resource "google_cloud_run_service" "unified_api" {
     }
   }
 
-  # metadata {
-  #   # labels set on the service level
-  #   labels = {
-  #     "environment_type" = local.environment_type
-  #     "holi_service"     = "unified-api"
-  #   }
-  # }
+  metadata {
+    # labels set on the service level
+    labels = {
+      "environment_type" = local.environment_type
+      "holi_service"     = "unified-api"
+    }
+  }
 
   traffic {
     percent         = 100
