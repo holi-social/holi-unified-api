@@ -1,5 +1,6 @@
 node_modules/
-.terraform*
+.terraform
+.terraform.lock.hcl
 .mesh
 .envrc.local
 .DS_Store
