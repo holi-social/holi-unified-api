@@ -48,8 +48,11 @@ ENV NODE_ENV=production
 COPY tsconfig.json package.json yarn.lock .meshrc.yml logger.ts server.ts /app/
 COPY handlers /app/handlers
 COPY .mesh logger.ts /app/.mesh/
+# make corepack and newstyle yarn use node_modules
+COPY /.yarnrc.yml .
 RUN chown -R node:node /app && corepack enable
 USER node
+
 # FIXME: use existing yarn cache to use consistent dependencies as in whole CI pipeline
 RUN yarn install --immutable --check-cache && yarn cache clean
 
