@@ -88,7 +88,6 @@ install_deps:
     - if: $CI_COMMIT_BRANCH
       changes:
         - yarn.lock
-        - .gitlab-ci.yml
 
 install_lint_test:
   stage: build
