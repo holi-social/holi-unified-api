@@ -45,11 +45,9 @@ CMD ["/opt/oathkeeper/start.sh"]
 # install app
 WORKDIR /app
 ENV NODE_ENV=production
-COPY tsconfig.json package.json yarn.lock .meshrc.yml logger.ts server.ts /app/
+COPY tsconfig.json package.json yarn.lock .meshrc.yml .yarnrc.yml logger.ts server.ts /app/
 COPY handlers /app/handlers
 COPY .mesh logger.ts /app/.mesh/
-# make corepack and newstyle yarn use node_modules
-COPY /.yarnrc.yml .
 RUN chown -R node:node /app && corepack enable
 USER node
 
