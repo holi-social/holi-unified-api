@@ -50,7 +50,8 @@ COPY handlers /app/handlers
 COPY .mesh logger.ts /app/.mesh/
 RUN chown -R node:node /app
 USER node
-RUN yarn install --immutable --check-cache && yarn cache clean
+# FIXME: use existing yarn cache to use consistent dependencies as in whole CI pipeline
+RUN corepack enable && yarn install --immutable --check-cache && yarn cache clean
 
 # switch back to root for s6 init
 # hadolint ignore=DL3002
