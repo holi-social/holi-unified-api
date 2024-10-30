@@ -90,6 +90,9 @@ install_deps:
 
 install_lint_test:
   stage: build
+  needs:
+    - job: install_deps
+      optional: true
   image: 'europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:22-slim'
   cache: !reference [.yarn-cache-readonly]
   script:
