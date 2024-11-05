@@ -1,3 +1,27 @@
+variables:
+  YARN_CACHE_FOLDER: '$CI_PROJECT_DIR/.yarn/cache'
+  YARN_ENABLE_GLOBAL_CACHE: 'false'
+  # This variable needs to be named differently than in triggering projects
+  # because if not, it gets set to '/api_domain', which breaks the e2e stage
+  # due to the file not being in the artifacts.
+  API_DOMAIN_FILE: '$CI_PROJECT_DIR/api_domain'
+
+.yarn-cache-rw:
+  key:
+    files:
+      - yarn.lock
+  paths:
+    - .yarn/
+  policy: pull-push
+
+.yarn-cache-readonly:
+  key:
+    files:
+      - yarn.lock
+  paths:
+    - .yarn/
+  policy: pull
+
 default:
   before_script:
     - set -ex
@@ -9,16 +33,11 @@ default:
     - 1cpu-4gb # build on smaller machine
 
 stages:
+  - prepare
   - build
   - deploy
   - smoketest
   - destroy
-
-variables:
-  # This variable needs to be named differently than in triggering projects
-  # because if not, it gets set to '/api_domain', which breaks the e2e stage
-  # due to the file not being in the artifacts.
-  API_DOMAIN_FILE: '$CI_PROJECT_DIR/api_domain'
 
 # job templates
 
@@ -58,11 +77,28 @@ variables:
 # pipeline in chronological order
 
 ## common steps
+install_deps:
+  stage: prepare
+  image: 'europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:22-slim'
+  cache: !reference [.yarn-cache-rw]
+  script:
+    - corepack enable
+    - yarn install --immutable
+  rules:
+    - if: $CI_COMMIT_BRANCH
+      changes:
+        - yarn.lock
+
 install_lint_test:
   stage: build
+  needs:
+    - job: install_deps
+      optional: true
   image: 'europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:22-slim'
+  cache: !reference [.yarn-cache-readonly]
   script:
-    - yarn install
+    - corepack enable
+    - yarn install --immutable --immutable-cache
     - yarn lint
     - yarn test
   tags:
@@ -86,8 +122,10 @@ include:
 .build_mesh:
   needs: ['install_lint_test']
   image: 'europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:22-slim'
+  cache: !reference [.yarn-cache-readonly]
   script:
-    - yarn install
+    - corepack enable
+    - yarn install --immutable
     - yarn run mesh build
     - yarn run mesh validate
   tags:
@@ -113,7 +151,7 @@ include:
     - docker push $GCR_IMAGE:$CI_COMMIT_REF_SLUG # just for easyly knowing which is the last image for a branch
   resource_group: $CI_COMMIT_REF_NAME # only 1 job per branch
 
-build_mesh_staging:
+development_build_mesh:
   stage: build
   extends: .build_mesh
   variables:
@@ -130,28 +168,28 @@ build_mesh_staging:
     REDIS_PORT: 6379
     REDIS_DB: 5
   rules:
-    - if: $CI_COMMIT_BRANCH == "main"
+    - if: $CI_COMMIT_BRANCH && $CI_COMMIT_BRANCH != "production"
       when: on_success
 
-build_docker_staging:
+development_build_docker:
   stage: build
   extends: .build_docker
-  needs: ['build_mesh_staging']
+  needs: ['development_build_mesh']
   variables:
     ENVIRONMENT_ID: staging
   rules:
-    - if: $CI_COMMIT_BRANCH == "main"
+    - if: $CI_COMMIT_BRANCH && $CI_COMMIT_BRANCH != "production"
       when: on_success
 
 ## review environments
-deploy_review:
+review_deploy:
   stage: deploy
   extends: .deploy
-  needs: ['build_docker_staging']
+  needs: ['development_build_docker']
   environment:
     name: review/$CI_COMMIT_REF_SLUG
     url: https://$CI_ENVIRONMENT_SLUG.unified.apis.holi.social
-    on_stop: destroy_review
+    on_stop: review_destroy
     auto_stop_in: 1 week
   rules:
     - if: $CI_COMMIT_BRANCH =~ /^main$|^production$|^noenv\/.*/
@@ -159,18 +197,18 @@ deploy_review:
     - if: $CI_COMMIT_BRANCH
       when: on_success
 
-smoketest_review:
+review_smoketest:
   extends: .smoketest
-  needs: ['deploy_review']
+  needs: ['review_deploy']
   rules:
     - if: $CI_COMMIT_BRANCH =~ /^main$|^production$|^noenv\/.*/
       when: never
     - if: $CI_COMMIT_BRANCH
       when: on_success
 
-destroy_review:
+review_destroy:
   stage: destroy
-  needs: ['deploy_review']
+  needs: ['review_deploy']
   image:
     name: 'europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/hashicorp/terraform:1.9.8'
     # default entrypoint is terraform command, but we want to run shell scripts
@@ -200,10 +238,10 @@ destroy_review:
 
 ## staging environment
 
-deploy_staging:
+staging_deploy:
   stage: deploy
   extends: .deploy
-  needs: ['build_docker_staging']
+  needs: ['development_build_docker']
   environment:
     name: staging
     deployment_tier: staging
@@ -214,16 +252,16 @@ deploy_staging:
     - if: $CI_COMMIT_BRANCH == "main"
       when: on_success
 
-smoketest_staging:
+staging_smoketest:
   extends: .smoketest
-  needs: ['deploy_staging']
+  needs: ['staging_deploy']
   rules:
     - if: $CI_COMMIT_BRANCH == "main"
       when: on_success
 
 ## production environment
 
-build_mesh_production:
+production_build_mesh:
   stage: build
   extends: .build_mesh
   variables:
@@ -243,20 +281,20 @@ build_mesh_production:
     - if: $CI_COMMIT_BRANCH == "production"
       when: on_success
 
-build_docker_production:
+production_build_docker:
   stage: build
   extends: .build_docker
-  needs: ['build_mesh_production']
+  needs: ['production_build_mesh']
   variables:
     ENVIRONMENT_ID: production
   rules:
     - if: $CI_COMMIT_BRANCH == "production"
       when: on_success
 
-deploy_production:
+production_deploy:
   stage: deploy
   extends: .deploy
-  needs: ['build_docker_production']
+  needs: ['production_build_docker']
   allow_failure: false
   environment:
     name: production
@@ -268,16 +306,16 @@ deploy_production:
     - if: $CI_COMMIT_BRANCH == "production"
       when: on_success
 
-smoketest_production:
+production_smoketest:
   extends: .smoketest
-  needs: ['deploy_production']
+  needs: ['production_deploy']
   rules:
     - if: $CI_COMMIT_BRANCH == "production"
       when: on_success
 
 trigger_docs_generation:
   stage: deploy
-  needs: ['deploy_production']
+  needs: ['production_deploy']
   trigger:
     project: app/app.gitlab-pages.holi.team
     branch: main
@@ -286,4 +324,3 @@ trigger_docs_generation:
     - if: $CI_COMMIT_BRANCH == "production"
       when: on_success
   resource_group: docs-deploy
-

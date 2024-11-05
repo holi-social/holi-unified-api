@@ -2,14 +2,14 @@ FROM europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:22-slim
 
 # install all dependencies for later steps
 RUN apt-get -y -qq update && apt-get install -y --no-install-recommends xz-utils ca-certificates curl \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 
 # shell sanity with pipes (https://github.com/hadolint/hadolint/wiki/DL4006)
 # needed for installation of s6
 SHELL ["/bin/bash", "-eo", "pipefail", "-c"]
 
- # s6 for running ory oathkeeper proxy in the same container
+# s6 for running ory oathkeeper proxy in the same container
 ARG S6_OVERLAY_VERSION=3.2.0.0
 
 ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz /tmp
@@ -45,12 +45,14 @@ CMD ["/opt/oathkeeper/start.sh"]
 # install app
 WORKDIR /app
 ENV NODE_ENV=production
-COPY tsconfig.json package.json yarn.lock .meshrc.yml logger.ts server.ts /app/
+COPY tsconfig.json package.json yarn.lock .meshrc.yml .yarnrc.yml logger.ts server.ts /app/
 COPY handlers /app/handlers
 COPY .mesh logger.ts /app/.mesh/
-RUN chown -R node:node /app
+RUN chown -R node:node /app && corepack enable
 USER node
-RUN yarn install && yarn cache clean
+
+# FIXME: use existing yarn cache to use consistent dependencies as in whole CI pipeline
+RUN yarn install --immutable --check-cache && yarn cache clean
 
 # switch back to root for s6 init
 # hadolint ignore=DL3002
