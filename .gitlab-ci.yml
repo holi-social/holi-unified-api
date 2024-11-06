@@ -88,6 +88,7 @@ install_deps:
     - if: $CI_COMMIT_BRANCH
       changes:
         - yarn.lock
+  resource_group: $ENVIRONMENT_ID # only 1 job per branch
 
 install_lint_test:
   stage: build
