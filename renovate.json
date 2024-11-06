@@ -13,7 +13,7 @@
   "packageRules": [
     {
       "matchJsonata": [
-        "$match(depName,/@graphql-mesh$/)"
+        "$match(depName,/^@graphql-mesh/)"
       ],
       "groupName": "graphql-mesh"
     },
