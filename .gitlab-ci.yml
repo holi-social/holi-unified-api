@@ -57,8 +57,8 @@ stages:
     #when: on_failure
     expire_in: 1 week
   script:
-    - terraform/environments/scripts/create-or-update-env.sh $ENVIRONMENT_ID ${CI_COMMIT_SHA}_${CI_PIPELINE_IID}
-    - echo "$(terraform/environments/scripts/get-output.sh api_domain)" > $API_DOMAIN_FILE
+    - terraform/environments/scripts/create-or-update-env.sh "$ENVIRONMENT_ID" "${CI_COMMIT_SHA}_${CI_PIPELINE_IID}"
+    - echo "$(terraform/environments/scripts/get-output.sh api_domain)" > "$API_DOMAIN_FILE"
   resource_group: $ENVIRONMENT_ID # never execute terraform in parallel on the same environment
   interruptible: false
 
@@ -66,7 +66,7 @@ stages:
   stage: 'smoketest'
   image: 'europe-north1-docker.pkg.dev/holi-shared/docker/holi-docker/holi-k6-builder'
   script:
-    - API_DOMAIN=$(cat $API_DOMAIN_FILE)
+    - API_DOMAIN=$(cat "$API_DOMAIN_FILE")
     - terraform/environments/scripts/wait-for-ssl.sh "https://${API_DOMAIN}"
     - BASE_URL="https://${API_DOMAIN}/graphql" k6 run smoketest/main.js
     # TODO should/could we roll back the service to the last working revision on test failure?
@@ -146,10 +146,10 @@ include:
     # this could be fetched via terraform output ("gcr_location" in infra project), but then we would need an extra job for terraform
     GCR_IMAGE: europe-north1-docker.pkg.dev/holi-shared/docker/holi-unified-api
   script:
-    - docker pull $GCR_IMAGE || true # Allows us to use --cache-from, we need to tag with latest in the next command for this to work
-    - docker build --cache-from $GCR_IMAGE -t $GCR_IMAGE:latest -t $GCR_IMAGE:${CI_COMMIT_SHA}_${CI_PIPELINE_IID} -t $GCR_IMAGE:$CI_COMMIT_REF_SLUG .
-    - docker push $GCR_IMAGE:${CI_COMMIT_SHA}_${CI_PIPELINE_IID} # this is the tag that is used for deployment
-    - docker push $GCR_IMAGE:$CI_COMMIT_REF_SLUG # just for easyly knowing which is the last image for a branch
+    - docker pull "$GCR_IMAGE" || true # Allows us to use --cache-from, we need to tag with latest in the next command for this to work
+    - docker build --cache-from "$GCR_IMAGE" -t "$GCR_IMAGE":latest -t "$GCR_IMAGE":"${CI_COMMIT_SHA}_${CI_PIPELINE_IID}" -t "$GCR_IMAGE":"$CI_COMMIT_REF_SLUG" .
+    - docker push "$GCR_IMAGE":"${CI_COMMIT_SHA}_${CI_PIPELINE_IID}" # this is the tag that is used for deployment
+    - docker push "$GCR_IMAGE":"$CI_COMMIT_REF_SLUG" # just for easyly knowing which is the last image for a branch
   resource_group: $CI_COMMIT_REF_NAME # only 1 job per branch
 
 development_build_mesh:
@@ -224,9 +224,9 @@ review_destroy:
   dependencies: [] # explicitly disable artifact usage
   script:
     # branch may have been deleted, so we clone and checkout main
-    - git clone $CI_REPOSITORY_URL main-clone
+    - git clone "$CI_REPOSITORY_URL" main-clone
     - cd main-clone
-    - terraform/environments/scripts/destroy-env.sh $CI_ENVIRONMENT_SLUG
+    - terraform/environments/scripts/destroy-env.sh "$CI_ENVIRONMENT_SLUG"
   # can't use rules here: https://gitlab.com/gitlab-org/gitlab/-/issues/34077
   allow_failure: true
   rules:
