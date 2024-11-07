@@ -88,6 +88,7 @@ install_deps:
     - if: $CI_COMMIT_BRANCH
       changes:
         - yarn.lock
+        - .gitlab-ci.yml
   resource_group: $ENVIRONMENT_ID # only 1 job per branch
 
 install_lint_test:
@@ -96,10 +97,12 @@ install_lint_test:
     - job: install_deps
       optional: true
   image: 'europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:22-slim'
-  cache: !reference [.yarn-cache-readonly]
+  cache: !reference [.yarn-cache-rw]
   script:
     - corepack enable
-    - yarn install --immutable --immutable-cache
+    # If CI Cache is empty because install_deps did not run, install filling the cache, otherwise install from the immutable cache
+    # install_deps does not run on long living branches, and it might not run on pipeline failures on the first build of a branch
+    - '[ ! -d ".yarn/cache" ] && yarn install --immutable || yarn install --immutable --immutable-cache'
     - yarn lint
     - yarn test
   tags:
@@ -126,7 +129,7 @@ include:
   cache: !reference [.yarn-cache-readonly]
   script:
     - corepack enable
-    - yarn install --immutable
+    - yarn install --immutable --immutable-cache
     - yarn run mesh build
     - yarn run mesh validate
   tags:
