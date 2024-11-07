@@ -47,12 +47,13 @@ WORKDIR /app
 ENV NODE_ENV=production
 COPY tsconfig.json package.json yarn.lock .meshrc.yml .yarnrc.yml logger.ts server.ts /app/
 COPY handlers /app/handlers
+COPY node_modules /app/node_modules
 COPY .mesh logger.ts /app/.mesh/
 RUN chown -R node:node /app && corepack enable
 USER node
 
 # FIXME: use existing yarn cache to use consistent dependencies as in whole CI pipeline
-RUN yarn install --immutable --check-cache && yarn cache clean
+#RUN yarn install --immutable --immutable-cache && yarn cache clean
 
 # switch back to root for s6 init
 # hadolint ignore=DL3002

@@ -48,6 +48,7 @@ stages:
     entrypoint: ['/bin/sh', '-c']
   variables:
     ENVIRONMENT_ID: $CI_ENVIRONMENT_SLUG
+  dependencies: [] # explicitly disable artifact usage
   artifacts:
     paths:
       - 'terraform/environments/crash.log' # optional, only available in case of a crash/panic
@@ -65,6 +66,7 @@ stages:
 .smoketest:
   stage: 'smoketest'
   image: 'europe-north1-docker.pkg.dev/holi-shared/docker/holi-docker/holi-k6-builder'
+  dependencies: [] # explicitly disable artifact usage
   script:
     - API_DOMAIN=$(cat "$API_DOMAIN_FILE")
     - terraform/environments/scripts/wait-for-ssl.sh "https://${API_DOMAIN}"
@@ -137,6 +139,7 @@ include:
   artifacts:
     paths:
       - '.mesh/'
+      - 'node_modules/'
   resource_group: $CI_COMMIT_REF_NAME # only 1 job per branch
 
 .build_docker:
