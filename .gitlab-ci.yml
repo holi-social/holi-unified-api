@@ -207,6 +207,8 @@ review_deploy:
 review_smoketest:
   extends: .smoketest
   needs: ['review_deploy']
+  dependencies:
+    - review_deploy
   rules:
     - if: $CI_COMMIT_BRANCH =~ /^main$|^production$|^noenv\/.*/
       when: never
@@ -262,6 +264,8 @@ staging_deploy:
 staging_smoketest:
   extends: .smoketest
   needs: ['staging_deploy']
+  dependencies:
+    - staging_deploy
   rules:
     - if: $CI_COMMIT_BRANCH == "main"
       when: on_success
@@ -316,6 +320,8 @@ production_deploy:
 production_smoketest:
   extends: .smoketest
   needs: ['production_deploy']
+  dependencies:
+    - production_deploy
   rules:
     - if: $CI_COMMIT_BRANCH == "production"
       when: on_success
