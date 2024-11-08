@@ -1860,19 +1860,19 @@ __metadata:
   linkType: hard
 
 "@graphql-mesh/transform-filter-schema@npm:^0.102.2":
-  version: 0.102.11
-  resolution: "@graphql-mesh/transform-filter-schema@npm:0.102.11"
+  version: 0.102.12
+  resolution: "@graphql-mesh/transform-filter-schema@npm:0.102.12"
   dependencies:
     "@graphql-tools/delegate": "npm:^10.0.28"
     "@graphql-tools/wrap": "npm:^10.0.12"
     minimatch: "npm:^10.0.0"
   peerDependencies:
-    "@graphql-mesh/types": ^0.102.11
-    "@graphql-mesh/utils": ^0.102.11
+    "@graphql-mesh/types": ^0.102.12
+    "@graphql-mesh/utils": ^0.102.12
     "@graphql-tools/utils": ^10.5.5
     graphql: "*"
     tslib: ^2.4.0
-  checksum: 10c0/b2c2a491823ec6c52d39a553ff4936701e0e73c06aa4987cb1491e64bc1db5814c17b4269c4e68c174a942c2db1d9da176537c0d0b8952e53e36adddc76685c0
+  checksum: 10c0/10b62f0ce12c6f2dc8591fe465c133c73779cd271e9592be2bf93d35bd1e794e17284703d226bdf52cfdf325fcfef34cc42db48fb264fd7bba1305630de04fd4
   languageName: node
   linkType: hard
 
