@@ -13,7 +13,7 @@
   "packageRules": [
     {
       "matchJsonata": [
-        "$match(depName,/@graphql-mesh$/)"
+        "$match(depName,/^@graphql-mesh/)"
       ],
       "groupName": "graphql-mesh"
     },
@@ -26,6 +26,7 @@
         "pin",
         "digest"
       ],
+      "matchCurrentVersion": "!/^0/",
       "automerge": true
     },
     {
