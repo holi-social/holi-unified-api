@@ -153,6 +153,7 @@ include:
     - docker build --cache-from "$GCR_IMAGE" -t "$GCR_IMAGE":latest -t "$GCR_IMAGE":"${CI_COMMIT_SHA}_${CI_PIPELINE_IID}" -t "$GCR_IMAGE":"$CI_COMMIT_REF_SLUG" .
     - docker push "$GCR_IMAGE":"${CI_COMMIT_SHA}_${CI_PIPELINE_IID}" # this is the tag that is used for deployment
     - docker push "$GCR_IMAGE":"$CI_COMMIT_REF_SLUG" # just for easyly knowing which is the last image for a branch
+    - docker push "$GCR_IMAGE":latest # for caching the build
   resource_group: $CI_COMMIT_REF_NAME # only 1 job per branch
 
 development_build_mesh:
