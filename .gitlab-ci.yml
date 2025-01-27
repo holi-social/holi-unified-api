@@ -325,6 +325,10 @@ trigger_docs_generation:
     project: app/app.gitlab-pages.holi.team
     branch: main
     strategy: depend
+    forward:
+      yaml_variables: false
+      pipeline_variables: false
+
   rules:
     - if: $CI_COMMIT_BRANCH == "production"
       when: on_success
