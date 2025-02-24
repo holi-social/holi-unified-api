@@ -184,9 +184,10 @@ resource "google_cloud_run_service" "unified_api" {
         startup_probe {
           period_seconds    = 5
           timeout_seconds   = 5
-          failure_threshold = 10
+          failure_threshold = 20
           http_get {
             path = "/health"
+            port = 4455
           }
         }
 
@@ -196,6 +197,7 @@ resource "google_cloud_run_service" "unified_api" {
           failure_threshold = 3
           http_get {
             path = "/health"
+            port = 4455
           }
         }
       }

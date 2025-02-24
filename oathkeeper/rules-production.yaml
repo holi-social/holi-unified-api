@@ -121,7 +121,7 @@
   upstream:
     url: http://localhost:4000
   match:
-    url: https://production.unified.apis.holi.social/health
+    url: https://<.*>/health
     methods:
       - GET
   authenticators:
