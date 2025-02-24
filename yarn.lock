@@ -8740,8 +8740,8 @@ __metadata:
   linkType: hard
 
 "mockttp@npm:^3.10.2":
-  version: 3.15.5
-  resolution: "mockttp@npm:3.15.5"
+  version: 3.16.0
+  resolution: "mockttp@npm:3.16.0"
   dependencies:
     "@graphql-tools/schema": "npm:^8.5.0"
     "@graphql-tools/utils": "npm:^8.8.0"
@@ -8778,7 +8778,7 @@ __metadata:
     parse-multipart-data: "npm:^1.4.0"
     performance-now: "npm:^2.1.0"
     portfinder: "npm:^1.0.32"
-    read-tls-client-hello: "npm:^1.0.0"
+    read-tls-client-hello: "npm:^1.1.0"
     semver: "npm:^7.5.3"
     socks-proxy-agent: "npm:^7.0.0"
     typed-error: "npm:^3.0.2"
@@ -8787,7 +8787,7 @@ __metadata:
     ws: "npm:^8.8.0"
   bin:
     mockttp: dist/admin/admin-bin.js
-  checksum: 10c0/27fd3ca126c81dc225e55e642bb05946ae35d0ee1eb13b0b7a5ffb0259c5a86ed472045820cb2c8a50d41757f92d215cdfd45e72172fbc187706fa34c889db33
+  checksum: 10c0/3a0ef1f92679a6b75dedb3cca1a7d3f89386327b911b32bab5b9ce4d12f5310565a70360cdae8a76a5745acc23cc338bd406bfad6cbb69a181acc0ef645f6659
   languageName: node
   linkType: hard
 
@@ -9607,12 +9607,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"read-tls-client-hello@npm:^1.0.0":
-  version: 1.0.1
-  resolution: "read-tls-client-hello@npm:1.0.1"
+"read-tls-client-hello@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "read-tls-client-hello@npm:1.1.0"
   dependencies:
     "@types/node": "npm:*"
-  checksum: 10c0/71a3f0198d21df04b375c709cdf5cfbca0abdc02311b0610edf7d7c39210f430cb571de7837688e5724c896f409e6b9720fe757b1bca118f7cf45dfa75dadb09
+  checksum: 10c0/ec781002ac982772b2cb49dc1892206fc049cd5efc26867834a2eb81af7a7caef43d42c3f807e184b0f3df5691842ea054e679c41f886bbe071c6b4195f91d33
   languageName: node
   linkType: hard
 
