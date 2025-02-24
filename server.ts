@@ -104,6 +104,10 @@ app.get('/api/novu/credentials', async (req, res) => {
   }
 })
 
+app.get('/health', async (req, res) => {
+  res.status(200).send({ status: "healthy" })
+})
+
 setupNotificationWebhook(app, '/notification-webhook')
 
 app.listen(port, '0.0.0.0', () => {
