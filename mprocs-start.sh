@@ -13,6 +13,6 @@
 ../wait-for-port.sh 8005
 ../wait-for-port.sh 8089
 ../wait-for-port.sh 3001 # moderation backend
-corepack yarn mesh build
+yarn mesh build
 cp logger.ts .mesh/
-corepack yarn serve
+yarn serve
