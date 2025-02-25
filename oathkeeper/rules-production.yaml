@@ -116,6 +116,22 @@
     handler: allow
   mutators:
     - handler: header
+- id: health
+  version: v0.40.7
+  upstream:
+    url: http://localhost:4000
+  match:
+    url: <https|http>://<.*>/health
+    methods:
+      - GET
+  authenticators:
+    - handler: cookie_session
+    - handler: bearer_token
+    - handler: anonymous
+  authorizer:
+    handler: allow
+  mutators:
+    - handler: header
 - id: notification-webhook
   version: v0.40.7
   upstream:
