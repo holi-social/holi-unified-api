@@ -1,4 +1,16 @@
 terraform {
+  # allow the lowest common version across all projects, so that the current CI docker image version suits all projects
+  required_version = ">= 1.9"
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = "6.22.0"
+    }
+    google-beta = {
+      source  = "hashicorp/google-beta"
+      version = "6.22.0"
+    }
+  }
   backend "gcs" {
     bucket = "holi-shared-terraform-state"
     prefix = "unified-api-environments"
@@ -78,7 +90,7 @@ data "terraform_remote_state" "holi_translation_api_common_state" {
 }
 
 data "terraform_remote_state" "holi_moderation_environment_state" {
-  backend   = "gcs"
+  backend = "gcs"
   # provide staging moderation environment state for all review deployments of unified-api
   workspace = local.environment == "production" ? "production" : "staging"
   config = {
