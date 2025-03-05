@@ -2,6 +2,7 @@ sources:
   - name: okuna
     handler:
       graphql:
+        timeout: 300000
         endpoint: '{env.OKUNA_URL}'
         operationHeaders:
           Accept-Language: "{context.headers['accept-language']}"
@@ -14,6 +15,7 @@ sources:
   - name: app-donations
     handler:
       graphql:
+        timeout: 300000
         endpoint: '{env.DONATIONS_API_URL}'
         operationHeaders:
           Accept-Language: "{context.headers['accept-language']}"
@@ -34,6 +36,7 @@ sources:
   - name: app-goodnews
     handler:
       graphql:
+        timeout: 300000
         endpoint: '{env.GOODNEWS_API_URL}'
         operationHeaders:
           Accept-Language: "{context.headers['accept-language']}"
@@ -54,6 +57,7 @@ sources:
   - name: app-volunteering
     handler:
       graphql:
+        timeout: 300000
         endpoint: '{env.VOLUNTEERING_API_URL}'
         operationHeaders:
           Accept-Language: "{context.headers['accept-language']}"
@@ -74,6 +78,7 @@ sources:
   - name: geo
     handler:
       graphql:
+        timeout: 300000
         endpoint: '{env.GEO_API_URL}'
         operationHeaders:
           Accept-Language: "{context.headers['accept-language']}"
@@ -94,6 +99,7 @@ sources:
   - name: translation
     handler:
       graphql:
+        timeout: 300000
         endpoint: '{env.TRANSLATION_API_URL}'
         operationHeaders:
           Accept-Language: "{context.headers['accept-language']}"
@@ -114,6 +120,7 @@ sources:
   - name: notifications
     handler:
       graphql:
+        timeout: 300000
         endpoint: '{env.NOTIFICATIONS_API_URL}'
         operationHeaders:
           Accept-Language: "{context.headers['accept-language']}"
@@ -135,6 +142,7 @@ sources:
   - name: moderation
     handler:
       graphql:
+        timeout: 300000
         endpoint: '{env.MODERATION_BACKEND_URL}'
         operationHeaders:
           Accept-Language: "{context.headers['accept-language']}"
