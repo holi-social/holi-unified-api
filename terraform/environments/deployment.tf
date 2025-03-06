@@ -72,6 +72,10 @@ resource "google_cloud_run_service" "unified_api" {
           value = local.geo_api_url
         }
         env {
+          name  = "EVENTS_API_URL"
+          value = local.events_api_url
+        }
+        env {
           name  = "VOLUNTEERING_API_URL"
           value = local.volunteering_api_url
         }

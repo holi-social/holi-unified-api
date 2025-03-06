@@ -17,6 +17,7 @@ locals {
   goodnews_api_url       = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_goodnews_api_common_state.outputs.dns_goodnews_api_domain}/graphql"
   geo_api_url            = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_geo_api_common_state.outputs.dns_geo_api_domain}/graphql"
   volunteering_api_url   = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_volunteering_api_common_state.outputs.dns_volunteering_api_domain}/graphql"
+  events_api_url         = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_events_common_state.outputs.dns_events_domain}/graphql"
   notifications_api_url  = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_notifications_api_common_state.outputs.dns_notifications_api_domain}/graphql"
   translation_api_url    = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_translation_api_common_state.outputs.dns_translation_api_domain}/graphql"
   moderation_backend_url = "https://${data.terraform_remote_state.holi_moderation_environment_state.outputs.backend_domain}/graphql"
@@ -47,6 +48,10 @@ output "volunteering_api_url" {
   value = local.volunteering_api_url
 }
 
+output "events_api_url" {
+  value = local.events_api_url
+}
+
 output "notifications_api_url" {
   value = local.notifications_api_url
 }
@@ -58,7 +63,6 @@ output "translation_api_url" {
 output "moderation_backend_url" {
   value = local.moderation_backend_url
 }
-
 
 output "api_domain" {
   value       = local.api_domain
