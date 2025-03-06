@@ -11,6 +11,7 @@
 ../wait-for-port.sh 8003
 ../wait-for-port.sh 8004
 ../wait-for-port.sh 8005
+../wait-for-port.sh 8006
 ../wait-for-port.sh 8089
 ../wait-for-port.sh 3001 # moderation backend
 yarn mesh build
