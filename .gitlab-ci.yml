@@ -166,6 +166,7 @@ development_build_mesh:
     GOODNEWS_API_URL: https://staging.goodnews.apis.holi.social/graphql
     OKUNA_URL: https://staging.social.apis.holi.social/graphql
     VOLUNTEERING_API_URL: https://staging.volunteering.apis.holi.social/graphql
+    EVENTS_API_URL: https://staging.events.apis.holi.social/graphql
     NOTIFICATIONS_API_URL: https://staging.notifications.apis.holi.social/graphql
     TRANSLATION_API_URL: https://staging.translation.apis.holi.social/graphql
     MODERATION_BACKEND_URL: https://staging.moderation.apis.holi.social/graphql
@@ -276,6 +277,7 @@ production_build_mesh:
     GOODNEWS_API_URL: https://production.goodnews.apis.holi.social/graphql
     OKUNA_URL: https://production.social.apis.holi.social/graphql
     VOLUNTEERING_API_URL: https://production.volunteering.apis.holi.social/graphql
+    EVENTS_API_URL: https://production.events.apis.holi.social/graphql
     NOTIFICATIONS_API_URL: https://production.notifications.apis.holi.social/graphql
     TRANSLATION_API_URL: https://production.translation.apis.holi.social/graphql
     MODERATION_BACKEND_URL: https://moderation.apis.holi.social/graphql

@@ -75,6 +75,23 @@ sources:
           value: appVolunteering_
           includeRootOperations: true
           includeTypes: false
+  - name: app-events
+    handler:
+      graphql:
+        endpoint: '{env.EVENTS_API_URL}'
+    transforms:
+      # Prefix for types
+      - prefix:
+          mode: wrap
+          value: AppEvents_
+          includeRootOperations: false
+          includeTypes: true
+      # Prefix for operations
+      - prefix:
+          mode: wrap
+          value: appEvents_
+          includeRootOperations: true
+          includeTypes: false
   - name: geo
     handler:
       graphql:
