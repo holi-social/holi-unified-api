@@ -4,11 +4,11 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = "6.24.0"
+      version = "6.25.0"
     }
     google-beta = {
       source  = "hashicorp/google-beta"
-      version = "6.24.0"
+      version = "6.25.0"
     }
   }
   backend "gcs" {
@@ -70,6 +70,14 @@ data "terraform_remote_state" "holi_volunteering_api_common_state" {
   config = {
     bucket = "holi-shared-terraform-state"
     prefix = "volunteering-api-common"
+  }
+}
+
+data "terraform_remote_state" "holi_events_common_state" {
+  backend = "gcs"
+  config = {
+    bucket = "holi-shared-terraform-state"
+    prefix = "events-common"
   }
 }
 
