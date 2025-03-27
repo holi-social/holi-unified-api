@@ -29,6 +29,7 @@ export EVENTS_API_URL=http://127.0.0.1:8006/graphql
 export NOTIFICATIONS_API_URL=http://127.0.0.1:8005/graphql
 export TRANSLATION_API_URL=http://127.0.0.1:8089/graphql
 export MODERATION_BACKEND_URL=http://127.0.0.1:3001/graphql
+export CHALLENGES_URL=http://127.0.0.1:8080
 
 export MATRIX_SERVER_BASE_URL=$(backendUrl $LOCAL_BACKEND_CHAT "http://127.0.0.1:8008" "https://development-chat.holi.social")
 export REDIS_HOST=localhost

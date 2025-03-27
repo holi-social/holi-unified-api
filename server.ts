@@ -1,7 +1,7 @@
 import { createHmac } from 'crypto'
-import express, { Request } from 'express'
+import express, { type Request } from 'express'
 import helmet from 'helmet'
-import http from 'http'
+import type http from 'http'
 import { createProxyMiddleware } from 'http-proxy-middleware'
 import jwt from 'jsonwebtoken'
 import { exit } from 'process'
@@ -23,7 +23,11 @@ console.debug(`Server starting on port ${port}`)
 const app = express()
 
 // It is necessary to disable the Content-Security-Policy in the development environments to enable Yoga GraphiQL.
-app.use(helmet({ contentSecurityPolicy: process.env.ENVIRONMENT_ID === 'production' }))
+app.use(
+  helmet({
+    contentSecurityPolicy: process.env.ENVIRONMENT_ID === 'production',
+  }),
+)
 
 app.use('/graphql', createBuiltMeshHTTPHandler())
 
@@ -89,6 +93,19 @@ app.get('/video-call/:roomName', (req, res) => {
   res.redirect(process.env.VIDEOCALL_URL + '/' + roomName + queryParameter)
 })
 
+app.get(/^\/session-to-jwt\/(.*)$/, (req, res) => {
+  const path = req.params[0]
+  const authHeader = req.get('authorization')
+  let queryParameter = ''
+
+  if (authHeader?.startsWith('Bearer ')) {
+    const jwtSession = authHeader.replace('Bearer ', '')
+    queryParameter = `?session=${jwtSession}`
+  }
+
+  res.redirect(`${process.env.CHALLENGES_URL}/${path}${queryParameter}`)
+})
+
 app.get('/api/novu/credentials', async (req, res) => {
   const userId = req.headers['x-holi-user-id']
   if (!userId || Array.isArray(userId)) {
@@ -105,7 +122,7 @@ app.get('/api/novu/credentials', async (req, res) => {
 })
 
 app.get('/health', async (req, res) => {
-  res.status(200).send({ status: "healthy" })
+  res.status(200).send({ status: 'healthy' })
 })
 
 setupNotificationWebhook(app, '/notification-webhook')
