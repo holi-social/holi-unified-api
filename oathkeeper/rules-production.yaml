@@ -55,7 +55,7 @@
     url: http://loclahost:4000
     strip_path: api/challenges
   match:
-    url: https://production.unified.apis.holi.social/api/challenges/session-to-jwt/<.*>
+    url: https://production.unified.apis.holi.social/api/challenges/session-to-jwt<.*>
     methods:
       - GET
       - HEAD

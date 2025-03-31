@@ -55,7 +55,7 @@
     url: http://host.docker.internal:4000
     strip_path: api/challenges
   match:
-    url: http://<.*>:4455/api/challenges/session-to-jwt/<.*>
+    url: http://<.*>:4455/api/challenges/session-to-jwt<.*>
     methods:
       - GET
       - HEAD

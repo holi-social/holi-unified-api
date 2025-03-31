@@ -8,6 +8,7 @@ import { exit } from 'process'
 
 import { createBuiltMeshHTTPHandler } from './.mesh'
 import { setupNotificationWebhook } from './handlers/notificationWebhook'
+import { buildChallengesUrl } from './url'
 
 const asNumber = (str?: string) => (str ? Number(str) : undefined)
 
@@ -93,17 +94,13 @@ app.get('/video-call/:roomName', (req, res) => {
   res.redirect(process.env.VIDEOCALL_URL + '/' + roomName + queryParameter)
 })
 
-app.get(/^\/session-to-jwt\/(.*)$/, (req, res) => {
+app.get(/^\/session-to-jwt(.*)$/, (req, res) => {
   const path = req.params[0]
   const authHeader = req.get('authorization')
-  let queryParameter = ''
 
-  if (authHeader?.startsWith('Bearer ')) {
-    const jwtSession = authHeader.replace('Bearer ', '')
-    queryParameter = `?session=${jwtSession}`
-  }
+  const url = buildChallengesUrl(authHeader, path)
 
-  res.redirect(`${process.env.CHALLENGES_URL}/${path}${queryParameter}`)
+  res.redirect(url)
 })
 
 app.get('/api/novu/credentials', async (req, res) => {
