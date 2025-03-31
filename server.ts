@@ -95,7 +95,7 @@ app.get('/video-call/:roomName', (req, res) => {
 })
 
 app.get(/^\/session-to-jwt(.*)$/, (req, res) => {
-  const path = req.params[0]
+  const path = req.url.replace('/session-to-jwt', '')
   const authHeader = req.get('authorization')
 
   const url = buildChallengesUrl(authHeader, path)
