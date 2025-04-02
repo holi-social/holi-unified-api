@@ -143,7 +143,7 @@ resource "google_cloud_run_service" "unified_api" {
         }
         env {
           name  = "CHALLENGES_URL"
-          value = local.environment == "production" ? "https://challenges.holi.social" : "https://staging.challenges-dev.holi.social/"
+          value = local.environment == "production" ? "https://challenges.holi.social" : "https://staging.challenges-dev.holi.social"
         }
         env {
           name = "NOVU_API_KEY"
