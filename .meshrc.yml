@@ -11,6 +11,8 @@ sources:
           X-Holi-Session: "{context.headers['x-holi-session']}"
           X-Holi-Session-Expiry: "{context.headers['x-holi-session-expiry']}"
           X-Holi-User-Email: "{context.headers['x-holi-user-email']}"
+          X-Holi-User-given_name: "{context.headers['x-holi-user-given_name']}"
+          X-Holi-User-family_name: "{context.headers['x-holi-user-family_name']}"
           X-Disable-Sentry: "{context.headers['x-disable-sentry']}"
   - name: app-donations
     handler:
