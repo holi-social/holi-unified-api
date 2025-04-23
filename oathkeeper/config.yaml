@@ -26,9 +26,9 @@ mutators:
     config:
       headers:
         X-Holi-User-ID: '{{ print .Subject }}'
-        X-Holi-User-Email: '{{ if and .Extra (index .Extra "identity")}}{{ .Extra.identity.traits.email }}{{ else }}anonymous{{ end }}'
-        X-Holi-User-given_name: '{{ if and .Extra (index .Extra "identity")}}{{ .Extra.identity.traits.given_name }}{{ else }}{{ end }}'
-        X-Holi-User-family_name: '{{ if and .Extra (index .Extra "identity")}}{{ .Extra.identity.traits.family_name }}{{ else }}{{ end }}'
+        X-Holi-User-Email: '{{ if and .Extra (index .Extra "identity")}}{{ print .Extra.identity.traits.email }}{{ else }}anonymous{{ end }}'
+        X-Holi-User-given_name: '{{ if and .Extra (index .Extra "identity")}}{{ print .Extra.identity.traits.given_name }}{{ else }}{{ end }}'
+        X-Holi-User-family_name: '{{ if and .Extra (index .Extra "identity")}}{{ print .Extra.identity.traits.family_name }}{{ else }}{{ end }}'
         X-Holi-Session: '{{ if .Extra }}{{ print .Extra.id }}{{ end }}'
         X-Holi-Session-Expiry: '{{ if .Extra }}{{ print .Extra.expires_at}}{{ end }}'
   noop:
