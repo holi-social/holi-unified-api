@@ -88,6 +88,18 @@ resource "google_cloud_run_service" "unified_api" {
           value = local.translation_api_url
         }
         env {
+          name  = "TYPESENSE_API_URL"
+          value = local.typesense_api_url
+        }
+        env {
+          name  = "TYPESENSE_API_KEY"
+          value = local.typesense_api_key
+        }
+        env {
+          name  = "TYPESENSE_COLLECTION"
+          value = local.typesense_collection
+        }
+        env {
           name  = "REDIS_HOST"
           value = data.terraform_remote_state.holi_infra_state.outputs.redis_host_cmek_development
         }

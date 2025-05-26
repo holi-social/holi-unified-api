@@ -1,0 +1,226 @@
+{
+	"$id": "/SearchRequest.json",
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"description": "JSON Schema for Typesense SearchParams",
+	"title": "SearchParams",
+	"type": "object",
+	"properties": {
+		"collection": {
+			"type": "string"
+		},
+		"rerank_hybrid_matches": {
+			"type": "boolean"
+		},
+		"x-typesense-api-key": {
+			"type": "string"
+		},
+		"q": {
+			"type": "string"
+		},
+		"query_by": {
+			"type": "string"
+		},
+		"query_by_weights": {
+			"type": "string"
+		},
+		"prefix": {
+			"type": "string"
+		},
+		"filter_by": {
+			"type": "string"
+		},
+		"max_filter_by_candidates": {
+			"type": "integer"
+		},
+		"enable_synonyms": {
+			"type": "boolean"
+		},
+		"enable_analytics": {
+			"type": "boolean"
+		},
+		"filter_curated_hits": {
+			"type": "boolean"
+		},
+		"enable_lazy_filter": {
+			"type": "boolean"
+		},
+		"sort_by": {
+			"type": "string"
+		},
+		"facet_by": {
+			"type": "string"
+		},
+		"max_facet_values": {
+			"type": "integer"
+		},
+		"facet_sample_threshold": {
+			"type": "integer"
+		},
+		"facet_sample_percent": {
+			"type": "number"
+		},
+		"facet_query": {
+			"type": "string"
+		},
+		"facet_query_num_typos": {
+			"type": "integer"
+		},
+		"facet_return_parent": {
+			"type": "string"
+		},
+		"facet_strategy": {
+			"title": "MultiSearchRequestParamsFacetStrategy",
+			"type": "string",
+			"enum": ["exhaustive", "top_values", "automatic"]
+		},
+		"page": {
+			"type": "integer"
+		},
+		"per_page": {
+			"type": "integer"
+		},
+		"group_by": {
+			"type": "string"
+		},
+		"group_limit": {
+			"type": "integer"
+		},
+		"group_missing_values": {
+			"type": "boolean"
+		},
+		"include_fields": {
+			"type": "string"
+		},
+		"exclude_fields": {
+			"type": "string"
+		},
+		"highlight_fields": {
+			"type": "string"
+		},
+		"highlight_full_fields": {
+			"type": "string"
+		},
+		"highlight_affix_num_tokens": {
+			"type": "integer"
+		},
+		"highlight_start_tag": {
+			"type": "string"
+		},
+		"highlight_end_tag": {
+			"type": "string"
+		},
+		"enable_highlight_v1": {
+			"type": "boolean"
+		},
+		"snippet_threshold": {
+			"type": "number"
+		},
+		"num_typos": {
+			"type": "string"
+		},
+		"min_len_1typo": {
+			"type": "integer"
+		},
+		"min_len_2typo": {
+			"type": "integer"
+		},
+		"split_join_tokens": {
+			"$ref": "#/$defs/OperationMode"
+		},
+		"exhaustive_search": {
+			"type": "boolean"
+		},
+		"drop_tokens_threshold": {
+			"type": "number"
+		},
+		"drop_tokens_mode": {
+			"title": "MultiSearchRequestParamsDropTokensMode",
+			"type": "string",
+			"enum": ["right_to_left", "left_to_right", "both_sides:3"]
+		},
+		"typo_tokens_threshold": {
+			"type": "number"
+		},
+		"pinned_hits": {
+			"type": "string"
+		},
+		"hidden_hits": {
+			"type": "string"
+		},
+		"limit_hits": {
+			"type": "integer"
+		},
+		"pre_segmented_query": {
+			"type": "boolean"
+		},
+		"enable_overrides": {
+			"type": "boolean"
+		},
+		"override_tags": {
+			"type": "string"
+		},
+		"prioritize_exact_match": {
+			"type": "boolean"
+		},
+		"prioritize_token_position": {
+			"type": "boolean"
+		},
+		"prioritize_num_matching_fields": {
+			"type": "boolean"
+		},
+		"search_cutoff_ms": {
+			"type": "integer"
+		},
+		"use_cache": {
+			"type": "boolean"
+		},
+		"max_candidates": {
+			"type": "integer"
+		},
+		"infix": {
+			"$ref": "#/$defs/OperationMode"
+		},
+		"preset": {
+			"type": "string"
+		},
+		"text_match_type": {
+			"title": "MultiSearchRequestParamsTextMatchType",
+			"type": "string",
+			"enum": ["max_score", "max_weight"]
+		},
+		"vector_query": {
+			"type": "string"
+		},
+		"x-typesense-user-id": {
+			"type": "string"
+		},
+		"offset": {
+			"type": "integer"
+		},
+		"limit": {
+			"type": "integer"
+		},
+		"stopwords": {
+			"type": "string"
+		},
+		"conversation": {
+			"type": "boolean"
+		},
+		"conversation_model_id": {
+			"type": "string"
+		},
+		"conversation_id": {
+			"type": "string"
+		},
+		"voice_query": {
+			"type": "string"
+		}
+	},
+	"$defs": {
+		"OperationMode": {
+			"title": "OperationMode",
+			"type": "string",
+			"enum": ["off", "always", "fallback"]
+		}
+	}
+}

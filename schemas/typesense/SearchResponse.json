@@ -1,0 +1,394 @@
+{
+	"$id": "/SearchResponse.json",
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"description": "JSON Schema for Typesense SearchResponse",
+	"title": "SearchResponse",
+	"oneOf": [
+		{
+			"title": "SearchResponseSuccess",
+			"type": "object",
+			"required": [
+				"found",
+				"out_of",
+				"page",
+				"request_params",
+				"search_time_ms"
+			],
+			"properties": {
+				"facet_counts": {
+					"type": "array",
+					"items": {
+						"$ref": "#/$defs/SearchResponseFacetCounts"
+					}
+				},
+				"found": {
+					"type": "integer"
+				},
+				"found_docs": {
+					"type": "integer"
+				},
+				"out_of": {
+					"type": "integer"
+				},
+				"page": {
+					"type": "integer"
+				},
+				"request_params": {
+					"$ref": "#/$defs/SearchResponseRequestParams"
+				},
+				"search_time_ms": {
+					"type": "integer"
+				},
+				"search_cutoff": {
+					"type": "boolean"
+				},
+				"hits": {
+					"type": "array",
+					"items": {
+						"$ref": "#/$defs/SearchResponseHit"
+					}
+				},
+				"grouped_hits": {
+					"type": "array",
+					"items": {
+						"title": "SearchResponseGroupedHit",
+						"type": "object",
+						"properties": {
+							"group_key": {
+								"type": "array",
+								"items": {
+									"type": "string"
+								}
+							},
+							"hits": {
+								"type": "array",
+								"items": {
+									"$ref": "#/$defs/SearchResponseHit"
+								}
+							},
+							"found": {
+								"type": "integer"
+							}
+						},
+						"required": ["group_key", "hits"]
+					}
+				},
+				"conversation": {
+					"title": "SearchResponseConversation",
+					"type": "object",
+					"properties": {
+						"answer": {
+							"type": "string"
+						},
+						"conversation_history": {
+							"title": "SearchResponseConversationHistory",
+							"type": "object",
+							"properties": {
+								"conversation": {
+									"type": "array",
+									"items": {
+										"type": "object"
+									}
+								},
+								"id": {
+									"type": "string"
+								},
+								"last_updated": {
+									"type": "integer"
+								},
+								"ttl": {
+									"type": "integer"
+								}
+							},
+							"required": ["conversation", "id", "last_updated", "ttl"]
+						},
+						"conversation_id": {
+							"type": "string"
+						},
+						"query": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"answer",
+						"conversation_history",
+						"conversation_id",
+						"query"
+					]
+				}
+			}
+		},
+		{
+			"title": "SearchResponseError",
+			"type": "object",
+			"required": ["error", "code"],
+			"properties": {
+				"error": {
+					"type": "string"
+				},
+				"code": {
+					"type": "integer"
+				}
+			}
+		}
+	],
+	"$defs": {
+		"SearchResponseHitHighlight": {
+			"title": "SearchResponseHitHighlight",
+			"type": "object",
+			"properties": {
+				"field": {
+					"type": "string"
+				},
+				"snippet": {
+					"type": "string"
+				},
+				"value": {
+					"type": "string"
+				},
+				"snippets": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"indices": {
+					"type": "array",
+					"items": {
+						"type": "integer"
+					}
+				},
+				"matched_tokens": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			},
+			"required": ["field", "matched_tokens"]
+		},
+		"SearchResponseHighlight": {
+			"title": "SearchResponseHighlight",
+			"type": "object"
+		},
+		"DocumentType": {
+			"title": "DocumentType",
+			"type": "string",
+			"enum": ["volunteering", "space", "profile", "task"]
+		},
+		"Document": {
+			"title": "Document",
+			"type": "object",
+			"properties": {
+				"type": {
+					"$ref": "#/$defs/DocumentType"
+				},
+				"id": {
+					"type": "string"
+				},
+				"title_de": {
+					"type": "string"
+				},
+				"title_en": {
+					"type": "string"
+				},
+				"description_de": {
+					"type": "string"
+				},
+				"description_en": {
+					"type": "string"
+				},
+				"location": {
+					"type": "string"
+				},
+				"location_lat_lng": {
+					"type": "array",
+					"items": {
+						"type": "number"
+					},
+					"minItems": 2,
+					"maxItems": 2
+				},
+				"image_url": {
+					"type": "string"
+				},
+				"user_full_name": {
+					"type": "string"
+				},
+				"link_locators": {
+					"title": "DocumentLinkLocators",
+					"type": "object",
+					"properties": {
+						"volunteering": {
+							"type": "string"
+						},
+						"space": {
+							"type": "string"
+						},
+						"profile": {
+							"type": "string"
+						},
+						"task": {
+							"type": "string"
+						}
+					}
+				},
+				"topics_v2": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"skills_v2": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"source": {
+					"type": "string"
+				},
+				"organizer_name": {
+					"type": "string"
+				},
+				"organizer_image_url": {
+					"type": "string"
+				},
+				"external_url": {
+					"type": "string"
+				}
+			},
+			"required": ["type", "id"]
+		},
+		"SearchResponseHit": {
+			"title": "SearchResponseHit",
+			"type": "object",
+			"properties": {
+				"curated": {
+					"type": "boolean"
+				},
+				"highlights": {
+					"type": "array",
+					"items": {
+						"$ref": "#/$defs/SearchResponseHitHighlight"
+					}
+				},
+				"highlight": {
+					"$ref": "#/$defs/SearchResponseHighlight"
+				},
+				"document": {
+					"$ref": "#/$defs/Document"
+				},
+				"text_match": {
+					"type": "number"
+				},
+				"text_match_info": {
+					"title": "SearchResponseTextMatchInfo",
+					"type": "object",
+					"required": [
+						"best_field_score",
+						"best_field_weight",
+						"fields_matched",
+						"score",
+						"tokens_matched"
+					],
+					"properties": {
+						"best_field_score": {
+							"type": "number"
+						},
+						"best_field_weight": {
+							"type": "number"
+						},
+						"fields_matched": {
+							"type": "integer"
+						},
+						"score": {
+							"type": "number"
+						},
+						"tokens_matched": {
+							"type": "integer"
+						}
+					}
+				}
+			},
+			"required": ["document", "highlight"]
+		},
+		"SearchResponseFacetCounts": {
+			"title": "SearchResponseFacetCounts",
+			"type": "object",
+			"properties": {
+				"counts": {
+					"type": "array",
+					"items": {
+						"title": "SearchResponseFacetCountsItemCounts",
+						"type": "object",
+						"properties": {
+							"count": {
+								"type": "integer"
+							},
+							"highlighted": {
+								"type": "string"
+							},
+							"value": {
+								"type": "string"
+							}
+						},
+						"required": ["count", "highlighted", "value"]
+					}
+				},
+				"field_name": {
+					"type": "string"
+				},
+				"stats": {
+					"title": "SearchResponseFacetCountsItemStats",
+					"type": "object",
+					"properties": {
+						"avg": {
+							"type": "number"
+						},
+						"max": {
+							"type": "number"
+						},
+						"min": {
+							"type": "number"
+						},
+						"sum": {
+							"type": "number"
+						}
+					}
+				}
+			},
+			"required": ["counts", "field_name"]
+		},
+		"SearchResponseRequestParams": {
+			"title": "SearchResponseRequestParams",
+			"type": "object",
+			"properties": {
+				"collection_name": {
+					"type": "string"
+				},
+				"q": {
+					"type": "string"
+				},
+				"page": {
+					"type": "integer"
+				},
+				"per_page": {
+					"type": "integer"
+				},
+				"first_q": {
+					"type": "string"
+				},
+				"voice_query": {
+					"title": "SearchResponseRequestParamsVoiceQuery",
+					"type": "object",
+					"properties": {
+						"transcribed_query": {
+							"type": "string"
+						}
+					}
+				}
+			}
+		}
+	}
+}

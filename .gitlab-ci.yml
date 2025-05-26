@@ -172,6 +172,9 @@ development_build_mesh:
     NOTIFICATIONS_API_URL: https://staging.notifications.apis.holi.social/graphql
     TRANSLATION_API_URL: https://staging.translation.apis.holi.social/graphql
     MODERATION_BACKEND_URL: https://staging.moderation.apis.holi.social/graphql
+    TYPESENSE_API_URL: https://dev-search.holi.social:443
+    TYPESENSE_API_KEY: WAxFP8Gv9RrNvG18RhYgXCNNj39LfAu2
+    TYPESENSE_COLLECTION: holi_search_staging
     REDIS_HOST: 10.104.0.3
     REDIS_PORT: 6379
     REDIS_DB: 5
@@ -283,6 +286,9 @@ production_build_mesh:
     NOTIFICATIONS_API_URL: https://production.notifications.apis.holi.social/graphql
     TRANSLATION_API_URL: https://production.translation.apis.holi.social/graphql
     MODERATION_BACKEND_URL: https://moderation.apis.holi.social/graphql
+    TYPESENSE_API_URL: https://search.holi.social:443
+    TYPESENSE_API_KEY: jtOdwRfhEFW7UmCpDKjnQaS71uU28YOq
+    TYPESENSE_COLLECTION: holi_search_production
     REDIS_HOST: 10.104.0.3
     REDIS_PORT: 6379
     REDIS_DB: 13
