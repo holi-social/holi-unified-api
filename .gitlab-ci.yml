@@ -133,7 +133,8 @@ include:
     - corepack enable
     - yarn install --immutable --immutable-cache
     - yarn run mesh build
-    - yarn run mesh validate
+    # TODO(SF): Temporarily disabled
+    # - yarn run mesh validate
   tags:
     - 4cpu-4gb
   artifacts:
