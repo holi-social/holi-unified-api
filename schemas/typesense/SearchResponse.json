@@ -209,6 +209,9 @@
 					"minItems": 2,
 					"maxItems": 2
 				},
+				"location_type": {
+					"type": "string"
+				},
 				"image_url": {
 					"type": "string"
 				},
@@ -255,6 +258,12 @@
 					"type": "string"
 				},
 				"external_url": {
+					"type": "string"
+				},
+				"commitment_label": {
+					"type": "string"
+				},
+				"commitment_duration": {
 					"type": "string"
 				}
 			},
