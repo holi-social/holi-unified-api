@@ -133,7 +133,7 @@ include:
     - corepack enable
     - yarn install --immutable --immutable-cache
     - yarn run mesh build
-    # TODO(SF): Temporarily disabled
+    # Disabled for now due to an issue with validation of JSON schemas in graphql mesh: https://github.com/ardatan/graphql-mesh/issues/8652
     # - yarn run mesh validate
   tags:
     - 4cpu-4gb
