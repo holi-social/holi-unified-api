@@ -1,0 +1,15 @@
+{
+	"$id": "/MultiSearchRequest.json",
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"description": "JSON Schema for Typesense MultiSearchRequest",
+	"title": "MultiSearchRequest",
+	"type": "object",
+	"properties": {
+		"searches": {
+			"type": "array",
+			"items": {
+				"$ref": "./SearchParams.json"
+			}
+		}
+	}
+}

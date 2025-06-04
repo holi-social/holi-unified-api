@@ -88,6 +88,23 @@ resource "google_cloud_run_service" "unified_api" {
           value = local.translation_api_url
         }
         env {
+          name  = "TYPESENSE_API_URL"
+          value = "https://${local.environment == "production" ? "search" : "dev-search"}.holi.social:433"
+        }
+        env {
+          name = "TYPESENSE_API_KEY"
+          value_from {
+            secret_key_ref {
+              key  = "latest"
+              name = local.environment == "production" ? "TYPESENSE_READ_ONLY_API_KEY_PRODUCTION" : "TYPESENSE_READ_ONLY_API_KEY_DEVELOPMENT"
+            }
+          }
+        }
+        env {
+          name  = "TYPESENSE_COLLECTION"
+          value = local.environment == "production" ? "holi_search_production" : "holi_search_staging"
+        }
+        env {
           name  = "REDIS_HOST"
           value = data.terraform_remote_state.holi_infra_state.outputs.redis_host_cmek_development
         }
