@@ -158,6 +158,44 @@ sources:
           value: notifications_
           includeRootOperations: true
           includeTypes: false
+  - name: typesense-search
+    handler:
+      jsonSchema:
+        endpoint: '{env.TYPESENSE_API_URL}'
+        operationHeaders:
+          x-typesense-api-key: '{env.TYPESENSE_API_KEY}'
+        operations:
+          - type: Query
+            field: documentById
+            path: /collections/{env.TYPESENSE_COLLECTION}/documents/search?q=*&filter_by=id:{args.documentType}_{args.id}&&type:{args.documentType}&per_page=1&exclude_fields=embedding,similarity_embedding,topics_skills_embedding_v2
+            method: GET
+            argTypeMap:
+              id:
+                type: string
+                nullable: false
+              documentType:
+                type: string
+                nullable: false
+            responseSchema: ./schemas/typesense/SearchResponse.json
+          - type: Query
+            field: multiSearch
+            path: /multi_search?collection={env.TYPESENSE_COLLECTION}
+            method: POST
+            requestSchema: ./schemas/typesense/MultiSearchRequest.json
+            responseSchema: ./schemas/typesense/MultiSearchResponse.json
+    transforms:
+      # Prefix for types
+      - prefix:
+          mode: wrap
+          value: Typesense_
+          includeRootOperations: false
+          includeTypes: true
+      # Prefix for operations
+      - prefix:
+          mode: wrap
+          value: typesense_
+          includeRootOperations: true
+          includeTypes: false
   - name: moderation
     handler:
       graphql:
