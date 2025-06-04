@@ -22,27 +22,33 @@
 					}
 				},
 				"found": {
+					"description": "The number of documents found",
 					"type": "integer"
 				},
 				"found_docs": {
 					"type": "integer"
 				},
 				"out_of": {
+					"description": "The total number of documents in the collection",
 					"type": "integer"
 				},
 				"page": {
+					"description": "The search result page number",
 					"type": "integer"
 				},
 				"request_params": {
 					"$ref": "#/$defs/SearchResponseRequestParams"
 				},
 				"search_time_ms": {
+					"description": "The number of milliseconds the search took",
 					"type": "integer"
 				},
 				"search_cutoff": {
+					"description": "Whether the search was cut off",
 					"type": "boolean"
 				},
 				"hits": {
+					"description": "The documents that matched the search query",
 					"type": "array",
 					"items": {
 						"$ref": "#/$defs/SearchResponseHit"
@@ -61,6 +67,7 @@
 								}
 							},
 							"hits": {
+								"description": "The documents that matched the search query",
 								"type": "array",
 								"items": {
 									"$ref": "#/$defs/SearchResponseHit"
@@ -124,9 +131,11 @@
 			"required": ["error", "code"],
 			"properties": {
 				"error": {
+					"description": "Error description",
 					"type": "string"
 				},
 				"code": {
+					"description": "HTTP error code",
 					"type": "integer"
 				}
 			}
@@ -141,18 +150,29 @@
 					"type": "string"
 				},
 				"snippet": {
+					"description": "Present only for (non-array) string fields",
 					"type": "string"
 				},
 				"value": {
+					"description": "Full field value with highlighting, present only for (non-array) string fields",
 					"type": "string"
 				},
 				"snippets": {
+					"description": "Present only for (array) string[] fields",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"values": {
+					"description": "Full field value with highlighting, present only for (array) string[] fields",
 					"type": "array",
 					"items": {
 						"type": "string"
 					}
 				},
 				"indices": {
+					"description": "The indices property will be present only for string[] fields and will contain the corresponding indices of the snippets in the search field",
 					"type": "array",
 					"items": {
 						"type": "integer"
@@ -277,12 +297,14 @@
 					"type": "boolean"
 				},
 				"highlights": {
+					"description": "(Deprecated) Contains highlighted portions of the search fields",
 					"type": "array",
 					"items": {
 						"$ref": "#/$defs/SearchResponseHitHighlight"
 					}
 				},
 				"highlight": {
+					"description": "Highlighted version of the matching document",
 					"$ref": "#/$defs/SearchResponseHighlight"
 				},
 				"document": {
@@ -318,6 +340,14 @@
 							"type": "integer"
 						}
 					}
+				},
+				"geo_distance_meters": {
+					"description": "Can be any key-value pair",
+					"type": "object"
+				},
+				"vector_distance": {
+					"description": "Distance between the query vector and matching document's vector value",
+					"type": "number"
 				}
 			},
 			"required": ["document", "highlight"]
