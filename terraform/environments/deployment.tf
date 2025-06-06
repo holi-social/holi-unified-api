@@ -89,7 +89,7 @@ resource "google_cloud_run_service" "unified_api" {
         }
         env {
           name  = "TYPESENSE_API_URL"
-          value = "https://${local.environment == "production" ? "search" : "dev-search"}.holi.social:433"
+          value = "https://t9vemwkibxajcorqp-1.a1.typesense.net:433"
         }
         env {
           name = "TYPESENSE_API_KEY"
