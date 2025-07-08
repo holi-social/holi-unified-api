@@ -33,6 +33,7 @@ export CHALLENGES_URL=http://127.0.0.1:8080
 export TYPESENSE_API_URL=https://dev-search.holi.social:443
 export TYPESENSE_API_KEY=
 export TYPESENSE_COLLECTION=holi_search_staging
+export REWARDS_API_URL=http://127.0.0.1:8015/graphql
 
 export MATRIX_SERVER_BASE_URL=$(backendUrl $LOCAL_BACKEND_CHAT "http://127.0.0.1:8008" "https://development-chat.holi.social")
 export REDIS_HOST=localhost
