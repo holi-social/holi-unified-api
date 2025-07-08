@@ -11,6 +11,7 @@
 ../wait-for-port.sh 8003 geo-api
 ../wait-for-port.sh 8004 app-volunteering
 ../wait-for-port.sh 8005 notifications
+../wait-for-port.sh 8015 rewards
 ../wait-for-port.sh 8006 app-events
 ../wait-for-port.sh 8089 translation-api
 ../wait-for-port.sh 3001 moderation

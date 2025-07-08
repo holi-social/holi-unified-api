@@ -1,10 +1,10 @@
 variables:
-  YARN_CACHE_FOLDER: '$CI_PROJECT_DIR/.yarn/cache'
-  YARN_ENABLE_GLOBAL_CACHE: 'false'
+  YARN_CACHE_FOLDER: "$CI_PROJECT_DIR/.yarn/cache"
+  YARN_ENABLE_GLOBAL_CACHE: "false"
   # This variable needs to be named differently than in triggering projects
   # because if not, it gets set to '/api_domain', which breaks the e2e stage
   # due to the file not being in the artifacts.
-  API_DOMAIN_FILE: '$CI_PROJECT_DIR/api_domain'
+  API_DOMAIN_FILE: "$CI_PROJECT_DIR/api_domain"
 
 .yarn-cache-rw:
   key:
@@ -41,17 +41,17 @@ stages:
 
 .deploy:
   image:
-    name: 'europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/hashicorp/terraform:1.11.4'
+    name: "europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/hashicorp/terraform:1.11.4"
     # default entrypoint is terraform command, but we want to run shell scripts
-    entrypoint: ['/bin/sh', '-c']
+    entrypoint: ["/bin/sh", "-c"]
   variables:
     ENVIRONMENT_ID: $CI_ENVIRONMENT_SLUG
   artifacts:
     paths:
-      - 'terraform/environments/crash.log' # optional, only available in case of a crash/panic
-      - 'terraform/environments/terraform-*.log' # separate log for every step/command
+      - "terraform/environments/crash.log" # optional, only available in case of a crash/panic
+      - "terraform/environments/terraform-*.log" # separate log for every step/command
       - $API_DOMAIN_FILE
-    name: '${CI_JOB_NAME}_${CI_JOB_ID}'
+    name: "${CI_JOB_NAME}_${CI_JOB_ID}"
     #when: on_failure
     expire_in: 1 week
   script:
@@ -61,8 +61,8 @@ stages:
   interruptible: false
 
 .smoketest:
-  stage: 'smoketest'
-  image: 'europe-north1-docker.pkg.dev/holi-shared/docker/holi-docker/holi-k6-builder'
+  stage: "smoketest"
+  image: "europe-north1-docker.pkg.dev/holi-shared/docker/holi-docker/holi-k6-builder"
   script:
     - API_DOMAIN=$(cat "$API_DOMAIN_FILE")
     - terraform/environments/scripts/wait-for-ssl.sh "https://${API_DOMAIN}"
@@ -77,7 +77,7 @@ stages:
 ## common steps
 install_deps:
   stage: prepare
-  image: 'europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:22-slim'
+  image: "europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:22-slim"
   cache: !reference [.yarn-cache-rw]
   script:
     - corepack enable
@@ -98,7 +98,7 @@ install_lint_test:
   needs:
     - job: install_deps
       optional: true
-  image: 'europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:22-slim'
+  image: "europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:22-slim"
   cache: !reference [.yarn-cache-rw]
   script:
     - corepack enable
@@ -119,15 +119,15 @@ install_lint_test:
 # Note that environment variables can be set in several places
 # See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
 sast:
-  needs: ['install_lint_test']
+  needs: ["install_lint_test"]
   stage: build
   resource_group: $CI_COMMIT_REF_NAME # only 1 job per branch
 include:
   - template: Security/SAST.gitlab-ci.yml
 
 .build_mesh:
-  needs: ['install_lint_test']
-  image: 'europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:22-slim'
+  needs: ["install_lint_test"]
+  image: "europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:22-slim"
   cache: !reference [.yarn-cache-readonly]
   script:
     - corepack enable
@@ -139,15 +139,15 @@ include:
     - 4cpu-4gb
   artifacts:
     paths:
-      - '.mesh/'
+      - ".mesh/"
   resource_group: $CI_COMMIT_REF_NAME # only 1 job per branch
 
 .build_docker:
-  needs: ['install_lint_test']
-  image: 'europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/docker:28'
+  needs: ["install_lint_test"]
+  image: "europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/docker:28"
   services:
-    - name: 'europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/docker:28-dind'
-      alias: 'docker'
+    - name: "europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/docker:28-dind"
+      alias: "docker"
   variables:
     # this could be fetched via terraform output ("gcr_location" in infra project), but then we would need an extra job for terraform
     GCR_IMAGE: europe-north1-docker.pkg.dev/holi-shared/docker/holi-unified-api
@@ -173,6 +173,7 @@ development_build_mesh:
     NOTIFICATIONS_API_URL: https://staging.notifications.apis.holi.social/graphql
     TRANSLATION_API_URL: https://staging.translation.apis.holi.social/graphql
     MODERATION_BACKEND_URL: https://staging.moderation.apis.holi.social/graphql
+    REWARDS_API_URL: https://staging.rewards.apis.holi.social/graphql
     TYPESENSE_API_URL: https://dev-search.holi.social:443
     TYPESENSE_API_KEY: WAxFP8Gv9RrNvG18RhYgXCNNj39LfAu2
     TYPESENSE_COLLECTION: holi_search_staging
@@ -186,7 +187,7 @@ development_build_mesh:
 development_build_docker:
   stage: build
   extends: .build_docker
-  needs: ['development_build_mesh']
+  needs: ["development_build_mesh"]
   variables:
     ENVIRONMENT_ID: staging
   rules:
@@ -197,7 +198,7 @@ development_build_docker:
 review_deploy:
   stage: deploy
   extends: .deploy
-  needs: ['development_build_docker']
+  needs: ["development_build_docker"]
   environment:
     name: review/$CI_COMMIT_REF_SLUG
     url: https://$CI_ENVIRONMENT_SLUG.unified.apis.holi.social
@@ -211,7 +212,7 @@ review_deploy:
 
 review_smoketest:
   extends: .smoketest
-  needs: ['review_deploy']
+  needs: ["review_deploy"]
   rules:
     - if: $CI_COMMIT_BRANCH =~ /^main$|^production$|^noenv\/.*/
       when: never
@@ -220,11 +221,11 @@ review_smoketest:
 
 review_destroy:
   stage: destroy
-  needs: ['review_deploy']
+  needs: ["review_deploy"]
   image:
-    name: 'europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/hashicorp/terraform:1.11.4'
+    name: "europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/hashicorp/terraform:1.11.4"
     # default entrypoint is terraform command, but we want to run shell scripts
-    entrypoint: ['/bin/sh', '-c']
+    entrypoint: ["/bin/sh", "-c"]
   variables:
     # has to be set to none for auto stop
     GIT_STRATEGY: none
@@ -253,7 +254,7 @@ review_destroy:
 staging_deploy:
   stage: deploy
   extends: .deploy
-  needs: ['development_build_docker']
+  needs: ["development_build_docker"]
   environment:
     name: staging
     deployment_tier: staging
@@ -266,7 +267,7 @@ staging_deploy:
 
 staging_smoketest:
   extends: .smoketest
-  needs: ['staging_deploy']
+  needs: ["staging_deploy"]
   rules:
     - if: $CI_COMMIT_BRANCH == "main"
       when: on_success
@@ -287,6 +288,7 @@ production_build_mesh:
     NOTIFICATIONS_API_URL: https://production.notifications.apis.holi.social/graphql
     TRANSLATION_API_URL: https://production.translation.apis.holi.social/graphql
     MODERATION_BACKEND_URL: https://moderation.apis.holi.social/graphql
+    REWARDS_API_URL: https://rewards.apis.holi.social/graphql
     TYPESENSE_API_URL: https://search.holi.social:443
     TYPESENSE_API_KEY: jtOdwRfhEFW7UmCpDKjnQaS71uU28YOq
     TYPESENSE_COLLECTION: holi_search_production
@@ -300,7 +302,7 @@ production_build_mesh:
 production_build_docker:
   stage: build
   extends: .build_docker
-  needs: ['production_build_mesh']
+  needs: ["production_build_mesh"]
   variables:
     ENVIRONMENT_ID: production
   rules:
@@ -310,7 +312,7 @@ production_build_docker:
 production_deploy:
   stage: deploy
   extends: .deploy
-  needs: ['production_build_docker']
+  needs: ["production_build_docker"]
   allow_failure: false
   environment:
     name: production
@@ -324,14 +326,14 @@ production_deploy:
 
 production_smoketest:
   extends: .smoketest
-  needs: ['production_deploy']
+  needs: ["production_deploy"]
   rules:
     - if: $CI_COMMIT_BRANCH == "production"
       when: on_success
 
 trigger_docs_generation:
   stage: deploy
-  needs: ['production_deploy']
+  needs: ["production_deploy"]
   trigger:
     project: app/app.gitlab-pages.holi.team
     branch: main
