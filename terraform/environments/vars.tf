@@ -21,7 +21,9 @@ locals {
   notifications_api_url  = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_notifications_api_common_state.outputs.dns_notifications_api_domain}/graphql"
   translation_api_url    = "https://${local.environment == "production" ? "production" : "staging"}.${data.terraform_remote_state.holi_translation_api_common_state.outputs.dns_translation_api_domain}/graphql"
   moderation_backend_url = "https://${data.terraform_remote_state.holi_moderation_environment_state.outputs.backend_domain}/graphql"
-  default_region         = data.terraform_remote_state.holi_infra_state.outputs.default_region
+  rewards_backend_url    = "https://${data.terraform_remote_state.rewards.outputs.backend_domain}/graphql"
+
+  default_region = data.terraform_remote_state.holi_infra_state.outputs.default_region
 }
 
 output "okuna_domain" {
@@ -62,6 +64,10 @@ output "translation_api_url" {
 
 output "moderation_backend_url" {
   value = local.moderation_backend_url
+}
+
+output "rewards_api_url" {
+  value = local.rewards_backend_url
 }
 
 output "api_domain" {
