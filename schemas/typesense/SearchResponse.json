@@ -220,6 +220,8 @@
       "type": "object",
       "properties": {
         "type": {
+          "title": "DocumentContactType",
+          "type": "string",
           "enum": [
             "person",
             "email",
