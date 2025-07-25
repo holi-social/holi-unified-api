@@ -230,6 +230,26 @@ sources:
           value: moderation_
           includeRootOperations: true
           includeTypes: false
+  - name: rewards
+    handler:
+      graphql:
+        timeout: 300000
+        endpoint: '{env.REWARDS_API_URL}'
+        operationHeaders:
+          X-Holi-User-ID: "{context.headers['x-holi-user-id']}"
+    transforms:
+      # Prefix for types
+      - prefix:
+          mode: wrap
+          value: Rewards_
+          includeRootOperations: false
+          includeTypes: true
+      # Prefix for operations
+      - prefix:
+          mode: wrap
+          value: rewards_
+          includeRootOperations: true
+          includeTypes: false
 
 logger: './logger'
 

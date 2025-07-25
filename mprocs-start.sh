@@ -4,16 +4,17 @@
 
 . ../.envrc.local.backends
 . ./.envrc.local
-[ "$LOCAL_BACKEND_CHAT" = "true" ] && ../wait-for-port.sh 8008
-../wait-for-port.sh 8000
-../wait-for-port.sh 8001
-../wait-for-port.sh 8002
-../wait-for-port.sh 8003
-../wait-for-port.sh 8004
-../wait-for-port.sh 8005
-../wait-for-port.sh 8006
-../wait-for-port.sh 8089
-../wait-for-port.sh 3001 # moderation backend
+[ "$LOCAL_BACKEND_CHAT" = "true" ] && ../wait-for-port.sh 8008 chat-server
+../wait-for-port.sh 8000 okuna
+../wait-for-port.sh 8001 app-donations
+../wait-for-port.sh 8002 app-goodnews
+../wait-for-port.sh 8003 geo-api
+../wait-for-port.sh 8004 app-volunteering
+../wait-for-port.sh 8005 notifications
+../wait-for-port.sh 8015 rewards
+../wait-for-port.sh 8006 app-events
+../wait-for-port.sh 8089 translation-api
+../wait-for-port.sh 3001 moderation
 yarn mesh build
 cp logger.ts .mesh/
 yarn serve
