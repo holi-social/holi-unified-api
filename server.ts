@@ -67,6 +67,15 @@ app.post(
   }),
 )
 
+const appcuesWebhookUrl = '/appcues-webhook'
+app.post(
+  appcuesWebhookUrl,
+  createProxyMiddleware({
+    target: process.env.OKUNA_DOMAIN,
+    changeOrigin: true,
+  }),
+)
+
 const createJitsiJWT = (userId, userName) => {
   const context = {
     id: `holi_${userId}`,

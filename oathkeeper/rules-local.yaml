@@ -185,3 +185,17 @@
     handler: allow
   mutators:
     - handler: noop
+- id: appcues-webhook
+  version: v0.40.7
+  upstream:
+    url: http://host.docker.internal:4000
+  match:
+    url: http://<.*>:4455/appcues-webhook
+    methods:
+      - POST
+  authenticators:
+    - handler: anonymous
+  authorizer:
+    handler: allow
+  mutators:
+    - handler: noop
