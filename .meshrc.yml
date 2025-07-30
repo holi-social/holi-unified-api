@@ -7,6 +7,7 @@ sources:
         operationHeaders:
           Accept-Language: "{context.headers['accept-language']}"
           sentry-trace: "{context.headers['sentry-trace']}"
+          baggage: "{context.headers['baggage']}"
           X-Holi-User-ID: "{context.headers['x-holi-user-id']}"
           X-Holi-Session: "{context.headers['x-holi-session']}"
           X-Holi-Session-Expiry: "{context.headers['x-holi-session-expiry']}"
