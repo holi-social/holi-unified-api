@@ -8,4 +8,14 @@ Sentry.init({
   tracePropagationTargets: ['localhost', /^\//, 'dev.holi.social', 'app.holi.social'],
   enabled: ['staging', 'production'].includes(environment),
   environment: environment,
+  beforeSendTransaction: (event) => {
+    try {
+      if (event.transaction === 'POST /graphql' && event.request?.data) {
+        const payload = JSON.parse(event.request.data as string)
+        event.transaction = payload.operationName
+      }
+    } catch {}
+
+    return event
+  },
 })
