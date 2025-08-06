@@ -185,3 +185,17 @@
     handler: allow
   mutators:
     - handler: noop
+- id: appcues-webhook
+  version: v0.40.7
+  upstream:
+    url: http://localhost:4000
+  match:
+    url: https://production.unified.apis.holi.social/appcues-webhook
+    methods:
+      - POST
+  authenticators:
+    - handler: anonymous
+  authorizer:
+    handler: allow
+  mutators:
+    - handler: noop
