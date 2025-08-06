@@ -1,3 +1,5 @@
+import './instrument'
+
 import { createHmac } from 'crypto'
 import express, { type Request } from 'express'
 import helmet from 'helmet'
