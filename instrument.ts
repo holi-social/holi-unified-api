@@ -12,7 +12,7 @@ Sentry.init({
     try {
       if (event.transaction === 'POST /graphql' && event.request?.data) {
         const payload = JSON.parse(event.request.data as string)
-        event.transaction = payload.operationName
+        event.transaction = `/graphql ${payload.operationName}`
       }
     } catch {}
 
