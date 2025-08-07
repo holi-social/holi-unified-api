@@ -41,6 +41,14 @@
 			"description": "Controls the number of similar words that Typesense considers during fuzzy search on filter_by values. Useful for controlling prefix matches like company_name:Acm*.",
 			"type": "integer"
 		},
+		"nl_query": {
+			"description": "Whether to use natural language processing to parse the query.",
+			"type": "boolean"
+		},
+		"nl_model_id": {
+			"description": "The ID of the natural language model to use.",
+			"type": "string"
+		},
 		"enable_synonyms": {
 			"description": "If you have some synonyms defined but want to disable all of them for a particular search query, set enable_synonyms to false. Default: true",
 			"type": "boolean"
