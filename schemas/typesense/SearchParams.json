@@ -49,6 +49,10 @@
 			"description": "The ID of the natural language model to use.",
 			"type": "string"
 		},
+		"nl_query_debug": {
+			"description": "Whether to activate advanced logs that let you see the generated LLM prompts and more.",
+			"type": "boolean"
+		},
 		"enable_synonyms": {
 			"description": "If you have some synonyms defined but want to disable all of them for a particular search query, set enable_synonyms to false. Default: true",
 			"type": "boolean"
