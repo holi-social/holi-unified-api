@@ -4157,14 +4157,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/instrumentation@npm:6.12.0":
-  version: 6.12.0
-  resolution: "@prisma/instrumentation@npm:6.12.0"
+"@prisma/instrumentation@npm:6.13.0":
+  version: 6.13.0
+  resolution: "@prisma/instrumentation@npm:6.13.0"
   dependencies:
     "@opentelemetry/instrumentation": "npm:^0.52.0 || ^0.53.0 || ^0.54.0 || ^0.55.0 || ^0.56.0 || ^0.57.0"
   peerDependencies:
     "@opentelemetry/api": ^1.8
-  checksum: 10c0/b4c7b06719c7c0a0e3017f8b5abef8209879ddb3d73735f69b21c83a1150045b3c458253c4de269daf8db19e22caab9b66fa83bd59fe05ace206f4919201082d
+  checksum: 10c0/d79a0bcad5180ccf48f3388cf4c8e30aff83d152555207233639e46ae5862859f1cb012851abdaddfb18113d06018d33783b3f07523f4420e9207d1bc013356e
   languageName: node
   linkType: hard
 
@@ -4182,19 +4182,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/core@npm:10.1.0":
-  version: 10.1.0
-  resolution: "@sentry/core@npm:10.1.0"
-  checksum: 10c0/01cd36a439cb5a2ce52eebfcdb88ba0ded54134685be88e019dd2b72aa1590808294de0b65731f45ee69025257dce85d2bf4666a123c0e6d85e3ac30d227bd28
+"@sentry/core@npm:10.5.0":
+  version: 10.5.0
+  resolution: "@sentry/core@npm:10.5.0"
+  checksum: 10c0/e0b29c6647897cf6dc5f0b99c29f2bbad62ba4db57d699790f39028f0124e388728b955d794d4c07cb6f93b17e5011095c9927bf111a6f62caa9147034ef56e1
   languageName: node
   linkType: hard
 
-"@sentry/node-core@npm:10.1.0":
-  version: 10.1.0
-  resolution: "@sentry/node-core@npm:10.1.0"
+"@sentry/node-core@npm:10.5.0":
+  version: 10.5.0
+  resolution: "@sentry/node-core@npm:10.5.0"
   dependencies:
-    "@sentry/core": "npm:10.1.0"
-    "@sentry/opentelemetry": "npm:10.1.0"
+    "@sentry/core": "npm:10.5.0"
+    "@sentry/opentelemetry": "npm:10.5.0"
     import-in-the-middle: "npm:^1.14.2"
   peerDependencies:
     "@opentelemetry/api": ^1.9.0
@@ -4204,13 +4204,13 @@ __metadata:
     "@opentelemetry/resources": ^1.30.1 || ^2.0.0
     "@opentelemetry/sdk-trace-base": ^1.30.1 || ^2.0.0
     "@opentelemetry/semantic-conventions": ^1.34.0
-  checksum: 10c0/bf5f32d0bad841cc4624bf085af17fc5d38f5c66895bba2e525adde31ea0952f39a48134ba7d21ff98473ca85d41c7d515f6dbb83ac056072a4fcefc651ab54a
+  checksum: 10c0/cd4feeb0e9cb4faa7ee5e45fc214a2db647725a23fefb05bbf64397e4ca1213435ed19065d6870af743dfa822f2c2250b64bcc2f48a8a455e97c01e6b3510b6a
   languageName: node
   linkType: hard
 
 "@sentry/node@npm:^10.1.0":
-  version: 10.1.0
-  resolution: "@sentry/node@npm:10.1.0"
+  version: 10.5.0
+  resolution: "@sentry/node@npm:10.5.0"
   dependencies:
     "@opentelemetry/api": "npm:^1.9.0"
     "@opentelemetry/context-async-hooks": "npm:^2.0.0"
@@ -4241,28 +4241,28 @@ __metadata:
     "@opentelemetry/resources": "npm:^2.0.0"
     "@opentelemetry/sdk-trace-base": "npm:^2.0.0"
     "@opentelemetry/semantic-conventions": "npm:^1.34.0"
-    "@prisma/instrumentation": "npm:6.12.0"
-    "@sentry/core": "npm:10.1.0"
-    "@sentry/node-core": "npm:10.1.0"
-    "@sentry/opentelemetry": "npm:10.1.0"
+    "@prisma/instrumentation": "npm:6.13.0"
+    "@sentry/core": "npm:10.5.0"
+    "@sentry/node-core": "npm:10.5.0"
+    "@sentry/opentelemetry": "npm:10.5.0"
     import-in-the-middle: "npm:^1.14.2"
     minimatch: "npm:^9.0.0"
-  checksum: 10c0/9e124aff1871e1d7da0d3ffdbae226ff8563a16c083c21cf5469ef62cf7ecf64da93a25bdfb5d544d90d27b4b269401c29007ea32517a2aa0d8ef55768e32115
+  checksum: 10c0/5d594b9f479a676e2fe394b93112caed40d85ca20b4d61b406cd90d9b751c086f0f3b75633606d4b6602f9254e5985340a920196a6d6ebc3be669e4447856b26
   languageName: node
   linkType: hard
 
-"@sentry/opentelemetry@npm:10.1.0":
-  version: 10.1.0
-  resolution: "@sentry/opentelemetry@npm:10.1.0"
+"@sentry/opentelemetry@npm:10.5.0":
+  version: 10.5.0
+  resolution: "@sentry/opentelemetry@npm:10.5.0"
   dependencies:
-    "@sentry/core": "npm:10.1.0"
+    "@sentry/core": "npm:10.5.0"
   peerDependencies:
     "@opentelemetry/api": ^1.9.0
     "@opentelemetry/context-async-hooks": ^1.30.1 || ^2.0.0
     "@opentelemetry/core": ^1.30.1 || ^2.0.0
     "@opentelemetry/sdk-trace-base": ^1.30.1 || ^2.0.0
     "@opentelemetry/semantic-conventions": ^1.34.0
-  checksum: 10c0/156c19696b550eeeda89803996d49e320dd8422a9627f6590df5553d201954db45119ba5229a6f4d7919083e72c8a85da4ddfed76008dc2a8eb83b03ab0f5643
+  checksum: 10c0/5602649a9aed968ac4921c50ac9c990ab928d6cf6172271d8713c176081fd62e78803e443c04551fde59ec757824ad5b95bbe2f97870120e897442f76fdaaa75
   languageName: node
   linkType: hard
 
