@@ -130,6 +130,30 @@
             "conversation_id",
             "query"
           ]
+        },
+        "parsed_nl_query": {
+          "title": "SearchResponseParsedNLQuery",
+          "type": "object",
+          "properties": {
+            "generated_params": {
+              "title": "SearchResponseGeneratedParams",
+              "type": "object",
+              "properties": {
+                "q": { "type": "string" },
+                "filter_by": { "type": "string" },
+                "sort_by": { "type": "string" }
+              }
+            },
+            "llm_response": {
+              "title": "SearchResponseLLMResponse",
+              "type": "object",
+              "properties": {
+                "content": { "type": "string" },
+                "model": { "type": "string" }
+              }
+            },
+            "parse_time_ms": { "type": "integer" }
+          }
         }
       }
     },
