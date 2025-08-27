@@ -23,6 +23,7 @@
     "@graphql-mesh/runtime": "^0.105.0",
     "@graphql-mesh/transform-filter-schema": "^0.103.0",
     "@graphql-mesh/transform-prefix": "^0.104.0",
+    "@sentry/node": "^10.1.0",
     "express": "^4.19.2",
     "graphql": "^16.8.2",
     "helmet": "^8.0.0",
@@ -47,7 +48,7 @@
     "prettier": "^3.2.5",
     "supertest": "^7.0.0",
     "ts-jest": "^29.1.2",
-    "typescript": "5.8.3"
+    "typescript": "5.9.2"
   },
   "packageManager": "yarn@4.7.0"
 }
