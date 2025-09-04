@@ -314,6 +314,12 @@
         "location_type": {
           "type": "string"
         },
+        "location_country_de": {
+          "type": "string"
+        },
+        "location_country_en": {
+          "type": "string"
+        },
         "image_url": {
           "type": "string"
         },
@@ -365,6 +371,15 @@
         "organizer_url": {
           "type": "string"
         },
+        "organizer_location": {
+          "type": "string"
+        },
+        "organizer_location_country_de": {
+          "type": "string"
+        },
+        "organizer_location_country_en": {
+          "type": "string"
+        },
         "external_url": {
           "type": "string"
         },
@@ -386,7 +401,10 @@
         "donation_open_amount_in_cents": {
           "type": "integer"
         },
-        "summary": {
+        "summary_de": {
+          "type": "string"
+        },
+        "summary_en": {
           "type": "string"
         }
       },
