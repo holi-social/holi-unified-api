@@ -9,7 +9,6 @@
 ../wait-for-port.sh 8001 app-donations
 ../wait-for-port.sh 8002 app-goodnews
 ../wait-for-port.sh 8003 geo-api
-../wait-for-port.sh 8004 app-volunteering
 ../wait-for-port.sh 8005 notifications
 ../wait-for-port.sh 8015 rewards
 ../wait-for-port.sh 8006 app-events

@@ -19,6 +19,5 @@ echo "export DONATIONS_API_URL=$(terraform output --raw donations_api_url)"
 echo "export GEO_API_URL=$(terraform output --raw geo_api_url)"
 echo "export GOODNEWS_API_URL=$(terraform output --raw goodnews_api_url)"
 echo "export OKUNA_URL=$(terraform output --raw okuna_url)"
-echo "export VOLUNTEERING_API_URL=$(terraform output --raw volunteering_api_url)"
 echo "export NOTIFICATIONS_API_URL=$(terraform output --raw notifications_api_url)"^
 echo "export TRANSLATION_API_URL=$(terraform output --raw translation_api_url)"^

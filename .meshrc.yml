@@ -57,27 +57,6 @@ sources:
           value: appGoodNews_
           includeRootOperations: true
           includeTypes: false
-  - name: app-volunteering
-    handler:
-      graphql:
-        timeout: 300000
-        endpoint: '{env.VOLUNTEERING_API_URL}'
-        operationHeaders:
-          Accept-Language: "{context.headers['accept-language']}"
-          sentry-trace: "{context.headers['sentry-trace']}"
-    transforms:
-      # Prefix for types
-      - prefix:
-          mode: wrap
-          value: AppVolunteering_
-          includeRootOperations: false
-          includeTypes: true
-      # Prefix for operations
-      - prefix:
-          mode: wrap
-          value: appVolunteering_
-          includeRootOperations: true
-          includeTypes: false
   - name: app-events
     handler:
       graphql:
