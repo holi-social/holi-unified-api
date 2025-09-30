@@ -27,7 +27,7 @@ function forQuery(query, checkFunction) {
 
 // Define your smoketest(s) here.
 export default () => {
-  forQuery(`{topics{totalResults}}`, (response) => {
+  forQuery(`{allPosts{totalResults}}`, (response) => {
     check(response, {
       'is status 200': (r) => r.status === 200,
     })
