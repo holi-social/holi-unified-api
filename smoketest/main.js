@@ -34,7 +34,7 @@ export default () => {
     check(JSON.parse(response.body), {
       // there can be multiple tests here, e.g.
       //"contains topics object": (r) => typeof r.data.topics != null,
-      'contains totalResults count': (r) => typeof r.data.topics.totalResults == 'number',
+      'contains totalResults count': (r) => typeof r.data.allPosts.totalResults == 'number',
     })
   })
 }
