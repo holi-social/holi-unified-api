@@ -1,10 +1,11 @@
 import './instrument'
 
 import { createHmac } from 'crypto'
-import express, { type Request } from 'express'
+import express, { type NextFunction, type Request } from 'express'
 import helmet from 'helmet'
 import type http from 'http'
 import { createProxyMiddleware } from 'http-proxy-middleware'
+import cookieParser from 'cookie-parser'
 import jwt from 'jsonwebtoken'
 import { exit } from 'process'
 
@@ -14,12 +15,18 @@ import { buildChallengesUrl } from './url'
 
 const asNumber = (str?: string) => (str ? Number(str) : undefined)
 
-const port = asNumber(process.env.GRAPHQL_PORT) || 4000
-const matrixServerUrl = process.env.MATRIX_SERVER_BASE_URL
-if (!matrixServerUrl) {
-  console.error('Environment variable MATRIX_SERVER_BASE_URL is not specified. Exiting.')
+const ensureEnv = (key: string) => {
+  const val = process.env[key]
+  if (val) return val
+  console.error(`Environment variable ${key} is not specified. Exiting.`)
   exit(1)
 }
+
+const port = asNumber(process.env.GRAPHQL_PORT) || 4000
+const matrixServerUrl = ensureEnv('MATRIX_SERVER_BASE_URL')
+const oryWhoamiUrl = ensureEnv('ORY_WHOAMI_URL')
+const orySessionKey = ensureEnv('ORY_SESSION_KEY')
+const TTL = asNumber(process.env.ORY_TTL) || 1000
 
 console.debug(`Server starting on port ${port}`)
 
@@ -33,6 +40,81 @@ app.use(
 )
 
 app.use('/graphql', createBuiltMeshHTTPHandler())
+
+// Simple cache with 1-second TTL
+const cache = new Map<string, { value: unknown; expiresAt: number }>()
+
+const getFromCache = (key: string): unknown => {
+  const cached = cache.get(key)
+  if (!cached) return null
+
+  if (Date.now() > cached.expiresAt) {
+    cache.delete(key)
+    return null
+  }
+
+  return cached.value
+}
+
+const setInCache = (key: string, value: unknown) => {
+  cache.set(key, {
+    value,
+    expiresAt: Date.now() + TTL,
+  })
+}
+
+// Clean up expired entries every 60 seconds
+setInterval(() => {
+  const now = Date.now()
+  cache.forEach((entry, key) => {
+    if (now > entry.expiresAt) {
+      cache.delete(key)
+    }
+  })
+}, 60000)
+
+const cacheOry: express.RequestHandler = (req: Request, res: any, next: NextFunction) => {
+  const cookie = req.cookies[orySessionKey]
+
+  // Try to get from cache
+  const cached = getFromCache(cookie)
+  if (cached) {
+    return res.json(cached)
+  }
+  next()
+}
+
+app.use(cookieParser())
+
+app.use(
+  '/orywhoami',
+  cacheOry,
+  createProxyMiddleware({
+    target: oryWhoamiUrl,
+    changeOrigin: true,
+    // logger: console,
+    ignorePath: true,
+    on: {
+      proxyRes: (proxyRes, req, res) => {
+        const cookie = req.cookies[orySessionKey]
+        let body = ''
+
+        proxyRes.on('data', (chunk) => {
+          body += chunk
+        })
+
+        proxyRes.on('end', () => {
+          try {
+            const data = JSON.parse(body)
+            setInCache(cookie, data)
+          } catch (e) {
+            setInCache(cookie, body)
+          }
+        })
+      },
+    },
+  }),
+)
 
 // add authorization token to login requests
 const loginUrl = '/_matrix/client/r0/login'

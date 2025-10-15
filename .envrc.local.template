@@ -44,3 +44,6 @@ export VIDEOCALL_URL=https://development.meet.holi.social
 
 export NOVU_API_KEY=
 export NOVU_ENVIRONMENT_ID=
+
+export ORY_WHOAMI_URL=https://dev-auth.holi.social/sessions/whoami
+export ORY_SESSION_KEY=ory_session_mystifyingcarverakajr6v4t8
