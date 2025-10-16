@@ -24,11 +24,13 @@
     "@graphql-mesh/transform-filter-schema": "^0.103.0",
     "@graphql-mesh/transform-prefix": "^0.104.0",
     "@sentry/node": "^10.1.0",
+    "cookie-parser": "1.4.7",
     "express": "^4.19.2",
     "graphql": "^16.8.2",
     "helmet": "^8.0.0",
     "http-proxy-middleware": "^3.0.0",
     "jsonwebtoken": "^9.0.2",
+    "node-cache": "^5.1.2",
     "pino": "^9.2.0",
     "ts-node": "^10.9.2"
   },
