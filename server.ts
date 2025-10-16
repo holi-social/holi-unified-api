@@ -27,7 +27,7 @@ const port = asNumber(process.env.GRAPHQL_PORT) || 4000
 const matrixServerUrl = ensureEnv('MATRIX_SERVER_BASE_URL')
 const oryWhoamiUrl = ensureEnv('ORY_WHOAMI_URL')
 const orySessionKey = ensureEnv('ORY_SESSION_KEY')
-const TTL = asNumber(process.env.ORY_TTL) || 2
+const TTL = asNumber(process.env.ORY_TTL_SECONDS) || 2
 
 console.debug(`Server starting on port ${port}`)
 
