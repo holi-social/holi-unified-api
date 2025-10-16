@@ -158,11 +158,11 @@ resource "google_cloud_run_service" "unified_api" {
         }
         env {
           name  = "AUTHENTICATORS_COOKIE_SESSION_CONFIG_CHECK_SESSION_URL"
-          value = "http://localhost:4000"
+          value = "http://localhost:4000/orywhoami"
         }
         env {
           name  = "AUTHENTICATORS_BEARER_TOKEN_CONFIG_CHECK_SESSION_URL"
-          value = "http://localhost:4000"
+          value = "http://localhost:4000/orywhoami"
         }
         env {
           name  = "VIDEOCALL_URL"
