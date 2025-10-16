@@ -1,4 +1,4 @@
-orrect import { buildChallengesUrl } from '../utils'
+import { buildChallengesUrl } from '../utils'
 
 describe('url', () => {
   describe('buildChallengesUrl', () => {
