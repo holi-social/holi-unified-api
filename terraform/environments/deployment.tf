@@ -157,6 +157,14 @@ resource "google_cloud_run_service" "unified_api" {
           value = local.environment == "production" ? "ory_session_flamboyanthopperh35qftghn9" : "ory_session_mystifyingcarverakajr6v4t8"
         }
         env {
+          name  = "AUTHENTICATORS_COOKIE_SESSION_CONFIG_CHECK_SESSION_URL"
+          value = "http://localhost:4000"
+        }
+        env {
+          name  = "AUTHENTICATORS_BEARER_TOKEN_CONFIG_CHECK_SESSION_URL"
+          value = "http://localhost:4000"
+        }
+        env {
           name  = "VIDEOCALL_URL"
           value = local.environment == "production" ? "https://meet.holi.social" : "https://development.meet.holi.social"
         }
