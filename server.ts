@@ -8,6 +8,7 @@ import { createProxyMiddleware } from 'http-proxy-middleware'
 import cookieParser from 'cookie-parser'
 import jwt from 'jsonwebtoken'
 import { exit } from 'process'
+import NodeCache from 'node-cache'
 
 import { createBuiltMeshHTTPHandler } from './.mesh'
 import { setupNotificationWebhook } from './handlers/notificationWebhook'
@@ -26,7 +27,7 @@ const port = asNumber(process.env.GRAPHQL_PORT) || 4000
 const matrixServerUrl = ensureEnv('MATRIX_SERVER_BASE_URL')
 const oryWhoamiUrl = ensureEnv('ORY_WHOAMI_URL')
 const orySessionKey = ensureEnv('ORY_SESSION_KEY')
-const TTL = asNumber(process.env.ORY_TTL) || 1000
+const TTL = asNumber(process.env.ORY_TTL) || 2
 
 console.debug(`Server starting on port ${port}`)
 
@@ -41,43 +42,11 @@ app.use(
 
 app.use('/graphql', createBuiltMeshHTTPHandler())
 
-// Simple cache with 1-second TTL
-const cache = new Map<string, { value: unknown; expiresAt: number }>()
-
-const getFromCache = (key: string): unknown => {
-  const cached = cache.get(key)
-  if (!cached) return null
-
-  if (Date.now() > cached.expiresAt) {
-    cache.delete(key)
-    return null
-  }
-
-  return cached.value
-}
-
-const setInCache = (key: string, value: unknown) => {
-  cache.set(key, {
-    value,
-    expiresAt: Date.now() + TTL,
-  })
-}
-
-// Clean up expired entries every 60 seconds
-setInterval(() => {
-  const now = Date.now()
-  cache.forEach((entry, key) => {
-    if (now > entry.expiresAt) {
-      cache.delete(key)
-    }
-  })
-}, 60000)
+const cache = new NodeCache({ stdTTL: TTL })
 
 const cacheOry: express.RequestHandler = (req: Request, res: any, next: NextFunction) => {
   const cookie = req.cookies[orySessionKey]
-
-  // Try to get from cache
-  const cached = getFromCache(cookie)
+  const cached = cache.get(cookie)
   if (cached) {
     return res.json(cached)
   }
@@ -96,6 +65,7 @@ app.use(
     ignorePath: true,
     on: {
       proxyRes: (proxyRes, req, res) => {
+        if (res.statusCode !== 200) return // only cache http status 200 responses
         const cookie = req.cookies[orySessionKey]
         let body = ''
 
@@ -106,9 +76,9 @@ app.use(
         proxyRes.on('end', () => {
           try {
             const data = JSON.parse(body)
-            setInCache(cookie, data)
+            cache.set(cookie, data)
           } catch (e) {
-            setInCache(cookie, body)
+            // ignore if not a JSON body
           }
         })
       },
