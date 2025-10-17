@@ -15,9 +15,11 @@ const cacheKeyForRequest = (req: Request) => req.cookies[orySessionKey] || req.h
 
 const cacheOry: RequestHandler = (req: Request, res: any, next: NextFunction) => {
   const cacheKey = cacheKeyForRequest(req)
-  const cached = cache.get(cacheKey)
-  if (cached) {
-    return res.json(cached)
+  if (cacheKey) {
+    const cached = cache.get(cacheKey)
+    if (cached) {
+      return res.json(cached)
+    }
   }
   next()
 }
@@ -36,6 +38,7 @@ export const setupOryWhoAmI = (app: Express) => {
         proxyRes: (proxyRes, req, res) => {
           if (res.statusCode !== 200) return // only cache http status 200 responses
           const cacheKey = cacheKeyForRequest(req)
+          if (!cacheKey) return
           let body = ''
 
           proxyRes.on('data', (chunk) => {
