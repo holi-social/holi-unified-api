@@ -10,9 +10,12 @@ const TTL = asNumber(process.env.ORY_TTL_SECONDS) || 2
 
 const cache = new NodeCache({ stdTTL: TTL })
 
+// Check cookies for web and authorization header for mobile
+const cacheKeyForRequest = (req: Request) => req.cookies[orySessionKey] || req.headers.authorization
+
 const cacheOry: RequestHandler = (req: Request, res: any, next: NextFunction) => {
-  const cookie = req.cookies[orySessionKey]
-  const cached = cache.get(cookie)
+  const cacheKey = cacheKeyForRequest(req)
+  const cached = cache.get(cacheKey)
   if (cached) {
     return res.json(cached)
   }
@@ -32,7 +35,7 @@ export const setupOryWhoAmI = (app: Express) => {
       on: {
         proxyRes: (proxyRes, req, res) => {
           if (res.statusCode !== 200) return // only cache http status 200 responses
-          const cookie = req.cookies[orySessionKey]
+          const cacheKey = cacheKeyForRequest(req)
           let body = ''
 
           proxyRes.on('data', (chunk) => {
@@ -42,7 +45,7 @@ export const setupOryWhoAmI = (app: Express) => {
           proxyRes.on('end', () => {
             try {
               const data = JSON.parse(body)
-              cache.set(cookie, data)
+              cache.set(cacheKey, data)
             } catch (e) {
               // ignore if not a JSON body
             }
