@@ -145,16 +145,24 @@ resource "google_cloud_run_service" "unified_api" {
           value = local.environment == "production" ? "https://auth.holi.social" : "https://dev-auth.holi.social"
         }
         env {
-          name  = "AUTHENTICATORS_COOKIE_SESSION_CONFIG_CHECK_SESSION_URL"
-          value = local.environment == "production" ? "https://auth.holi.social/sessions/whoami" : "https://dev-auth.holi.social/sessions/whoami"
-        }
-        env {
           name  = "AUTHENTICATORS_COOKIE_SESSION_CONFIG_ONLY"
           value = local.environment == "production" ? "ory_session_flamboyanthopperh35qftghn9" : "ory_session_mystifyingcarverakajr6v4t8"
         }
         env {
-          name  = "AUTHENTICATORS_BEARER_TOKEN_CONFIG_CHECK_SESSION_URL"
+          name  = "ORY_WHOAMI_URL"
           value = local.environment == "production" ? "https://auth.holi.social/sessions/whoami" : "https://dev-auth.holi.social/sessions/whoami"
+        }
+        env {
+          name  = "ORY_SESSION_KEY"
+          value = local.environment == "production" ? "ory_session_flamboyanthopperh35qftghn9" : "ory_session_mystifyingcarverakajr6v4t8"
+        }
+        env {
+          name  = "AUTHENTICATORS_COOKIE_SESSION_CONFIG_CHECK_SESSION_URL"
+          value = "http://localhost:4000/orywhoami"
+        }
+        env {
+          name  = "AUTHENTICATORS_BEARER_TOKEN_CONFIG_CHECK_SESSION_URL"
+          value = "http://localhost:4000/orywhoami"
         }
         env {
           name  = "VIDEOCALL_URL"

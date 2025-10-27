@@ -25,7 +25,7 @@ ENV S6_CMD_WAIT_FOR_SERVICES=1
 RUN addgroup --system ory; adduser --system ory --group --disabled-login --no-create-home
 # hadolint ignore=SC3001
 ADD https://raw.githubusercontent.com/ory/meta/master/install.sh /tmp
-RUN sh /tmp/install.sh -d -b /opt/oathkeeper oathkeeper v0.40.7
+RUN sh /tmp/install.sh -d -b /opt/oathkeeper oathkeeper v0.40.9
 
 # set up oathkeeper as background daemon
 COPY s6/run s6/finish /etc/services.d/node/
@@ -45,7 +45,7 @@ CMD ["/opt/oathkeeper/start.sh"]
 # install app
 WORKDIR /app
 ENV NODE_ENV=production
-COPY tsconfig.json package.json yarn.lock .meshrc.yml .yarnrc.yml logger.ts url.ts instrument.ts server.ts /app/
+COPY tsconfig.json package.json yarn.lock .meshrc.yml .yarnrc.yml logger.ts utils.ts instrument.ts server.ts /app/
 COPY handlers /app/handlers
 COPY .mesh logger.ts /app/.mesh/
 RUN chown -R node:node /app && corepack enable

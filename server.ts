@@ -6,20 +6,14 @@ import helmet from 'helmet'
 import type http from 'http'
 import { createProxyMiddleware } from 'http-proxy-middleware'
 import jwt from 'jsonwebtoken'
-import { exit } from 'process'
 
 import { createBuiltMeshHTTPHandler } from './.mesh'
 import { setupNotificationWebhook } from './handlers/notificationWebhook'
-import { buildChallengesUrl } from './url'
-
-const asNumber = (str?: string) => (str ? Number(str) : undefined)
+import { asNumber, buildChallengesUrl, ensureEnv } from './utils'
+import { setupOryWhoAmI } from './handlers/oryWhoAmIProxy'
 
 const port = asNumber(process.env.GRAPHQL_PORT) || 4000
-const matrixServerUrl = process.env.MATRIX_SERVER_BASE_URL
-if (!matrixServerUrl) {
-  console.error('Environment variable MATRIX_SERVER_BASE_URL is not specified. Exiting.')
-  exit(1)
-}
+const matrixServerUrl = ensureEnv('MATRIX_SERVER_BASE_URL')
 
 console.debug(`Server starting on port ${port}`)
 
@@ -33,6 +27,8 @@ app.use(
 )
 
 app.use('/graphql', createBuiltMeshHTTPHandler())
+
+setupOryWhoAmI(app)
 
 // add authorization token to login requests
 const loginUrl = '/_matrix/client/r0/login'

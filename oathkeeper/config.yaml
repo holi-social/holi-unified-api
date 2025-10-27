@@ -57,7 +57,7 @@ authenticators:
   cookie_session:
     enabled: true
     config:
-      check_session_url: https://dev-auth.holi.social/sessions/whoami # overridden via env var with environment specific value
+      check_session_url: http://host.docker.internal:4000/orywhoami # to proxy Ory requests for caching
       preserve_path: true
       extra_from: '@this'
       subject_from: 'identity.id'
@@ -68,7 +68,7 @@ authenticators:
   bearer_token:
     enabled: true
     config:
-      check_session_url: https://dev-auth.holi.social/sessions/whoami # overridden via env var with environment specific value
+      check_session_url: http://host.docker.internal:4000/orywhoami # to proxy Ory requests for caching
       preserve_path: true
       extra_from: '@this'
       subject_from: 'identity.id'

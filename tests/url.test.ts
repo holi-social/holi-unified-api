@@ -1,4 +1,4 @@
-import { buildChallengesUrl } from '../url'
+import { buildChallengesUrl } from '../utils'
 
 describe('url', () => {
   describe('buildChallengesUrl', () => {

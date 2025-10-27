@@ -27,14 +27,14 @@ function forQuery(query, checkFunction) {
 
 // Define your smoketest(s) here.
 export default () => {
-  forQuery(`{topics{totalResults}}`, (response) => {
+  forQuery(`{allPosts{totalResults}}`, (response) => {
     check(response, {
       'is status 200': (r) => r.status === 200,
     })
     check(JSON.parse(response.body), {
       // there can be multiple tests here, e.g.
       //"contains topics object": (r) => typeof r.data.topics != null,
-      'contains totalResults count': (r) => typeof r.data.topics.totalResults == 'number',
+      'contains totalResults count': (r) => typeof r.data.allPosts.totalResults == 'number',
     })
   })
 }
