@@ -4037,6 +4037,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@pinojs/redact@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "@pinojs/redact@npm:0.4.0"
+  checksum: 10c0/4b311ba17ee0cf154ff9c39eb063ec04cd0d0017cb3750efcdf06c2d485df3e1095e13e872175993568c5568c23e4508dd877c981bbc9c5ae5e384d569efcdff
+  languageName: node
+  linkType: hard
+
 "@pkgjs/parseargs@npm:^0.11.0":
   version: 0.11.0
   resolution: "@pkgjs/parseargs@npm:0.11.0"
@@ -6809,13 +6816,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-redact@npm:^3.1.1":
-  version: 3.2.0
-  resolution: "fast-redact@npm:3.2.0"
-  checksum: 10c0/a258a178ff8d2f760985be774e589a65df5a573ec12ebc1c72e090950aa860a2a6efb01f673d1be015e9f1170446903cd1ff402e8658b4a84635308dfcef164a
-  languageName: node
-  linkType: hard
-
 "fast-safe-stringify@npm:^2.1.1":
   version: 2.1.1
   resolution: "fast-safe-stringify@npm:2.1.1"
@@ -7691,7 +7691,7 @@ __metadata:
     jsonwebtoken: "npm:^9.0.2"
     mockttp: "npm:^4.0.0"
     node-cache: "npm:^5.1.2"
-    pino: "npm:^9.2.0"
+    pino: "npm:^10.0.0"
     prettier: "npm:^3.2.5"
     supertest: "npm:^7.0.0"
     ts-jest: "npm:^29.1.2"
@@ -10285,12 +10285,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pino@npm:^9.2.0":
-  version: 9.8.0
-  resolution: "pino@npm:9.8.0"
+"pino@npm:^10.0.0":
+  version: 10.1.0
+  resolution: "pino@npm:10.1.0"
   dependencies:
+    "@pinojs/redact": "npm:^0.4.0"
     atomic-sleep: "npm:^1.0.0"
-    fast-redact: "npm:^3.1.1"
     on-exit-leak-free: "npm:^2.1.0"
     pino-abstract-transport: "npm:^2.0.0"
     pino-std-serializers: "npm:^7.0.0"
@@ -10302,7 +10302,7 @@ __metadata:
     thread-stream: "npm:^3.0.0"
   bin:
     pino: bin.js
-  checksum: 10c0/a6de40d8c777520a0f2bdd1727512db2dba51d0d8098500ec8326f1f95412e4e704ee4301287ccbbafbf7a7ab07999d5659333a7079d1b70341d0d69e4d40b29
+  checksum: 10c0/49c1dd80d5f99f02bde1acf2f60cef7686948a937f751f6cb368c2868c7e82e54aeabac63a34587e16019965cbf0eb6e609edf92c439a98a0a4fcb0add277eaf
   languageName: node
   linkType: hard
 
