@@ -1300,8 +1300,8 @@ __metadata:
   linkType: hard
 
 "@escape.tech/graphql-armor-max-depth@npm:^2.3.0":
-  version: 2.4.1
-  resolution: "@escape.tech/graphql-armor-max-depth@npm:2.4.1"
+  version: 2.4.2
+  resolution: "@escape.tech/graphql-armor-max-depth@npm:2.4.2"
   dependencies:
     "@envelop/core": "npm:^5.2.3"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
@@ -1311,7 +1311,7 @@ __metadata:
       optional: true
     "@escape.tech/graphql-armor-types":
       optional: true
-  checksum: 10c0/dbd7a1a5270cf6d7fc8cf6a21246f090e7c1adffca87d598a7558a5b5f7439737b7c2d31daca248d32ac0a1498023883bf83b4442f3257bb2be523b4120df7ee
+  checksum: 10c0/e38612e5bb0ed5db1d36100ca0701d32cc22a28f0418b56106a756683d86c1eef56d6987965748f1dbf386c19f7d693ae6a9b1416104cc63795e3dcb6ee0e27a
   languageName: node
   linkType: hard
 
