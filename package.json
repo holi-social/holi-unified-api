@@ -35,7 +35,7 @@
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^5.0.0",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.0",
     "@types/express": "^5.0.0",
     "@types/helmet": "^4.0.0",
     "@types/http-proxy-middleware": "^1.0.0",
