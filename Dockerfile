@@ -1,4 +1,4 @@
-FROM europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:22-slim
+FROM europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:24-slim
 
 # install all dependencies for later steps
 RUN apt-get -y -qq update && apt-get install -y --no-install-recommends xz-utils ca-certificates curl \
