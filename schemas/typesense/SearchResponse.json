@@ -409,10 +409,29 @@
           "type": "string"
         }
       },
-      "required": [
-        "type",
-        "id"
-      ]
+      "description": {
+        "type": "string"
+      },
+      "initiators": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "petitionSuccessful": { "type": "boolean" },
+      "slug": { "type": "string" },
+      "tag": { "type": "string" },
+      "targets": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "title": { "type": "string" },
+      "signatures": {
+        "type": "integer"
+      },
+      "required": ["type", "id"]
     },
     "SearchResponseHit": {
       "title": "SearchResponseHit",
