@@ -249,7 +249,8 @@
         "space",
         "profile",
         "task",
-        "donation"
+        "donation",
+        "petition"
       ]
     },
     "DocumentContact": {
