@@ -25,7 +25,7 @@ ENV S6_CMD_WAIT_FOR_SERVICES=1
 RUN addgroup --system ory; adduser --system ory --group --disabled-login --no-create-home
 # hadolint ignore=SC3001
 ADD https://raw.githubusercontent.com/ory/meta/master/install.sh /tmp
-RUN sh /tmp/install.sh -d -b /opt/oathkeeper oathkeeper v0.40.9
+RUN sh /tmp/install.sh -d -b /opt/oathkeeper oathkeeper v25.4.0
 
 # set up oathkeeper as background daemon
 COPY s6/run s6/finish /etc/services.d/node/

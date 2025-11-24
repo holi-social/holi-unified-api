@@ -10,4 +10,4 @@ docker run \
   --env-file=.env.local \
   --mount type=bind,source="$PWD",target=/opt/oathkeeper/ \
   --add-host=host.docker.internal:host-gateway \
-  oryd/oathkeeper:v0.40.9 --config /opt/oathkeeper/config.yaml serve
+  oryd/oathkeeper:v25.4.0 --config /opt/oathkeeper/config.yaml serve
