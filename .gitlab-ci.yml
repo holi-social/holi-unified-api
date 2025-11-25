@@ -41,7 +41,7 @@ stages:
 
 .deploy:
   image:
-    name: "europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/hashicorp/terraform:1.11.4"
+    name: "europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/hashicorp/terraform:1.14.0"
     # default entrypoint is terraform command, but we want to run shell scripts
     entrypoint: ["/bin/sh", "-c"]
   variables:
@@ -77,7 +77,7 @@ stages:
 ## common steps
 install_deps:
   stage: prepare
-  image: "europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:22-slim"
+  image: "europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:24-slim"
   cache: !reference [.yarn-cache-rw]
   script:
     - corepack enable
@@ -98,7 +98,7 @@ install_lint_test:
   needs:
     - job: install_deps
       optional: true
-  image: "europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:22-slim"
+  image: "europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:24-slim"
   cache: !reference [.yarn-cache-rw]
   script:
     - corepack enable
@@ -127,7 +127,7 @@ include:
 
 .build_mesh:
   needs: ["install_lint_test"]
-  image: "europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:22-slim"
+  image: "europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/node:24-slim"
   cache: !reference [.yarn-cache-readonly]
   script:
     - corepack enable
@@ -144,9 +144,9 @@ include:
 
 .build_docker:
   needs: ["install_lint_test"]
-  image: "europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/docker:28"
+  image: "europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/docker:29"
   services:
-    - name: "europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/docker:28-dind"
+    - name: "europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/docker:29-dind"
       alias: "docker"
   variables:
     # this could be fetched via terraform output ("gcr_location" in infra project), but then we would need an extra job for terraform
@@ -222,7 +222,7 @@ review_destroy:
   stage: destroy
   needs: ["review_deploy"]
   image:
-    name: "europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/hashicorp/terraform:1.11.4"
+    name: "europe-north1-docker.pkg.dev/holi-shared/docker-hub-remote/hashicorp/terraform:1.14.0"
     # default entrypoint is terraform command, but we want to run shell scripts
     entrypoint: ["/bin/sh", "-c"]
   variables:

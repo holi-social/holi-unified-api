@@ -7,13 +7,7 @@
     {
       "title": "SearchResponseSuccess",
       "type": "object",
-      "required": [
-        "found",
-        "out_of",
-        "page",
-        "request_params",
-        "search_time_ms"
-      ],
+      "required": ["found", "out_of", "page", "request_params", "search_time_ms"],
       "properties": {
         "facet_counts": {
           "type": "array",
@@ -77,10 +71,7 @@
                 "type": "integer"
               }
             },
-            "required": [
-              "group_key",
-              "hits"
-            ]
+            "required": ["group_key", "hits"]
           }
         },
         "conversation": {
@@ -110,12 +101,7 @@
                   "type": "integer"
                 }
               },
-              "required": [
-                "conversation",
-                "id",
-                "last_updated",
-                "ttl"
-              ]
+              "required": ["conversation", "id", "last_updated", "ttl"]
             },
             "conversation_id": {
               "type": "string"
@@ -124,12 +110,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "answer",
-            "conversation_history",
-            "conversation_id",
-            "query"
-          ]
+          "required": ["answer", "conversation_history", "conversation_id", "query"]
         },
         "parsed_nl_query": {
           "title": "SearchResponseParsedNLQuery",
@@ -172,10 +153,7 @@
     {
       "title": "SearchResponseError",
       "type": "object",
-      "required": [
-        "error",
-        "code"
-      ],
+      "required": ["error", "code"],
       "properties": {
         "error": {
           "description": "Error description",
@@ -232,10 +210,7 @@
           }
         }
       },
-      "required": [
-        "field",
-        "matched_tokens"
-      ]
+      "required": ["field", "matched_tokens"]
     },
     "SearchResponseHighlight": {
       "title": "SearchResponseHighlight",
@@ -244,13 +219,7 @@
     "DocumentType": {
       "title": "DocumentType",
       "type": "string",
-      "enum": [
-        "volunteering",
-        "space",
-        "profile",
-        "task",
-        "donation"
-      ]
+      "enum": ["volunteering", "space", "profile", "task", "donation", "petition"]
     },
     "DocumentContact": {
       "title": "DocumentContact",
@@ -259,12 +228,7 @@
         "type": {
           "title": "DocumentContactType",
           "type": "string",
-          "enum": [
-            "person",
-            "email",
-            "phone",
-            "website"
-          ]
+          "enum": ["person", "email", "phone", "website"]
         },
         "value": {
           "type": "string"
@@ -273,10 +237,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "type",
-        "value"
-      ]
+      "required": ["type", "value"]
     },
     "Document": {
       "title": "Document",
@@ -406,12 +367,31 @@
         },
         "summary_en": {
           "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "initiators": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "petitionSuccessful": { "type": "boolean" },
+        "slug": { "type": "string" },
+        "tag": { "type": "string" },
+        "targets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "title": { "type": "string" },
+        "signatures": {
+          "type": "integer"
         }
       },
-      "required": [
-        "type",
-        "id"
-      ]
+      "required": ["type", "id"]
     },
     "SearchResponseHit": {
       "title": "SearchResponseHit",
@@ -440,13 +420,7 @@
         "text_match_info": {
           "title": "SearchResponseTextMatchInfo",
           "type": "object",
-          "required": [
-            "best_field_score",
-            "best_field_weight",
-            "fields_matched",
-            "score",
-            "tokens_matched"
-          ],
+          "required": ["best_field_score", "best_field_weight", "fields_matched", "score", "tokens_matched"],
           "properties": {
             "best_field_score": {
               "type": "number"
@@ -474,10 +448,7 @@
           "type": "number"
         }
       },
-      "required": [
-        "document",
-        "highlight"
-      ]
+      "required": ["document", "highlight"]
     },
     "SearchResponseFacetCounts": {
       "title": "SearchResponseFacetCounts",
@@ -499,11 +470,7 @@
                 "type": "string"
               }
             },
-            "required": [
-              "count",
-              "highlighted",
-              "value"
-            ]
+            "required": ["count", "highlighted", "value"]
           }
         },
         "field_name": {
@@ -528,10 +495,7 @@
           }
         }
       },
-      "required": [
-        "counts",
-        "field_name"
-      ]
+      "required": ["counts", "field_name"]
     },
     "SearchResponseRequestParams": {
       "title": "SearchResponseRequestParams",
