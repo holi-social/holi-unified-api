@@ -41,17 +41,14 @@ app.post(
     on: {
       proxyReq: (proxyReq: http.ClientRequest, req: Request) => {
         const oldBody = req.body
-        console.log('oldBody', oldBody)
         if (!oldBody) return
 
         // TODO - This is a hack to get the token from the authorization header
         const jwt = req.get('authorization')
-        console.log('jwt', jwt)
         if (!oldBody.token && jwt && jwt.startsWith('Bearer ')) {
           oldBody.token = jwt.slice(7)
         }
         const newBody = JSON.stringify(oldBody)
-        console.log('newBody', newBody)
         proxyReq.setHeader('Content-Length', Buffer.byteLength(newBody))
         proxyReq.end(newBody)
       },
