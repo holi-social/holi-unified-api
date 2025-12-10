@@ -378,6 +378,7 @@
           }
         },
         "petitionSuccessful": { "type": "boolean" },
+        "featuredImage": { "type": "string" },
         "slug": { "type": "string" },
         "tag": { "type": "string" },
         "targets": {
