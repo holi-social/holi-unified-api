@@ -1595,18 +1595,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-codegen/typed-document-node@npm:^6.1.4":
-  version: 6.1.4
-  resolution: "@graphql-codegen/typed-document-node@npm:6.1.4"
+"@graphql-codegen/typed-document-node@npm:^6.1.5":
+  version: 6.1.5
+  resolution: "@graphql-codegen/typed-document-node@npm:6.1.5"
   dependencies:
     "@graphql-codegen/plugin-helpers": "npm:^6.1.0"
-    "@graphql-codegen/visitor-plugin-common": "npm:6.2.1"
+    "@graphql-codegen/visitor-plugin-common": "npm:6.2.2"
     auto-bind: "npm:~4.0.0"
     change-case-all: "npm:1.0.15"
     tslib: "npm:~2.6.0"
   peerDependencies:
     graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 10c0/0ebd4a6344fcd9ea17c5c620e0d63af66ee13f9bd7a22cecaf59c48062d1310b945db00e93aa1d3a6333d3adf9bcee31a3fedd2b7ea88992c0395491c42b018b
+  checksum: 10c0/faf4c13f83edc9e9534796214d012fe09f46d2d698bf124e16473f2eb47a77c91fdbf888892dda7291b9fe50806ad1031e5c159aa68be5b1071e2818c293fc34
   languageName: node
   linkType: hard
 
@@ -1719,6 +1719,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@graphql-codegen/visitor-plugin-common@npm:6.2.2":
+  version: 6.2.2
+  resolution: "@graphql-codegen/visitor-plugin-common@npm:6.2.2"
+  dependencies:
+    "@graphql-codegen/plugin-helpers": "npm:^6.1.0"
+    "@graphql-tools/optimize": "npm:^2.0.0"
+    "@graphql-tools/relay-operation-optimizer": "npm:^7.0.0"
+    "@graphql-tools/utils": "npm:^10.0.0"
+    auto-bind: "npm:~4.0.0"
+    change-case-all: "npm:1.0.15"
+    dependency-graph: "npm:^1.0.0"
+    graphql-tag: "npm:^2.11.0"
+    parse-filepath: "npm:^1.0.2"
+    tslib: "npm:~2.6.0"
+  peerDependencies:
+    graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: 10c0/abd6e82d8771a94bd54a3070253e3a14e157ad0ffa59bc818ad59870445da2489053ebb8fe621eefb6881c8ebb2c64904a243c6934d423f07e9c93f6fa4084bb
+  languageName: node
+  linkType: hard
+
 "@graphql-hive/logger@npm:^1.0.8":
   version: 1.0.8
   resolution: "@graphql-hive/logger@npm:1.0.8"
@@ -1762,16 +1782,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-inspector/core@npm:7.0.3":
-  version: 7.0.3
-  resolution: "@graphql-inspector/core@npm:7.0.3"
+"@graphql-inspector/core@npm:7.1.0":
+  version: 7.1.0
+  resolution: "@graphql-inspector/core@npm:7.1.0"
   dependencies:
     dependency-graph: "npm:1.0.0"
     object-inspect: "npm:1.13.2"
     tslib: "npm:2.6.2"
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 10c0/66015353b583adcb83bede5ccd0e1fe666feec3d663488c056d04c5b504843eab3aa26be027c863a1d0f95f7529e00a421225f220d37d1ba31a7e6e98cd911b8
+  checksum: 10c0/f1053d81f3580281e0e428274452ba198a5428ece12b28490f76e7025b45cc37c17f7c55e397a83071f95191c54f9b6ff14f893e5bd13f8f321e8b544d4f2e0a
   languageName: node
   linkType: hard
 
@@ -1823,21 +1843,21 @@ __metadata:
   linkType: hard
 
 "@graphql-mesh/cli@npm:^0.100.0":
-  version: 0.100.21
-  resolution: "@graphql-mesh/cli@npm:0.100.21"
+  version: 0.100.22
+  resolution: "@graphql-mesh/cli@npm:0.100.22"
   dependencies:
     "@graphql-codegen/core": "npm:^5.0.0"
-    "@graphql-codegen/typed-document-node": "npm:^6.1.4"
+    "@graphql-codegen/typed-document-node": "npm:^6.1.5"
     "@graphql-codegen/typescript": "npm:^5.0.6"
     "@graphql-codegen/typescript-generic-sdk": "npm:^4.0.0"
     "@graphql-codegen/typescript-operations": "npm:^5.0.6"
     "@graphql-codegen/typescript-resolvers": "npm:^5.1.4"
-    "@graphql-mesh/config": "npm:^0.108.21"
+    "@graphql-mesh/config": "npm:^0.108.22"
     "@graphql-mesh/cross-helpers": "npm:^0.4.11"
-    "@graphql-mesh/http": "npm:^0.106.19"
+    "@graphql-mesh/http": "npm:^0.106.20"
     "@graphql-mesh/include": "npm:^0.3.18"
     "@graphql-mesh/runtime": "npm:^0.106.19"
-    "@graphql-mesh/store": "npm:^0.104.19"
+    "@graphql-mesh/store": "npm:^0.104.20"
     "@graphql-mesh/types": "npm:^0.104.18"
     "@graphql-mesh/utils": "npm:^0.104.18"
     "@graphql-tools/utils": "npm:^10.11.0"
@@ -1866,37 +1886,37 @@ __metadata:
     graphql-mesh: cjs/bin.js
     graphql-mesh-esm: esm/bin.js
     mesh: cjs/bin.js
-  checksum: 10c0/7573130e0a9b09c541ef247b0050de3d6744d63ebdb014830f06485611952941dd9147d98e626bd8006b11080ca287b78f8a0edd91af2b8a834657d8fddf9311
+  checksum: 10c0/589632a70499a4ea252bc4a0f1f3df5fc9f546d0b2f74586d2289a6b56aee97b93d780db1bb74e33cd0a70de6b62e2bf4fb10ecc7bf2d408da87955d564c47df
   languageName: node
   linkType: hard
 
-"@graphql-mesh/config@npm:^0.108.21":
-  version: 0.108.21
-  resolution: "@graphql-mesh/config@npm:0.108.21"
+"@graphql-mesh/config@npm:^0.108.22":
+  version: 0.108.22
+  resolution: "@graphql-mesh/config@npm:0.108.22"
   dependencies:
     "@envelop/core": "npm:^5.3.2"
     "@graphql-mesh/cache-localforage": "npm:^0.105.19"
     "@graphql-mesh/cross-helpers": "npm:^0.4.11"
-    "@graphql-mesh/merger-bare": "npm:^0.105.19"
-    "@graphql-mesh/merger-stitching": "npm:^0.105.19"
+    "@graphql-mesh/merger-bare": "npm:^0.105.20"
+    "@graphql-mesh/merger-stitching": "npm:^0.105.20"
     "@graphql-mesh/runtime": "npm:^0.106.19"
-    "@graphql-mesh/store": "npm:^0.104.19"
+    "@graphql-mesh/store": "npm:^0.104.20"
     "@graphql-mesh/types": "npm:^0.104.18"
     "@graphql-mesh/utils": "npm:^0.104.18"
     "@graphql-tools/code-file-loader": "npm:^8.1.27"
     "@graphql-tools/graphql-file-loader": "npm:^8.1.8"
     "@graphql-tools/load": "npm:^8.1.7"
     "@graphql-tools/utils": "npm:^10.11.0"
-    "@graphql-yoga/plugin-persisted-operations": "npm:^3.17.1"
+    "@graphql-yoga/plugin-persisted-operations": "npm:^3.18.0"
     "@whatwg-node/fetch": "npm:^0.10.6"
     camel-case: "npm:^4.1.2"
-    graphql-yoga: "npm:^5.17.1"
+    graphql-yoga: "npm:^5.18.0"
     param-case: "npm:^3.0.4"
     pascal-case: "npm:^3.1.2"
     tslib: "npm:^2.4.0"
   peerDependencies:
     graphql: "*"
-  checksum: 10c0/d5cb81b4e7a77404462b01346390eacdea7be266b3df01f68c6850f67aa59b726c44c7166843e1e15e2c5638a8b1db138e10a497f084111799820c7e12d21de1
+  checksum: 10c0/56fa0d12fcd2464cd424e9fdd9a95baf0fe72a230df30a61c62fed7f511ffd712a314cc4ba0377be6d2cd7f74906225ea33689fb1b58a626ce9c5814fc7ddfdb
   languageName: node
   linkType: hard
 
@@ -1912,15 +1932,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-mesh/fusion-composition@npm:^0.8.22":
-  version: 0.8.22
-  resolution: "@graphql-mesh/fusion-composition@npm:0.8.22"
+"@graphql-mesh/fusion-composition@npm:^0.8.23":
+  version: 0.8.23
+  resolution: "@graphql-mesh/fusion-composition@npm:0.8.23"
   dependencies:
     "@graphql-mesh/utils": "npm:^0.104.18"
     "@graphql-tools/schema": "npm:^10.0.30"
     "@graphql-tools/stitching-directives": "npm:^4.0.8"
     "@graphql-tools/utils": "npm:^10.11.0"
-    "@theguild/federation-composition": "npm:^0.21.0"
+    "@theguild/federation-composition": "npm:^0.21.1"
     change-case: "npm:^4.1.2"
     graphql-scalars: "npm:^1.23.0"
     minimatch: "npm:^10.0.3"
@@ -1929,16 +1949,16 @@ __metadata:
     tslib: "npm:^2.4.0"
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-  checksum: 10c0/65984f24fe5218ab64fbd3afebe036b7026cf4fe8c371ada249b8eb58fbeab29bb7dcae89b461efe191139e04c5346feb12e9034b088dde6515d8aa349cdfe75
+  checksum: 10c0/a561d89ef23becc62224ed98822eb222b29f899204dbbc37c5ada54986b3374344af346baf43614396a5f7b3b78b273334b7ba876bbbb781e4aeb8441c064a7c
   languageName: node
   linkType: hard
 
 "@graphql-mesh/graphql@npm:^0.104.0":
-  version: 0.104.19
-  resolution: "@graphql-mesh/graphql@npm:0.104.19"
+  version: 0.104.20
+  resolution: "@graphql-mesh/graphql@npm:0.104.20"
   dependencies:
     "@graphql-mesh/cross-helpers": "npm:^0.4.11"
-    "@graphql-mesh/store": "npm:^0.104.19"
+    "@graphql-mesh/store": "npm:^0.104.20"
     "@graphql-mesh/string-interpolation": "npm:^0.5.9"
     "@graphql-mesh/types": "npm:^0.104.18"
     "@graphql-mesh/utils": "npm:^0.104.18"
@@ -1952,13 +1972,13 @@ __metadata:
     tslib: "npm:^2.4.0"
   peerDependencies:
     graphql: "*"
-  checksum: 10c0/b454ec36024336a191a87b46c8074c4e83f35258221cc5a013992fb220046f75bad014af7048f0890d38d9b5392a2e576fd9c26eed1f56e96d2bf031a6b18660
+  checksum: 10c0/597745cefe5a625deb100cbe6411c47d35487bd4e479b3d37fec5f8983b11547fce77ab662af35ecc7508e06d0bc13ff18a55c54f064587a1e9eab1bebd2768f
   languageName: node
   linkType: hard
 
-"@graphql-mesh/http@npm:^0.106.19":
-  version: 0.106.19
-  resolution: "@graphql-mesh/http@npm:0.106.19"
+"@graphql-mesh/http@npm:^0.106.20":
+  version: 0.106.20
+  resolution: "@graphql-mesh/http@npm:0.106.20"
   dependencies:
     "@graphql-mesh/cross-helpers": "npm:^0.4.11"
     "@graphql-mesh/runtime": "npm:^0.106.19"
@@ -1966,11 +1986,11 @@ __metadata:
     "@graphql-mesh/utils": "npm:^0.104.18"
     "@graphql-tools/utils": "npm:^10.11.0"
     "@whatwg-node/server": "npm:^0.10.5"
-    graphql-yoga: "npm:^5.17.1"
+    graphql-yoga: "npm:^5.18.0"
     tslib: "npm:^2.4.0"
   peerDependencies:
     graphql: "*"
-  checksum: 10c0/f3f9bee4bbdbb321e62cee30c2ff3eb7062ea27313fb901ba252c6fd45754dfb87cc925a30d5582270c220233536c173ff5b90485a0212ed74c95c2626c1814a
+  checksum: 10c0/b9a490129882cc4e2466f40beb346495775bc701380559dcb0668d5c72110e4004ca39f60af747bfafb71a05328e63f7259f0dbb4ac6245079f9d34d59608e03
   languageName: node
   linkType: hard
 
@@ -1990,30 +2010,30 @@ __metadata:
   linkType: hard
 
 "@graphql-mesh/json-schema@npm:^0.109.4":
-  version: 0.109.20
-  resolution: "@graphql-mesh/json-schema@npm:0.109.20"
+  version: 0.109.21
+  resolution: "@graphql-mesh/json-schema@npm:0.109.21"
   dependencies:
     "@graphql-mesh/cross-helpers": "npm:^0.4.11"
-    "@graphql-mesh/store": "npm:^0.104.19"
+    "@graphql-mesh/store": "npm:^0.104.20"
     "@graphql-mesh/string-interpolation": "npm:^0.5.9"
     "@graphql-mesh/types": "npm:^0.104.18"
     "@graphql-mesh/utils": "npm:^0.104.18"
     "@json-schema-tools/meta-schema": "npm:^1.7.5"
-    "@omnigraph/json-schema": "npm:^0.109.19"
+    "@omnigraph/json-schema": "npm:^0.109.20"
     graphql-compose: "npm:^9.1.0"
     json-machete: "npm:^0.97.6"
     tslib: "npm:^2.4.0"
   peerDependencies:
     graphql: "*"
-  checksum: 10c0/7398d0d6b1b4ee282f378a9fdbd2922ccb54af3a10a507c07f092d3707754b210b79d8d8d4295a93ae1fda6b41fa32f4c6d57495aa0ac72bb305e2e1738c96f5
+  checksum: 10c0/dc578c849fdd68eb2e76e11cdf3928dba5431ff54355254fa7f76348b40bd8d6055ba9e0397a01a478902266a8c978f7229fe8fb5b1745dc7bb15757a38975da
   languageName: node
   linkType: hard
 
-"@graphql-mesh/merger-bare@npm:^0.105.19":
-  version: 0.105.19
-  resolution: "@graphql-mesh/merger-bare@npm:0.105.19"
+"@graphql-mesh/merger-bare@npm:^0.105.20":
+  version: 0.105.20
+  resolution: "@graphql-mesh/merger-bare@npm:0.105.20"
   dependencies:
-    "@graphql-mesh/merger-stitching": "npm:0.105.19"
+    "@graphql-mesh/merger-stitching": "npm:0.105.20"
     "@graphql-mesh/types": "npm:^0.104.18"
     "@graphql-mesh/utils": "npm:^0.104.18"
     "@graphql-tools/schema": "npm:^10.0.30"
@@ -2021,15 +2041,15 @@ __metadata:
     tslib: "npm:^2.4.0"
   peerDependencies:
     graphql: "*"
-  checksum: 10c0/03e434817c0a31c5ac6095d333f70a0f0f0a87d3a723f5d552676288c0b3f5f93e77c268bbe8f6c65f5d6a6d63588310bf96d9ab43ac73612a748a1bc9ea928b
+  checksum: 10c0/01010ed4067ced4589c2cf9a2ae28192db00e6832d823877f08df714d587f0c311a028553a4c81867963a405ed831faeae894f9497b54cf5e959921c795e4382
   languageName: node
   linkType: hard
 
-"@graphql-mesh/merger-stitching@npm:0.105.19, @graphql-mesh/merger-stitching@npm:^0.105.19":
-  version: 0.105.19
-  resolution: "@graphql-mesh/merger-stitching@npm:0.105.19"
+"@graphql-mesh/merger-stitching@npm:0.105.20, @graphql-mesh/merger-stitching@npm:^0.105.20":
+  version: 0.105.20
+  resolution: "@graphql-mesh/merger-stitching@npm:0.105.20"
   dependencies:
-    "@graphql-mesh/store": "npm:^0.104.19"
+    "@graphql-mesh/store": "npm:^0.104.20"
     "@graphql-mesh/types": "npm:^0.104.18"
     "@graphql-mesh/utils": "npm:^0.104.18"
     "@graphql-tools/delegate": "npm:^12.0.2"
@@ -2039,29 +2059,29 @@ __metadata:
     tslib: "npm:^2.4.0"
   peerDependencies:
     graphql: "*"
-  checksum: 10c0/50d203452bb085ace6a49220a1f53e9953421b02abfaf1509f2ab0faa1a92149e69cf6db8ac16cd08cce0e2bf213161e9bfdde2af888b9528ea703bd559719cc
+  checksum: 10c0/3fd46f92586325c48f374608e7b3ac7bf34ad7fa827c14e38e15d0dbc4d0f2717d93e5cba517d8d1109efbfdf79b66aa94c471790d6f5c1bb096a3d4dbbd0761
   languageName: node
   linkType: hard
 
 "@graphql-mesh/openapi@npm:^0.109.0":
-  version: 0.109.26
-  resolution: "@graphql-mesh/openapi@npm:0.109.26"
+  version: 0.109.27
+  resolution: "@graphql-mesh/openapi@npm:0.109.27"
   dependencies:
-    "@graphql-mesh/store": "npm:^0.104.19"
+    "@graphql-mesh/store": "npm:^0.104.20"
     "@graphql-mesh/string-interpolation": "npm:0.5.9"
     "@graphql-mesh/types": "npm:^0.104.18"
     "@graphql-mesh/utils": "npm:^0.104.18"
-    "@omnigraph/openapi": "npm:0.109.25"
+    "@omnigraph/openapi": "npm:0.109.26"
     tslib: "npm:^2.4.0"
   peerDependencies:
     graphql: "*"
-  checksum: 10c0/a475a9e97899b07b3119627e40058ae8c089d1fdf297b9e1856fdddd632ab4ed6f09b47302e63b47f16f5ccebe0d51cb39eed1cc71f5060bae42dc3642408e2f
+  checksum: 10c0/4dcc289659ed80e6565b7fff3acd54a35db17adcec783bdfb4121007539fd74ec8de3cad58e592a4c74fe01f156a30335d09c3bce51072e4fd236e8f988f0e26
   languageName: node
   linkType: hard
 
 "@graphql-mesh/plugin-response-cache@npm:^0.104.0":
-  version: 0.104.20
-  resolution: "@graphql-mesh/plugin-response-cache@npm:0.104.20"
+  version: 0.104.21
+  resolution: "@graphql-mesh/plugin-response-cache@npm:0.104.21"
   dependencies:
     "@envelop/core": "npm:^5.3.2"
     "@envelop/response-cache": "npm:^9.0.0"
@@ -2070,14 +2090,14 @@ __metadata:
     "@graphql-mesh/types": "npm:^0.104.18"
     "@graphql-mesh/utils": "npm:^0.104.18"
     "@graphql-tools/utils": "npm:^10.11.0"
-    "@graphql-yoga/plugin-response-cache": "npm:^3.19.1"
+    "@graphql-yoga/plugin-response-cache": "npm:^3.20.0"
     "@whatwg-node/promise-helpers": "npm:^1.0.0"
     cache-control-parser: "npm:^2.0.6"
-    graphql-yoga: "npm:^5.17.1"
+    graphql-yoga: "npm:^5.18.0"
     tslib: "npm:^2.4.0"
   peerDependencies:
     graphql: "*"
-  checksum: 10c0/3caca2383856fd99b43e05d8b33f14c2356c5bf307d6fe69656f16f9aa890eeae1e8c0d5538a0ba44a0e85d5451bceaf255f584281120bac7063421fa17e175c
+  checksum: 10c0/86b82634aec2a593ee78e987c4d005d8b9903b947185a6d004fc009b6b1c587f12dfde1e6279deb5023c14c01e0354386dc5bde33cf434a4820e6c9233c81a2a
   languageName: node
   linkType: hard
 
@@ -2107,11 +2127,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-mesh/store@npm:^0.104.19":
-  version: 0.104.19
-  resolution: "@graphql-mesh/store@npm:0.104.19"
+"@graphql-mesh/store@npm:^0.104.20":
+  version: 0.104.20
+  resolution: "@graphql-mesh/store@npm:0.104.20"
   dependencies:
-    "@graphql-inspector/core": "npm:7.0.3"
+    "@graphql-inspector/core": "npm:7.1.0"
     "@graphql-mesh/cross-helpers": "npm:^0.4.11"
     "@graphql-mesh/types": "npm:^0.104.18"
     "@graphql-mesh/utils": "npm:^0.104.18"
@@ -2119,7 +2139,7 @@ __metadata:
     tslib: "npm:^2.4.0"
   peerDependencies:
     graphql: "*"
-  checksum: 10c0/5fd1fdeebf82831f1a63f33068b4ccf655ff44f965db5c2c1f566e78d4e7842962f0771f8940187aeef1d53d139714a3aa0c3736f6e78a4ef85ef3f9cdf18be6
+  checksum: 10c0/298eaadea0fc3924742698fbb4912d0896b2fe09e8dfd3507b1f31258f43db586f9cfc342884640e9dd8aa47d19eb54fc67fa01b07266d0f609f27489a7a6b3b
   languageName: node
   linkType: hard
 
@@ -2190,9 +2210,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-mesh/transport-rest@npm:^0.9.19":
-  version: 0.9.19
-  resolution: "@graphql-mesh/transport-rest@npm:0.9.19"
+"@graphql-mesh/transport-rest@npm:^0.9.20":
+  version: 0.9.20
+  resolution: "@graphql-mesh/transport-rest@npm:0.9.20"
   dependencies:
     "@graphql-mesh/cross-helpers": "npm:^0.4.11"
     "@graphql-mesh/string-interpolation": "npm:^0.5.9"
@@ -2204,12 +2224,12 @@ __metadata:
     dset: "npm:^3.1.3"
     graphql-fields: "npm:^2.0.3"
     graphql-scalars: "npm:^1.22.4"
-    qs: "npm:^6.14.0"
+    qs: "npm:^6.14.1"
     tslib: "npm:^2.4.0"
     url-join: "npm:4.0.1"
   peerDependencies:
     graphql: "*"
-  checksum: 10c0/6664d7744f629147fc81bc25f8511e69974aabea3e438cf1a29a95731b58a799d3bf2ef276842986c2e67f8527e877d0ce5c7dca9ecaae6d02e6e3866e5bfda6
+  checksum: 10c0/debfa3063a10118ff20bdb4cda16feee06d96f751a4196bbbe6b85d26788756bfad33550074b34799ba4a4f7a69159d965709d712f2d7dbe2ebfd76aaed29f1f
   languageName: node
   linkType: hard
 
@@ -2990,29 +3010,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-yoga/plugin-persisted-operations@npm:^3.17.1":
-  version: 3.17.1
-  resolution: "@graphql-yoga/plugin-persisted-operations@npm:3.17.1"
+"@graphql-yoga/plugin-persisted-operations@npm:^3.18.0":
+  version: 3.18.0
+  resolution: "@graphql-yoga/plugin-persisted-operations@npm:3.18.0"
   dependencies:
     "@whatwg-node/promise-helpers": "npm:^1.3.2"
   peerDependencies:
     graphql: ^15.2.0 || ^16.0.0
-    graphql-yoga: ^5.17.1
-  checksum: 10c0/8121d755bccdd4efb9edf27c1dfd4bc0748c1584cba7b08a57d5a856cd250924a0bc314e92996d03fea17b8128c943319a756ca4f1fe730f079f5b679b83eaed
+    graphql-yoga: ^5.18.0
+  checksum: 10c0/86c518d3ed52b1e97e08c1ab1f9cd59219729d089c2345ba46e975e882aca64838cfd7a37257b9abe8251bd6f74ca4ad80f9805285a8764911dfcfeb165fb142
   languageName: node
   linkType: hard
 
-"@graphql-yoga/plugin-response-cache@npm:^3.19.1":
-  version: 3.19.1
-  resolution: "@graphql-yoga/plugin-response-cache@npm:3.19.1"
+"@graphql-yoga/plugin-response-cache@npm:^3.20.0":
+  version: 3.20.0
+  resolution: "@graphql-yoga/plugin-response-cache@npm:3.20.0"
   dependencies:
     "@envelop/core": "npm:^5.3.0"
     "@envelop/response-cache": "npm:^9.0.0"
     "@whatwg-node/promise-helpers": "npm:^1.3.2"
   peerDependencies:
     graphql: ^15.2.0 || ^16.0.0
-    graphql-yoga: ^5.17.1
-  checksum: 10c0/51999ac0d280500626470c2027d49bab54e17adbaf1d3e23b8ec7395d1d366b1ce47afb76b473fef789bf0527e1d82e39d36d61efcf19a0b80529b05b841af40
+    graphql-yoga: ^5.18.0
+  checksum: 10c0/6a5c8236bbb48abcab1864790cbfe3884ce8240f44f58ca6f8d47204f0a168c796c07901f085ad0fe22abbaa669f660431f6e1ed6e2bdecea59b7c2839db43ea
   languageName: node
   linkType: hard
 
@@ -3673,14 +3693,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@omnigraph/json-schema@npm:^0.109.19":
-  version: 0.109.19
-  resolution: "@omnigraph/json-schema@npm:0.109.19"
+"@omnigraph/json-schema@npm:^0.109.20":
+  version: 0.109.20
+  resolution: "@omnigraph/json-schema@npm:0.109.20"
   dependencies:
     "@graphql-mesh/cross-helpers": "npm:^0.4.11"
     "@graphql-mesh/string-interpolation": "npm:0.5.9"
     "@graphql-mesh/transport-common": "npm:^1.0.0"
-    "@graphql-mesh/transport-rest": "npm:^0.9.19"
+    "@graphql-mesh/transport-rest": "npm:^0.9.20"
     "@graphql-mesh/types": "npm:^0.104.18"
     "@graphql-mesh/utils": "npm:^0.104.18"
     "@graphql-tools/delegate": "npm:^12.0.2"
@@ -3688,41 +3708,41 @@ __metadata:
     "@json-schema-tools/meta-schema": "npm:^1.7.5"
     "@whatwg-node/fetch": "npm:^0.10.6"
     ajv: "npm:^8.17.1"
-    ajv-formats: "npm:^2.1.1"
+    ajv-formats: "npm:^3.0.1"
     dset: "npm:^3.1.4"
     graphql-compose: "npm:^9.1.0"
     graphql-fields: "npm:^2.0.3"
     graphql-scalars: "npm:^1.22.4"
     json-machete: "npm:^0.97.6"
     pascal-case: "npm:3.1.2"
-    qs: "npm:^6.14.0"
+    qs: "npm:^6.14.1"
     to-json-schema: "npm:^0.2.5"
     tslib: "npm:^2.4.0"
     url-join: "npm:4.0.1"
   peerDependencies:
     graphql: "*"
-  checksum: 10c0/5420e2a16d3f9c11c4bfbfb90e5d4219266a648138d6b3474fe4afb3f590c153b2104ab9aef8286d9bf561fa6c67e1fca8b2bb7635b390c60d0b5f7504abc3ca
+  checksum: 10c0/2f72eb68ca20d28482fa96761504ceec1853960f18c9d3b1cd923acb53beac41bc4b7e52cb5075198504975ad71ffc911953a49572bbec17f51d9123fa3d5960
   languageName: node
   linkType: hard
 
-"@omnigraph/openapi@npm:0.109.25":
-  version: 0.109.25
-  resolution: "@omnigraph/openapi@npm:0.109.25"
+"@omnigraph/openapi@npm:0.109.26":
+  version: 0.109.26
+  resolution: "@omnigraph/openapi@npm:0.109.26"
   dependencies:
     "@graphql-mesh/cross-helpers": "npm:^0.4.11"
-    "@graphql-mesh/fusion-composition": "npm:^0.8.22"
+    "@graphql-mesh/fusion-composition": "npm:^0.8.23"
     "@graphql-mesh/string-interpolation": "npm:^0.5.9"
     "@graphql-mesh/types": "npm:^0.104.18"
     "@graphql-mesh/utils": "npm:^0.104.18"
     "@graphql-tools/utils": "npm:^10.11.0"
-    "@omnigraph/json-schema": "npm:^0.109.19"
+    "@omnigraph/json-schema": "npm:^0.109.20"
     change-case: "npm:^4.1.2"
     json-machete: "npm:^0.97.6"
     openapi-types: "npm:^12.1.0"
     tslib: "npm:^2.4.0"
   peerDependencies:
     graphql: "*"
-  checksum: 10c0/9667bb29efd21986ed843f1522a3136ff38658ecb2e3c944fd0c416859e9afc13ab6471d81d2f5d31317933bae30df99836b94aac40c26c6024724f98b568748
+  checksum: 10c0/50a9b40720e31900f172d93060438220f901b21d5b81da3bb4d32c79c8a14db7c701edd4859a23514cc9b29655dd3f6880e20a432eb1b2aad11fdb56219669b6
   languageName: node
   linkType: hard
 
@@ -4437,6 +4457,20 @@ __metadata:
   peerDependencies:
     graphql: ^16.0.0
   checksum: 10c0/5f2b45f986cf9e341d3c5b2e89d1ef7bb54051a455c56babca81ac2c1c81829d207c892fe482c1ae10cd7c53e34d8d32bb4f8d27435d9901e532328e2ac22d98
+  languageName: node
+  linkType: hard
+
+"@theguild/federation-composition@npm:^0.21.1":
+  version: 0.21.1
+  resolution: "@theguild/federation-composition@npm:0.21.1"
+  dependencies:
+    constant-case: "npm:^3.0.4"
+    debug: "npm:4.4.3"
+    json5: "npm:^2.2.3"
+    lodash.sortby: "npm:^4.7.0"
+  peerDependencies:
+    graphql: ^16.0.0
+  checksum: 10c0/9eb422dfb29807d8a1da52d57e3ae411d1cabc4e8e804cf083627cdfc9ebe0c206aaca168171c8f593ed755d87cd799f69bd975acfd11a05a2d13f70d5a75687
   languageName: node
   linkType: hard
 
@@ -5269,20 +5303,6 @@ __metadata:
     clean-stack: "npm:^2.0.0"
     indent-string: "npm:^4.0.0"
   checksum: 10c0/a42f67faa79e3e6687a4923050e7c9807db3848a037076f791d10e092677d65c1d2d863b7848560699f40fc0502c19f40963fb1cd1fb3d338a7423df8e45e039
-  languageName: node
-  linkType: hard
-
-"ajv-formats@npm:^2.1.1":
-  version: 2.1.1
-  resolution: "ajv-formats@npm:2.1.1"
-  dependencies:
-    ajv: "npm:^8.0.0"
-  peerDependencies:
-    ajv: ^8.0.0
-  peerDependenciesMeta:
-    ajv:
-      optional: true
-  checksum: 10c0/e43ba22e91b6a48d96224b83d260d3a3a561b42d391f8d3c6d2c1559f9aa5b253bfb306bc94bbeca1d967c014e15a6efe9a207309e95b3eaae07fcbcdc2af662
   languageName: node
   linkType: hard
 
@@ -7995,9 +8015,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql-yoga@npm:^5.17.1":
-  version: 5.17.1
-  resolution: "graphql-yoga@npm:5.17.1"
+"graphql-yoga@npm:^5.18.0":
+  version: 5.18.0
+  resolution: "graphql-yoga@npm:5.18.0"
   dependencies:
     "@envelop/core": "npm:^5.3.0"
     "@envelop/instrumentation": "npm:^1.0.0"
@@ -8013,7 +8033,7 @@ __metadata:
     tslib: "npm:^2.8.1"
   peerDependencies:
     graphql: ^15.2.0 || ^16.0.0
-  checksum: 10c0/36b98c67fbc02f7bb6b984060b235825a2bb1aecfa51300f463d5323d44b96aeac125eb3bfc862414c9ce0cc269a5460089d863cb13f129a77af781e46c21022
+  checksum: 10c0/c5a079eb4ae76a7a7bb784b5e11a6e86002c64aace5dcc0f4013f950a419a53ada6bb240b27673f6a7f8237ff1d57cbe5d7c099612cfd6c17191e9e126a06e91
   languageName: node
   linkType: hard
 
@@ -11035,6 +11055,15 @@ __metadata:
   dependencies:
     side-channel: "npm:^1.1.0"
   checksum: 10c0/8ea5d91bf34f440598ee389d4a7d95820e3b837d3fd9f433871f7924801becaa0cd3b3b4628d49a7784d06a8aea9bc4554d2b6d8d584e2d221dc06238a42909c
+  languageName: node
+  linkType: hard
+
+"qs@npm:^6.14.1":
+  version: 6.14.1
+  resolution: "qs@npm:6.14.1"
+  dependencies:
+    side-channel: "npm:^1.1.0"
+  checksum: 10c0/0e3b22dc451f48ce5940cbbc7c7d9068d895074f8c969c0801ac15c1313d1859c4d738e46dc4da2f498f41a9ffd8c201bd9fb12df67799b827db94cc373d2613
   languageName: node
   linkType: hard
 
