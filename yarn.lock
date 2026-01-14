@@ -4329,21 +4329,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/core@npm:10.32.1":
-  version: 10.32.1
-  resolution: "@sentry/core@npm:10.32.1"
-  checksum: 10c0/47cbbb82cb5c1841033d5a08c3edf9686516c85d799de13f9b1981fc705aaf2a9b441576ffb50e89d4554fbee3b41f73a11cb32547129c6f504dad55db985187
+"@sentry/core@npm:10.34.0":
+  version: 10.34.0
+  resolution: "@sentry/core@npm:10.34.0"
+  checksum: 10c0/e30e7743b8fbf0887f1cd01f865d9ccdc4e0d9754ebeae44f4849773cef4263eaa9dee71256429e614a86e0d39fe924a9e3d9535e9a6900bb4d190789bf83fc8
   languageName: node
   linkType: hard
 
-"@sentry/node-core@npm:10.32.1":
-  version: 10.32.1
-  resolution: "@sentry/node-core@npm:10.32.1"
+"@sentry/node-core@npm:10.34.0":
+  version: 10.34.0
+  resolution: "@sentry/node-core@npm:10.34.0"
   dependencies:
     "@apm-js-collab/tracing-hooks": "npm:^0.3.1"
-    "@sentry/core": "npm:10.32.1"
-    "@sentry/opentelemetry": "npm:10.32.1"
-    import-in-the-middle: "npm:^2"
+    "@sentry/core": "npm:10.34.0"
+    "@sentry/opentelemetry": "npm:10.34.0"
+    import-in-the-middle: "npm:^2.0.1"
   peerDependencies:
     "@opentelemetry/api": ^1.9.0
     "@opentelemetry/context-async-hooks": ^1.30.1 || ^2.1.0 || ^2.2.0
@@ -4352,13 +4352,13 @@ __metadata:
     "@opentelemetry/resources": ^1.30.1 || ^2.1.0 || ^2.2.0
     "@opentelemetry/sdk-trace-base": ^1.30.1 || ^2.1.0 || ^2.2.0
     "@opentelemetry/semantic-conventions": ^1.37.0
-  checksum: 10c0/d204532c14af761e90c45fc8451261fa781d454fca93f4706ca66be4c49b1980c0fa05493783cf0d0034ad0992b2f05e3c3c7b2ff917cc8f3fcb867fb1fddf18
+  checksum: 10c0/3bfe8a2a768da73fb014139a8a27547beb919e19ea7ded7da0f89433252b4993f8c233dce35a30e25086e0aeee8606d676d32ec13cd692dab2b205f77743c453
   languageName: node
   linkType: hard
 
 "@sentry/node@npm:^10.1.0":
-  version: 10.32.1
-  resolution: "@sentry/node@npm:10.32.1"
+  version: 10.34.0
+  resolution: "@sentry/node@npm:10.34.0"
   dependencies:
     "@opentelemetry/api": "npm:^1.9.0"
     "@opentelemetry/context-async-hooks": "npm:^2.2.0"
@@ -4390,27 +4390,27 @@ __metadata:
     "@opentelemetry/sdk-trace-base": "npm:^2.2.0"
     "@opentelemetry/semantic-conventions": "npm:^1.37.0"
     "@prisma/instrumentation": "npm:6.19.0"
-    "@sentry/core": "npm:10.32.1"
-    "@sentry/node-core": "npm:10.32.1"
-    "@sentry/opentelemetry": "npm:10.32.1"
-    import-in-the-middle: "npm:^2"
+    "@sentry/core": "npm:10.34.0"
+    "@sentry/node-core": "npm:10.34.0"
+    "@sentry/opentelemetry": "npm:10.34.0"
+    import-in-the-middle: "npm:^2.0.1"
     minimatch: "npm:^9.0.0"
-  checksum: 10c0/f3f8a4efdb8c1a5cd8ec1a61beb195a456955baa5df41a1fd1eda1a1a36c8f3e95301669b9cb2055e1e75370d0f5b5bc65df8765c8d76aadfd584586cf1b4bc4
+  checksum: 10c0/1198d3605a5cf0e693972dde5c07ca13b983b2980eadaf6657a85ffb37dbeccf768d04c36a0857146b695a7ecf668a2063efd76bf2922b12aac3112b66bff589
   languageName: node
   linkType: hard
 
-"@sentry/opentelemetry@npm:10.32.1":
-  version: 10.32.1
-  resolution: "@sentry/opentelemetry@npm:10.32.1"
+"@sentry/opentelemetry@npm:10.34.0":
+  version: 10.34.0
+  resolution: "@sentry/opentelemetry@npm:10.34.0"
   dependencies:
-    "@sentry/core": "npm:10.32.1"
+    "@sentry/core": "npm:10.34.0"
   peerDependencies:
     "@opentelemetry/api": ^1.9.0
     "@opentelemetry/context-async-hooks": ^1.30.1 || ^2.1.0 || ^2.2.0
     "@opentelemetry/core": ^1.30.1 || ^2.1.0 || ^2.2.0
     "@opentelemetry/sdk-trace-base": ^1.30.1 || ^2.1.0 || ^2.2.0
     "@opentelemetry/semantic-conventions": ^1.37.0
-  checksum: 10c0/48bffb7a519528a1dc3d06682e58c95cc00ffb5c3a0b816ba8e1556bab6c2930db446a08ca72ba7cae452ca84daecb38eebe0f557d49e759cd639cf9ef68ab07
+  checksum: 10c0/12e29e850eab4db1a10e83a460091868f792e6585e3334d3e6159d8b62691b781325e161ff5cb291cd549f0bc9fa6baf48902d672553cd8bbb37946e2007b20e
   languageName: node
   linkType: hard
 
@@ -6070,6 +6070,13 @@ __metadata:
   version: 2.1.1
   resolution: "cjs-module-lexer@npm:2.1.1"
   checksum: 10c0/813697c0ed1533f4a88bd8051d8ae1cb1b21d3ff1c6a5720353817d50c3f3f83bb2af6bd83922aae94b3ef90d64d01a6eb123fa8249f4dc7215e3afd89364f86
+  languageName: node
+  linkType: hard
+
+"cjs-module-lexer@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "cjs-module-lexer@npm:2.2.0"
+  checksum: 10c0/aec4ca58f87145fac221386790ecaae8b012f2e2359a45acb61d8c75ea4fa84f6ea869f17abc1a7e91a808eff0fed581209632f03540de16f72f0a28f5fd35ac
   languageName: node
   linkType: hard
 
@@ -8387,7 +8394,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"import-in-the-middle@npm:^2, import-in-the-middle@npm:^2.0.0":
+"import-in-the-middle@npm:^2.0.0":
   version: 2.0.0
   resolution: "import-in-the-middle@npm:2.0.0"
   dependencies:
@@ -8396,6 +8403,18 @@ __metadata:
     cjs-module-lexer: "npm:^1.2.2"
     module-details-from-path: "npm:^1.0.3"
   checksum: 10c0/b4349a1bac96a5ffb584564c24bb5ff70085d1e6f0a614392f7cd2321c9a1871bc6c3e93a01cbc0eeb7663ae572b717b808e9d24fe213b4ce373dd87d59ca8c5
+  languageName: node
+  linkType: hard
+
+"import-in-the-middle@npm:^2.0.1":
+  version: 2.0.4
+  resolution: "import-in-the-middle@npm:2.0.4"
+  dependencies:
+    acorn: "npm:^8.15.0"
+    acorn-import-attributes: "npm:^1.9.5"
+    cjs-module-lexer: "npm:^2.2.0"
+    module-details-from-path: "npm:^1.0.4"
+  checksum: 10c0/5ffe270e8f8d588550d4c23d7e63bc62283d686a7c358cbc4eada5144294a1d518a22ee5b0cf373ab98995a7252ffd2dc2836d2e32010579d4c9a259274a1e1c
   languageName: node
   linkType: hard
 
