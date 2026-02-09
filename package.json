@@ -41,7 +41,7 @@
     "@types/http-proxy-middleware": "^1.0.0",
     "@types/jest": "^30.0.0",
     "@types/supertest": "^6.0.2",
-    "eslint": "^9.0.0",
+    "eslint": "^10.0.0",
     "eslint-config-prettier": "^10.0.0",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-prettier": "^5.1.3",
