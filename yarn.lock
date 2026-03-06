@@ -10162,8 +10162,8 @@ __metadata:
   linkType: hard
 
 "mockttp@npm:^4.0.0":
-  version: 4.2.1
-  resolution: "mockttp@npm:4.2.1"
+  version: 4.2.2
+  resolution: "mockttp@npm:4.2.2"
   dependencies:
     "@graphql-tools/schema": "npm:^8.5.0"
     "@graphql-tools/utils": "npm:^8.8.0"
@@ -10185,7 +10185,6 @@ __metadata:
     connect: "npm:^3.7.0"
     cors: "npm:^2.8.4"
     cors-gate: "npm:^1.1.3"
-    cross-fetch: "npm:^3.1.5"
     destroyable-server: "npm:^1.1.1"
     express: "npm:^4.14.0"
     fast-json-patch: "npm:^3.1.1"
@@ -10212,7 +10211,7 @@ __metadata:
     ws: "npm:^8.8.0"
   bin:
     mockttp: dist/admin/admin-bin.js
-  checksum: 10c0/75c543814871387bd26deeaf45218f665ad50eb732f25b6d517f5e790634070539f10abd3aee310549c896054886747f5b3854eef10ef89271cf16c882ecc972
+  checksum: 10c0/e3dbdb0968203400920e9d4ae241c19e276ae077ca24092c00c892912ac6744bd3efa0d8d96fa27357ae57cd0182fd1f2eb3ba688f022c41d874810970172452
   languageName: node
   linkType: hard
 
