@@ -2,7 +2,7 @@
 # Manual changes might be lost - proceed with caution!
 
 __metadata:
-  version: 8
+  version: 10
   cacheKey: 10c0
 
 "@aashutoshrathi/word-wrap@npm:^1.2.3":
@@ -7935,7 +7935,7 @@ __metadata:
     express: "npm:^5.0.0"
     graphql: "npm:^16.12.0"
     helmet: "npm:^8.0.0"
-    http-proxy-middleware: "npm:^3.0.0"
+    http-proxy-middleware: "npm:^4.0.0"
     jest: "npm:^30.0.0"
     jsonwebtoken: "npm:^9.0.2"
     mockttp: "npm:^4.0.0"
@@ -8010,7 +8010,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"http-proxy-middleware@npm:*, http-proxy-middleware@npm:^3.0.0":
+"http-proxy-middleware@npm:*":
   version: 3.0.5
   resolution: "http-proxy-middleware@npm:3.0.5"
   dependencies:
@@ -8021,6 +8021,19 @@ __metadata:
     is-plain-object: "npm:^5.0.0"
     micromatch: "npm:^4.0.8"
   checksum: 10c0/89ff3c8fe65b22b8042a6173ae1b8f77c5171f7eecf3c8b5d6dcffe3c9d688acae7bcf498cc08d1525f566dc0781efaec4e2ddc49224b1f16f020de7987a446b
+  languageName: node
+  linkType: hard
+
+"http-proxy-middleware@npm:^4.0.0":
+  version: 4.1.0
+  resolution: "http-proxy-middleware@npm:4.1.0"
+  dependencies:
+    debug: "npm:^4.4.3"
+    httpxy: "npm:^0.5.3"
+    is-glob: "npm:^4.0.3"
+    is-plain-obj: "npm:^4.1.0"
+    micromatch: "npm:^4.0.8"
+  checksum: 10c0/e8957f2ddb6ce566b9f0e3cd0afbbdb0767a457a2131d84c4834ab66afa2f4abbabc68557e28e603b807b3182c935569b192d6b8b417f8c58a7c150ef72c6bf5
   languageName: node
   linkType: hard
 
@@ -8062,6 +8075,13 @@ __metadata:
     agent-base: "npm:^7.0.2"
     debug: "npm:4"
   checksum: 10c0/7735eb90073db087e7e79312e3d97c8c04baf7ea7ca7b013382b6a45abbaa61b281041a98f4e13c8c80d88f843785bcc84ba189165b4b4087b1e3496ba656d77
+  languageName: node
+  linkType: hard
+
+"httpxy@npm:^0.5.3":
+  version: 0.5.3
+  resolution: "httpxy@npm:0.5.3"
+  checksum: 10c0/8120753638d1a50b13396d7c55536db076a04609dfb7eea19f5b461f9541acf4646fa6bfb8991f14bad62e0037b524481c5d625892b4ff94a6ab744149ed9387
   languageName: node
   linkType: hard
 
@@ -8331,6 +8351,13 @@ __metadata:
   version: 7.0.0
   resolution: "is-number@npm:7.0.0"
   checksum: 10c0/b4686d0d3053146095ccd45346461bc8e53b80aeb7671cc52a4de02dbbf7dc0d1d2a986e2fe4ae206984b4d34ef37e8b795ebc4f4295c978373e6575e295d811
+  languageName: node
+  linkType: hard
+
+"is-plain-obj@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "is-plain-obj@npm:4.1.0"
+  checksum: 10c0/32130d651d71d9564dc88ba7e6fda0e91a1010a3694648e9f4f47bb6080438140696d3e3e15c741411d712e47ac9edc1a8a9de1fe76f3487b0d90be06ac9975e
   languageName: node
   linkType: hard
 
